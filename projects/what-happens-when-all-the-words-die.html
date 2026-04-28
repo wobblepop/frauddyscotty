@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What happens when all the words die?</title>
+<meta name="description" content="An argument that institutional systems for distinguishing human knowledge from synthetic noise are being outpaced by the rate at which that noise is produced.">
+<meta property="og:title" content="What happens when all the words die?">
+<meta property="og:description" content="An argument that institutional systems for distinguishing human knowledge from synthetic noise are being outpaced by the rate at which that noise is produced.">
+<meta property="og:url" content="https://frauddyscotty.com/projects/what-happens-when-all-the-words-die.html">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://frauddyscotty.com/projects/what-happens-when-all-the-words-die.html">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  :root{
+    --bg:#faf8f5;
+    --fg:#1a1a1a;
+    --fg-muted:#555;
+    --fg-faint:#595959;
+    --border:#ccc5b9;
+    --border-faint:#e8e4dc;
+    --accent:#1a6b5a;
+    --accent-soft:#d4ede8;
+    --data-primary:#1a6b5a;
+    --data-light:#2d8b76;
+    --data-lighter:#4aa08c;
+    --teal:#0D9488;
+    --purple:#9333EA;
+    --gray-line:#5D6D7E;
+    --plot-grid:#e8e4dc;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0B0B0B;
+      --fg:#EDEAE2;
+      --fg-muted:#B4B2A9;
+      --fg-faint:#888780;
+      --border:#2C2C2A;
+      --border-faint:#1a1a1a;
+      --accent:#3dbfa0;
+      --accent-soft:#142e28;
+      --plot-grid:#2C2C2A;
+    }
+  }
+  .essay-wrap{max-width:720px;margin:0 auto;padding:2rem 0 4rem}
+  .essay-wrap h1{
+    font:500 42px/1.15 Georgia,"Times New Roman",serif;
+    letter-spacing:-0.01em;
+    margin:0 0 0.6rem;
+  }
+  .essay-wrap h2{
+    font:500 26px/1.25 Georgia,serif;
+    margin:4rem 0 0.75rem;
+    letter-spacing:-0.01em;
+    border-bottom:1px solid var(--border);
+    padding-bottom:0.3rem;
+  }
+  .essay-wrap p{margin:0 0 1.1rem}
+  .subtitle{
+    font:400 18px/1.5 Georgia,serif;
+    font-style:italic;
+    color:var(--fg-muted);
+    margin:0 0 1.75rem;
+  }
+  .byline{
+    font-size:12px;
+    color:var(--fg-faint);
+    margin:0 0 0;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+  }
+  .cite{font-size:10px;vertical-align:super;line-height:0}
+  .cite a{color:var(--accent);text-decoration:none;padding:0 2px;font-weight:500}
+  .cite a:hover{text-decoration:underline}
+  .section-index{
+    font:500 11px/1 Georgia,serif;
+    color:var(--fg-faint);
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    margin:3.5rem 0 0.4rem;
+  }
+  .closer{
+    font:500 19px/1.45 Georgia,serif;
+    margin:2rem 0 1rem;
+    color:var(--fg);
+    padding-left:1rem;
+    border-left:2px solid var(--accent);
+  }
+  figure{margin:2.25rem 0}
+  figcaption{font-size:14px;color:var(--fg-muted);margin-top:0.85rem;line-height:1.55}
+  figcaption .src{display:block;font-size:12px;color:var(--fg-faint);margin-top:0.5rem}
+  figcaption .src a{color:var(--fg-faint)}
+  .chart-wrapper{position:relative;width:100%}
+  .chart-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+  @media (max-width:620px){
+    .chart-grid-2{grid-template-columns:1fr}
+  }
+  .legend{display:flex;flex-wrap:wrap;gap:0.6rem 1.25rem;font-size:12px;color:var(--fg-muted);margin-top:0.75rem}
+  .legend .item{display:inline-flex;align-items:center}
+  .legend .sw{display:inline-block;width:14px;height:10px;margin-right:7px;border-radius:2px}
+  .legend .sw.line{height:2px;width:22px;border-radius:0}
+  .legend .sw.dashed{background:repeating-linear-gradient(to right,currentColor 0 4px,transparent 4px 8px);height:2px;width:22px;border-radius:0}
+  .panel-title{font:500 13px/1.3 Georgia,serif;color:var(--fg);margin:0 0 0.25rem}
+  .panel-sub{font:400 11px/1.3 Georgia,serif;color:var(--fg-faint);margin:0 0 0.5rem}
+  .sources{border-top:0.5px solid var(--border);padding-top:2rem;margin-top:5rem;font-size:13px;color:var(--fg-muted);line-height:1.7}
+  .sources h2{font-size:22px;margin-top:0}
+  .sources ol{padding-left:0;list-style:none}
+  .sources li{margin-bottom:0.65rem;padding-left:2.4rem;position:relative}
+  .sources li .k{position:absolute;left:0;top:0;font:500 11px/1.5 Consolas,ui-monospace,monospace;color:var(--accent);letter-spacing:0.04em}
+  .sources a{color:var(--fg-muted)}
+  .author-note{
+    margin:4rem 0 0;
+    padding:1.5rem 1.75rem;
+    border:0.5px solid var(--border);
+    border-left:3px solid var(--accent);
+    border-radius:4px;
+    background:transparent;
+  }
+  .author-note p{margin:0;font-size:15px;line-height:1.6;color:var(--fg)}
+  .author-note strong{color:var(--accent);letter-spacing:0.02em}
+  .exile{
+    border:0.5px solid var(--border);
+    padding:1.25rem 1.5rem;
+    margin:1.25rem 0;
+    border-radius:4px;
+    background:transparent;
+  }
+  .exile .label{font-size:10px;color:var(--fg-faint);text-transform:uppercase;letter-spacing:0.12em;margin:0 0 0.25rem;font-weight:500}
+  .exile .text{font-size:15px;margin:0 0 0.8rem;color:var(--fg);line-height:1.55}
+  .exile .text:last-child{margin-bottom:0}
+  .big-line{
+    font:500 28px/1.35 Georgia,serif;
+    text-align:center;
+    margin:3.5rem 0 2rem;
+    color:var(--fg);
+    padding:0 1rem;
+  }
+  /* Hero */
+  .hero-degrade{margin:1.5rem 0 2.5rem}
+  .hero-degrade svg{display:block;border:0.5px solid var(--border);border-radius:4px;background:var(--bg)}
+  /* Ouroboros */
+  .ouroboros{position:relative;margin:2rem 0;color:var(--fg)}
+  .ouroboros-counter{
+    position:absolute;top:14px;right:18px;
+    font-family:Consolas,ui-monospace,monospace;
+    font-size:11px;letter-spacing:0.04em;
+    color:currentColor;opacity:0.75;
+    padding:3px 8px;border:0.5px solid currentColor;border-radius:2px;
+    background:transparent;
+  }
+  .ouroboros-counter [data-gen]{font-weight:600}
+  .ouroboros .curves path{transition:opacity 0.9s ease-out}
+  @media (prefers-reduced-motion:reduce){
+    .ouroboros .curves path{transition:none;opacity:1 !important}
+  }
+  /* Detection threshold */
+  .threshold svg{display:block}
+  .acad-grid{margin-top:1rem}
+  .acad-grid svg{display:block}
+  /* small-viewport tweaks */
+  @media (max-width:620px){
+    .essay-wrap{padding:1rem 0 3rem}
+    .essay-wrap h1{font-size:34px}
+    .big-line{font-size:22px}
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div class="page-wrapper fade-in">
+
+  <div id="site-nav"></div>
+
+  <main id="main-content" class="essay-wrap">
+
+  <p class="byline">Scott DuHadway</p>
+  <h1>What happens when all the words die?</h1>
+  <p class="subtitle">An argument that the institutions we rely on to distinguish new human knowledge from synthetic noise are being outpaced by the rate at which that noise is now produced.</p>
+
+  <!-- ================= SECTION 1: HERO ================= -->
+  <section id="s1">
+    <figure class="hero-degrade" role="img" aria-label="A sentence visually degrading into illegible noise, illustrating signal loss.">
+      <svg viewBox="0 0 680 180" width="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="signalDeath" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+            <feTurbulence id="turbFilter" type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="7" result="noise">
+              <animate id="turbAnim" attributeName="baseFrequency" from="0.02" to="0.22" dur="4s" begin="indefinite" fill="freeze"/>
+            </feTurbulence>
+            <feDisplacementMap id="dispFilter" in="SourceGraphic" in2="noise" scale="0" xChannelSelector="R" yChannelSelector="G" result="disp">
+              <animate id="dispAnim" attributeName="scale" from="0" to="6" dur="4s" begin="indefinite" fill="freeze"/>
+            </feDisplacementMap>
+          </filter>
+        </defs>
+        <text x="340" y="100"
+              text-anchor="middle"
+              font-family="Georgia, 'Times New Roman', serif"
+              font-size="24"
+              font-weight="500"
+              letter-spacing="0.2"
+              fill="currentColor"
+              filter="url(#signalDeath)">
+          The cost of producing plausible text has collapsed to near zero.
+        </text>
+      </svg>
+    </figure>
+
+    <p>Most of my research centers on supply chain fraud, and in particular on interorganizational deception &mdash; cases in which one party to a commercial relationship misrepresents what it is actually providing. Horsemeat sold as beef in Europe in 2013. Falsified aluminum certifications used by NASA, which the supplier admitted to in 2019 and which contributed to two failed satellite launches. Counterfeit plastic in the accelerator arms of roughly 17,000 Aston Martins between 2007 and 2012. Lead-based paint applied by a Mattel subsupplier that circumvented a testing laboratory the buyer had paid to install. These cases share a structural feature. They occur at points in an exchange where verifying what the other party actually delivered has become sufficiently expensive that routine verification is no longer economically rational.</p>
+    <p>This essay argues that a functionally similar condition has emerged in the production and circulation of written knowledge. Generative AI has reduced the cost of producing plausible, grammatically fluent prose by several orders of magnitude over a few years. The downstream consequence is a verification problem at institutional scale that the systems we rely on &mdash; peer review, editorial vetting, grading, citation &mdash; were not designed to handle at the current prevalence of synthetic content. I document the evidence across four domains: student coursework, peer-reviewed academic publishing, the open web, and the data used to train successor models. In each, the measured rate of synthetic content has grown faster than the capacity to reliably distinguish it from human writing.</p>
+    <p>My reading of the evidence is that this is a present-tense condition rather than a hypothetical future one, and that its implications for knowledge institutions have not yet been widely internalized.</p>
+  </section>
+
+  <!-- ================= SECTION 2: COST OF A WORD ================= -->
+  <section id="s2">
+    <h2>The cost of a word</h2>
+
+    <p>The first consideration is economic. The marginal cost of producing a grammatical, readable paragraph has fallen by several orders of magnitude over the span of four years. Gartner forecast in 2021 that 60% of the data used to develop AI and analytics projects would be synthetically generated by 2024, up from roughly 1% in 2021<sup class="cite"><a href="#src-C1">C1</a></sup>. One industry estimate places the synthetic data generation market at approximately $310M in 2024, with reported growth of about 35% per year<sup class="cite"><a href="#src-C4">C4</a></sup>. Output-token pricing from the major commercial labs fell roughly 75-fold between 2021 and 2025, moving the effective cost of producing written text from pennies per thousand words toward pennies per million.</p>
+
+    <p>A price change of this magnitude affects the economics of attribution. The infrastructure used to certify who wrote what &mdash; bylines, citations, editorial review, peer review, institutional reputation &mdash; developed under the implicit assumption that producing written content in quantity was sufficiently costly that it generally only made sense when the author had something to contribute. That assumption is weaker now than it was. The cost of producing plausible text has become trivial, while the cost of verifying that a specific piece of text reflects the reasoning of a specific human has not fallen in parallel.</p>
+
+    <p>The two costs have diverged. Production costs dropped rapidly; detection costs did not, and by several accounts detector accuracy against newer model generations has declined. The asymmetry has practical consequences. A party producing synthetic content faces fewer barriers each year, while a party attempting to verify authorship faces more.</p>
+
+    <figure>
+      <div class="chart-grid-2">
+        <div>
+          <p class="panel-title">Cost to produce text</p>
+          <p class="panel-sub">Approx. cost per 1M output tokens (USD, log scale)</p>
+          <div class="chart-wrapper" style="height:260px"><canvas id="chart1a" role="img" aria-label="Log-scale line chart showing approximate cost per million output tokens falling from about sixty dollars in 2021 to under one dollar in 2025.">Token pricing fell roughly 75-fold from 2021 to 2025.</canvas></div>
+        </div>
+        <div>
+          <p class="panel-title">Cost to verify authorship (rising)</p>
+          <p class="panel-sub">Synthetic share of AI training data (measured forecast) and verification difficulty (illustrative)</p>
+          <div class="chart-wrapper" style="height:260px"><canvas id="chart1b" role="img" aria-label="Two rising lines from 2021 to 2025: synthetic share of AI training data rising from 1% to 60%, and an illustrative verification-difficulty proxy rising from 5% to 78%.">Synthetic training data rose from 1 percent in 2021 to a forecast 60 percent by 2024. Verification difficulty is illustrated as climbing alongside it.</canvas></div>
+        </div>
+      </div>
+      <div class="legend" style="margin-top:0.75rem">
+        <span class="item"><span class="sw line" style="background:#1a6b5a"></span>Approx. cost per 1M tokens (USD, log)</span>
+        <span class="item"><span class="sw line" style="background:#0D9488"></span>Synthetic share of AI training data (Gartner)</span>
+        <span class="item"><span class="sw line" style="background:repeating-linear-gradient(to right,#9333EA 0 4px,transparent 4px 8px)"></span>Verification difficulty (illustrative)</span>
+      </div>
+      <figcaption>
+        Output-token pricing fell roughly 75-fold between 2021 and 2025. The left panel shows approximate commercial pricing on a log scale. The right panel shows Gartner's 2021 forecast for synthetic training data share alongside an illustrative proxy for verification difficulty, which is not itself a measured index and should be interpreted as an indication of directionality rather than of level.
+        <span class="src">Sources: <a href="#src-C1">C1</a> Gartner 2021 forecast · <a href="#src-C4">C4</a> Global Market Insights · token-pricing trend compiled from publicly posted OpenAI, Anthropic, and open-model pricing between 2021 and 2025, presented here as approximate industry pricing.</span>
+      </figcaption>
+    </figure>
+
+    <p>The dynamic here is familiar from a much older economic setting. Gresham's law, originally formulated about coinage, describes what happens when lower-quality instruments circulate at the same nominal value as higher-quality ones: the better instruments are withdrawn from circulation, and the worse ones define the market. An analogous pattern applies to written content once the cost of producing low-signal text falls below the cost of distinguishing it from the rest.</p>
+  </section>
+
+  <!-- ================= SECTION 3: ACADEMIA ================= -->
+  <section id="s3">
+    <h2>Academia has already fallen</h2>
+
+    <p>The domain in which the transition is most precisely measurable is the one in which I have the most direct professional exposure: peer-reviewed scientific publishing. Several recent studies document the rate at which large language model output has entered the published literature, and the findings are consistent across methodologies and disciplines.</p>
+
+    <p>A team led by Weixin Liang at Stanford analyzed more than 1.1 million papers and preprints across arXiv, bioRxiv, and the Nature portfolio from January 2020 through September 2024, using a sentence-level classifier to estimate the share of text that had been LLM-modified. By February 2024, roughly 17.5% of computer-science paper abstracts showed evidence of LLM modification. By September 2024, the share approached 22%<sup class="cite"><a href="#src-B1">B1</a></sup>. The same methodology returned 4.9% for mathematics abstracts and 6.3% for the Nature portfolio &mdash; lower absolute values, but on similar upward trajectories.</p>
+
+    <p>A separate study by Kobak and colleagues of more than 15 million PubMed biomedical abstracts found LLM signatures in at least 13.5% of 2024 abstracts, with the share reaching 40% in some subcorpora<sup class="cite"><a href="#src-B2">B2</a></sup>. The detection method relied on tracking word-frequency anomalies. Certain words rose sharply in frequency across 2023 and 2024 in patterns consistent with LLM-generated prose. Uses of the word &ldquo;delve&rdquo; in biomedical abstracts, for example, rose from 349 in 2020 to 2,847 in 2023<sup class="cite"><a href="#src-B3">B3</a></sup>, an approximately eightfold increase in three years, with similar increases documented for &ldquo;intricate,&rdquo; &ldquo;meticulous,&rdquo; and &ldquo;commendable.&rdquo;</p>
+
+    <p>Journals and publishers have begun to respond. Springer's Neurosurgical Review retracted 129 papers in early 2025 for undisclosed LLM-generated text, of which 87 traced to a single university<sup class="cite"><a href="#src-B4">B4</a></sup>. Retraction Watch maintains a running tally of papers and peer reviews flagged for characteristic LLM phrases such as &ldquo;certainly, here is&rdquo; and &ldquo;as of my last knowledge update&rdquo; left in the submitted text; the tally stands at 92 papers and two peer reviews as of this writing<sup class="cite"><a href="#src-B5">B5</a></sup>. A follow-up study by Liang and colleagues applied the same sentence-level classifier to the peer-review side and estimated that 10.6% of reviewer text at ICLR 2024 and 16.9% at EMNLP had been substantially modified by ChatGPT<sup class="cite"><a href="#src-B6">B6</a></sup>.</p>
+
+    <figure class="acad-grid" role="img" aria-label="A grid of six small charts, one per academic field, showing the share of abstracts or peer reviews with LLM-modified sentences. Below, a bar chart showing the word 'delve' rising from 349 uses in 2020 to 2,847 in 2023 in PubMed abstracts.">
+      <!-- Grid: 3 cols x 2 rows, each panel 220 wide x 210 tall -->
+      <svg viewBox="0 0 680 440" width="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <style>
+          .gl{stroke:#e8e4dc;stroke-width:0.5}
+          .ax{stroke:currentColor;stroke-width:0.5;opacity:0.45}
+          .pt{font:500 12px Georgia,serif;fill:currentColor}
+          .ph{font:500 10px Georgia,serif;fill:#1a6b5a}
+          .yt{font:500 10px Georgia,serif;fill:currentColor;opacity:0.95}
+          .xt{font:400 10px Georgia,serif;fill:currentColor;opacity:0.8}
+          .nt{font:italic 8px Georgia,serif;fill:currentColor;opacity:0.7}
+          .ghost{stroke:#B4B2A9;stroke-width:0.5;stroke-dasharray:2 2;fill:none;opacity:0.6}
+        </style>
+        <defs>
+          <g id="pbg">
+            <line class="gl" x1="30" y1="40"  x2="210" y2="40"/>
+            <line class="gl" x1="30" y1="60"  x2="210" y2="60"/>
+            <line class="gl" x1="30" y1="80"  x2="210" y2="80"/>
+            <line class="gl" x1="30" y1="100" x2="210" y2="100"/>
+            <line class="gl" x1="30" y1="120" x2="210" y2="120"/>
+            <line class="ax" x1="30" y1="140" x2="210" y2="140"/>
+            <line class="ax" x1="30" y1="40"  x2="30"  y2="140"/>
+          </g>
+        </defs>
+
+        <!-- Panel 1: CS abstracts -->
+        <g transform="translate(0,0)">
+          <use href="#pbg"/>
+          <text class="pt" x="30" y="14">Computer science abstracts</text>
+          <text class="ph" x="30" y="30">Peak 22% (Sep 2024)</text>
+          <text class="yt" x="28" y="43" text-anchor="end">25%</text>
+          <text class="yt" x="28" y="143" text-anchor="end">0%</text>
+          <path fill="none" stroke="#2d8b76" stroke-width="1"
+            d="M 30 138 L 68.6 136.8 L 107.1 135.2 L 126.4 134 L 145.7 132 L 165 108 L 184.3 84 L 190.7 70 L 210 52"/>
+          <circle cx="210" cy="52" r="2.5" fill="#1a6b5a"/>
+          <text class="xt" x="30" y="156" text-anchor="start">2020</text>
+          <text class="xt" x="210" y="156" text-anchor="end">Sep 2024</text>
+        </g>
+
+        <!-- Panel 2: PubMed -->
+        <g transform="translate(230,0)">
+          <use href="#pbg"/>
+          <text class="pt" x="30" y="14">Biomedical abstracts (PubMed)</text>
+          <text class="ph" x="30" y="30">13.5% in 2024 (up to 40% in subcorpora)</text>
+          <text class="yt" x="28" y="43" text-anchor="end">25%</text>
+          <text class="yt" x="28" y="143" text-anchor="end">0%</text>
+          <path class="ghost" d="M 30 139 L 180 137"/>
+          <circle cx="184.3" cy="86" r="3" fill="#1a6b5a"/>
+          <text class="nt" x="184.3" y="100" text-anchor="middle">single 2024 estimate</text>
+          <text class="xt" x="30" y="156" text-anchor="start">2020</text>
+          <text class="xt" x="210" y="156" text-anchor="end">2024</text>
+        </g>
+
+        <!-- Panel 3: Math -->
+        <g transform="translate(460,0)">
+          <use href="#pbg"/>
+          <text class="pt" x="30" y="14">Mathematics abstracts</text>
+          <text class="ph" x="30" y="30">4.9% (Feb 2024)</text>
+          <text class="yt" x="28" y="43" text-anchor="end">25%</text>
+          <text class="yt" x="28" y="143" text-anchor="end">0%</text>
+          <path fill="none" stroke="#2d8b76" stroke-width="1"
+            d="M 30 139.2 L 107.1 138.8 L 145.7 138 L 165 132 L 184.3 124 L 190.7 120.4"/>
+          <circle cx="190.7" cy="120.4" r="2.5" fill="#1a6b5a"/>
+          <text class="xt" x="30" y="156" text-anchor="start">2020</text>
+          <text class="xt" x="210" y="156" text-anchor="end">Feb 2024</text>
+        </g>
+
+        <!-- Panel 4: Nature portfolio -->
+        <g transform="translate(0,220)">
+          <use href="#pbg"/>
+          <text class="pt" x="30" y="14">Nature portfolio abstracts</text>
+          <text class="ph" x="30" y="30">6.3% (Feb 2024)</text>
+          <text class="yt" x="28" y="43" text-anchor="end">25%</text>
+          <text class="yt" x="28" y="143" text-anchor="end">0%</text>
+          <path fill="none" stroke="#2d8b76" stroke-width="1"
+            d="M 30 139.2 L 107.1 138.4 L 145.7 137.2 L 165 130 L 184.3 120 L 190.7 114.8"/>
+          <circle cx="190.7" cy="114.8" r="2.5" fill="#1a6b5a"/>
+          <text class="xt" x="30" y="156" text-anchor="start">2020</text>
+          <text class="xt" x="210" y="156" text-anchor="end">Feb 2024</text>
+        </g>
+
+        <!-- Panel 5: ICLR reviews -->
+        <g transform="translate(230,220)">
+          <use href="#pbg"/>
+          <text class="pt" x="30" y="14">ICLR 2024 peer reviews</text>
+          <text class="ph" x="30" y="30">10.6% (2024 cycle)</text>
+          <text class="yt" x="28" y="43" text-anchor="end">25%</text>
+          <text class="yt" x="28" y="143" text-anchor="end">0%</text>
+          <path class="ghost" d="M 30 139 L 160 137"/>
+          <line x1="160" y1="97.6" x2="210" y2="97.6" stroke="#1a6b5a" stroke-width="0.75"/>
+          <circle cx="184.3" cy="97.6" r="3" fill="#1a6b5a"/>
+          <text class="nt" x="184.3" y="110" text-anchor="middle">single-cycle estimate</text>
+          <text class="xt" x="30" y="156" text-anchor="start">2020</text>
+          <text class="xt" x="210" y="156" text-anchor="end">2024</text>
+        </g>
+
+        <!-- Panel 6: EMNLP reviews -->
+        <g transform="translate(460,220)">
+          <use href="#pbg"/>
+          <text class="pt" x="30" y="14">EMNLP peer reviews</text>
+          <text class="ph" x="30" y="30">16.9% (2023 cycle)</text>
+          <text class="yt" x="28" y="43" text-anchor="end">25%</text>
+          <text class="yt" x="28" y="143" text-anchor="end">0%</text>
+          <path class="ghost" d="M 30 139 L 150 137"/>
+          <line x1="145" y1="72.4" x2="210" y2="72.4" stroke="#1a6b5a" stroke-width="0.75"/>
+          <circle cx="170" cy="72.4" r="3" fill="#1a6b5a"/>
+          <text class="nt" x="170" y="85" text-anchor="middle">single-cycle estimate</text>
+          <text class="xt" x="30" y="156" text-anchor="start">2020</text>
+          <text class="xt" x="210" y="156" text-anchor="end">2023</text>
+        </g>
+      </svg>
+
+      <!-- Delve inset -->
+      <svg viewBox="0 0 680 130" width="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" style="margin-top:0.5rem">
+        <style>
+          .dti{font:500 13px Georgia,serif;fill:currentColor}
+          .dsi{font:500 11px Georgia,serif;fill:#1a6b5a}
+          .dtk{font:400 10px Georgia,serif;fill:currentColor;opacity:0.7}
+        </style>
+        <text class="dti" x="20" y="40">&ldquo;delve&rdquo; in PubMed abstracts</text>
+        <text class="dsi" x="20" y="60">8.2&times; in three years</text>
+        <text class="dtk" x="20" y="78">Word-frequency tell of LLM-authored prose (Kobak et al.)</text>
+        <!-- 2020 bar: 349 -->
+        <rect x="280" y="110" width="70" height="12" fill="#4aa08c" stroke="#1a6b5a" stroke-width="0.5"/>
+        <text class="dtk" x="315" y="105" text-anchor="middle">349 (2020)</text>
+        <!-- 2023 bar: 2847 -->
+        <rect x="420" y="24" width="70" height="98" fill="#4aa08c" stroke="#1a6b5a" stroke-width="0.5"/>
+        <text class="dtk" x="455" y="18" text-anchor="middle">2,847 (2023)</text>
+        <line x1="260" y1="123" x2="510" y2="123" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+      </svg>
+      <figcaption>
+        Estimated share of abstracts or peer reviews containing LLM-modified text across six academic settings. Computer science abstracts reach 22% by September 2024; biomedical abstracts are at 13.5% floor for 2024 with some subcorpora substantially higher; peer reviews at EMNLP were estimated at 16.9% and ICLR 2024 at 10.6%. Mathematics and Nature portfolio estimates are lower in absolute terms but follow similar trajectories. The inset at bottom shows the frequency of the word &ldquo;delve&rdquo; in PubMed abstracts rising from 349 uses in 2020 to 2,847 in 2023.
+        <span class="src">Sources: <a href="#src-B1">B1</a> Liang et al. (Nature Human Behaviour 2025) · <a href="#src-B2">B2</a> Kobak et al. (Science Advances 2025) · <a href="#src-B3">B3</a> Science / AAAS reporting on Kobak et al. · <a href="#src-B6">B6</a> Liang et al. 2024 peer-review study.</span>
+      </figcaption>
+    </figure>
+
+    <p>Taken together, these findings describe a system in which the same tool is being used at scale both to produce the submitted literature and to evaluate it. The retraction mechanism is operating, but it is reacting after publication and at a pace substantially slower than the rate at which LLM-modified papers are entering the literature. Retraction is, in other words, a lagging indicator, and the studies above suggest the lag is currently measured in years.</p>
+  </section>
+
+  <!-- ================= SECTION 4: STUDENT LAYER ================= -->
+  <section id="s4">
+    <h2>The student layer</h2>
+
+    <p>Student adoption of generative AI for coursework has moved faster than any comparable technology transition documented in recent surveys of higher education. In several major samples, the transition is effectively complete at the undergraduate level.</p>
+
+    <p>The Higher Education Policy Institute's 2025 survey asked UK undergraduates whether they had used generative AI for their studies. In 2024, 66% said yes. In 2025, 92% said yes. The share using AI directly on assessed work rose from 53% to 88% over the same year<sup class="cite"><a href="#src-A1">A1</a></sup>. The cohort reporting no use fell from roughly one-third to roughly one-twelfth in twelve months. In survey-research terms, a single-year shift of this magnitude is the kind of change typically associated with regulatory mandates or platform-native features becoming default behaviors, rather than with voluntary adoption of a discretionary tool.</p>
+
+    <figure>
+      <div class="chart-wrapper" style="height:240px"><canvas id="chart2" role="img" aria-label="Horizontal stacked bar chart showing UK undergraduate generative-AI use in 2024 versus 2025. In 2024, 53 percent used AI on assessments, 13 percent used it but not on assessments, and 34 percent never used it. In 2025, 88 percent on assessments, 4 percent other use, and 8 percent never.">UK undergraduate genAI use: 2024 vs 2025. Never-used cohort fell from 34 percent to 8 percent in one year.</canvas></div>
+      <div class="legend">
+        <span class="item"><span class="sw" style="background:#1a6b5a"></span>Used genAI on assessments</span>
+        <span class="item"><span class="sw" style="background:#6bc4b0"></span>Used genAI, not on assessments</span>
+        <span class="item"><span class="sw" style="background:#9CA3AF"></span>Never used genAI</span>
+      </div>
+      <figcaption>
+        Share of UK undergraduates by their reported use of generative AI in 2024 and 2025, based on the HEPI/Kortext annual survey (n = 1,041 UK undergraduates in the 2025 wave). The share reporting no use fell from approximately 34% to approximately 8% over one year, and the share reporting use on assessed work rose from 53% to 88% over the same period.
+        <span class="src">Source: <a href="#src-A1">A1</a> HEPI / Kortext Student Generative AI Survey 2025.</span>
+      </figcaption>
+    </figure>
+
+    <p>The international picture is the same. The Digital Education Council's 2024 survey of students across 16 countries found 86% using AI in their studies, with 54% using it weekly<sup class="cite"><a href="#src-A2">A2</a></sup>. Tyton Partners reported 59% of U.S. college students using generative AI at least monthly for schoolwork, up from 43% the prior spring<sup class="cite"><a href="#src-A6">A6</a></sup>. OpenAI's own data put more than a third of U.S. 18&ndash;24-year-olds on regular ChatGPT use, with more than a quarter of their messages classified as schoolwork<sup class="cite"><a href="#src-A7">A7</a></sup>.</p>
+
+    <p>The pattern extends downward to secondary school. 26% of U.S. teens reported having used ChatGPT for schoolwork in 2024, double the 13% share measured the year before<sup class="cite"><a href="#src-A3">A3</a></sup>. By late 2025, 59% of U.S. teens were using ChatGPT and roughly 30% were using AI chatbots daily<sup class="cite"><a href="#src-A4">A4</a></sup>. Common Sense Media's 2024 survey found 40% of teens using generative AI for school assignments, and 46% of those did so without teacher permission<sup class="cite"><a href="#src-A5">A5</a></sup>.</p>
+
+    <p>The pedagogical consequence depends on a straightforward claim about skill acquisition: writing is a skill that develops through sustained practice, under conditions in which the practitioner is generating the output themselves. Where the majority of a student's written work during a degree program has been produced in collaboration with a language model, the student has practiced a substantially different skill from the one the degree was designed to teach and certify. The question that follows is therefore an empirical one about what graduates of the current cohort can actually do without assistance, rather than a question about the moral character of individual students.</p>
+
+    <p>Framing the situation primarily as an academic integrity problem &mdash; that is, as a detection-and-enforcement problem &mdash; understates the scope. Once a practice shifts from a fringe behavior to a majority behavior within a single academic cycle, detection-based responses are working against the base rate rather than against the exception, and the evidentiary and procedural costs of enforcement rise correspondingly.</p>
+  </section>
+
+  <!-- ================= SECTION 5: THE SYNTHETIC FLOOD ================= -->
+  <section id="s5">
+    <h2>The synthetic flood</h2>
+
+    <p>The pattern observed in academic publishing is less advanced than the one observed on the open web. In November 2024, according to Graphite's analysis of approximately 65,000 URLs sampled from CommonCrawl, the share of new English-language web articles predominantly written by AI passed the share predominantly written by humans for the first time<sup class="cite"><a href="#src-D2">D2</a></sup>. By May 2025, Graphite reported that share at 52%. A separate analysis by Ahrefs of 900,000 newly detected web pages in April 2025 found that 74.2% contained some AI-generated content, with 25.8% classified as entirely human-written<sup class="cite"><a href="#src-D1">D1</a></sup>.</p>
+
+    <figure>
+      <div class="chart-wrapper" style="height:420px"><canvas id="chart3" role="img" aria-label="Multi-series line chart of AI share of new content across five media from 2019 to 2026. All series trend upward and several cross a dashed horizontal parity line at 50 percent around late 2024.">Five independent studies, five unrelated media, all trending upward. Web articles crossed 50 percent AI share in November 2024.</canvas></div>
+      <div class="legend">
+        <span class="item"><span class="sw line" style="background:#0d4a3c"></span>Web articles, English (Graphite)</span>
+        <span class="item"><span class="sw" style="background:#13503f"></span>Web pages with AI (Ahrefs, single point)</span>
+        <span class="item"><span class="sw line" style="background:#1a6b5a"></span>Music uploads fully AI (Deezer)</span>
+        <span class="item"><span class="sw line" style="background:#6bc4b0"></span>Google top-20 results (Originality.ai)</span>
+        <span class="item"><span class="sw" style="background:#a3ddd2;clip-path:polygon(50% 0,100% 100%,0 100%)"></span>Amazon best-seller reviews (Pangram)</span>
+        <span class="item"><span class="sw dashed" style="color:#5D6D7E"></span>Parity (AI = human)</span>
+      </div>
+      <figcaption>
+        Measured AI share of newly produced content across five independent studies of different media: English-language web articles (Graphite), web pages generally (Ahrefs), fully AI-generated music uploads (Deezer), Google top-20 search results (Originality.ai), and front-page Amazon best-seller reviews (Pangram). Each study uses a different detection methodology and a different denominator, which limits direct numerical comparison. The studies agree on the direction and approximate timing of the increase in the channels they measured.
+        <span class="src">Sources: <a href="#src-D1">D1</a> Ahrefs · <a href="#src-D2">D2</a> Graphite · <a href="#src-D4">D4</a> Deezer · <a href="#src-D5">D5</a> Pangram · <a href="#src-D6">D6</a> Originality.ai.</span>
+      </figcaption>
+    </figure>
+
+    <p>The pattern extends beyond text. Deezer's internal detection tool reported in September 2025 that 28% of new music uploads to the platform were fully AI-generated. By April 2026 the share had reached 44%, which Deezer estimates at roughly 75,000 AI-generated tracks per day, up from approximately 10,000 per day at the start of 2025<sup class="cite"><a href="#src-D4">D4</a></sup>. Originality.ai's longitudinal study of Google's top-20 search results reported AI-content share at 17.31% in September 2025, compared with a February 2019 baseline of 2.27%<sup class="cite"><a href="#src-D6">D6</a></sup>. Pangram Labs reported that 3% of front-page reviews on Amazon best-sellers were AI-generated; 93% of those reviews carried a Verified Purchase badge, and 74% were five stars<sup class="cite"><a href="#src-D5">D5</a></sup>. NewsGuard, which tracks unreliable AI-generated news and information sites, counted 3,006 such sites across 16 languages as of March 2026<sup class="cite"><a href="#src-D3">D3</a></sup>. Graphika, analyzing a different segment of the same broader phenomenon, identified more than 10,000 AI character-chatbots with labels indicating sexualized minor personas across five platforms<sup class="cite"><a href="#src-D7">D7</a></sup>.</p>
+
+    <p>These studies were conducted independently by different research teams, using different detection methodologies, measured against different corpora, and with different denominators. What they share is that each one documents substantial upward movement in the AI share of newly produced content in the channel it measured. The convergence of findings across methods and media does not prove causation in any one case, but the consistency of the direction is difficult to attribute to methodological artifact alone.</p>
+
+    <p>The practical implication for downstream consumers of web content &mdash; researchers, educators, journalists, institutional buyers, the reading public &mdash; is that the baseline assumption of human authorship for newly published online content can no longer be sustained without explicit verification, and in most consumer-facing contexts that verification is not currently available.</p>
+  </section>
+
+  <!-- ================= SECTION 6: OUROBOROS ================= -->
+  <section id="s6">
+    <h2>The Ouroboros</h2>
+
+    <p>A related concern involves the composition of the training data used for the next generation of language models. Large models are typically trained on crawls of the open web. As documented in the prior section, the open web is now substantially composed of AI-generated content. Successive model generations are therefore increasingly being trained on the output of prior model generations, with the proportion of human-authored material in each successive training corpus declining over time.</p>
+
+    <p>A team led by Ilia Shumailov published a paper in Nature in 2024 that investigated the consequences of this pattern experimentally. When successive generations of a language model were trained on data produced by their predecessors, the distribution of learnable concepts narrowed in a measurable way from generation to generation. Rare tokens, marginal ideas, and outlier perspectives disappeared from the model's learned distribution first. Within roughly nine recursive generations in the experimental setup, perplexity diverged substantially from the original distribution. The authors termed this pattern &ldquo;model collapse&rdquo;<sup class="cite"><a href="#src-C2">C2</a></sup>.</p>
+
+    <figure class="ouroboros" role="img" aria-label="Nine overlaid bell curves representing a probability distribution collapsing over nine generations of recursive model training. The earliest generation is broad and pale; the ninth is a narrow, saturated spike near the center.">
+      <div class="ouroboros-counter" aria-hidden="true">Generation: <span data-gen>1</span></div>
+      <svg viewBox="0 0 680 360" width="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <line x1="60" y1="300" x2="660" y2="300" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+        <line x1="60" y1="40"  x2="60"  y2="300" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+        <g class="curves" fill="none" stroke-width="0.5" stroke-linejoin="round" stroke-linecap="round"></g>
+        <text x="60"  y="320" font-family="Georgia,serif" font-size="10" text-anchor="start"  fill="currentColor" opacity="0.7">Rare / marginal</text>
+        <text x="360" y="320" font-family="Georgia,serif" font-size="10" text-anchor="middle" fill="currentColor" opacity="0.7">Common / dominant</text>
+        <text x="660" y="320" font-family="Georgia,serif" font-size="10" text-anchor="end"    fill="currentColor" opacity="0.7">Rare / marginal</text>
+        <text x="360" y="345" font-family="Georgia,serif" font-size="11" text-anchor="middle" fill="currentColor" opacity="0.85">Variety of concepts represented</text>
+        <text transform="translate(22, 170) rotate(-90)" font-family="Georgia,serif" font-size="11" text-anchor="middle" fill="currentColor" opacity="0.85">Representation in corpus</text>
+      </svg>
+      <figcaption>
+        Stylized illustration of the distributional narrowing documented by Shumailov and colleagues when a language model is recursively trained on its predecessor's output. Generation 1 is drawn with the broadest distribution; generation 9 is drawn with the narrowest. The rare tails of the original distribution (left and right margins) are progressively underrepresented in successive generations, while the central mode becomes increasingly dominant. The specific parameters in this figure are illustrative rather than taken directly from the Shumailov experiments; the finding reproduced here is qualitative.
+        <span class="src">Source: <a href="#src-C2">C2</a> Shumailov et al., Nature, 2024.</span>
+      </figcaption>
+    </figure>
+
+    <p>There is an important distinction to preserve here. Gartner's 2021 forecast that 60% of training data would be synthetic by 2024 referred to deliberate, curated synthetic data generated by model developers to fill specific gaps in their training sets<sup class="cite"><a href="#src-C1">C1</a></sup>. That is a different phenomenon from the one documented by the Ahrefs and Graphite studies, in which 74.2% of newly indexed web pages contain machine-generated output that was not produced or audited by any model developer, and that is included in the next crawl by default<sup class="cite"><a href="#src-D1">D1</a></sup>. The concern is specifically about the ambient, uncurated case rather than the curated one.</p>
+
+    <p>The Epoch AI research group has published an analysis projecting that the effective stock of publicly available human-generated text, which they estimate at roughly 300 trillion tokens, will be exhausted at current training-data consumption rates sometime between 2026 and 2032, with a median estimate near 2028<sup class="cite"><a href="#src-C3">C3</a></sup>. The date at which ambient synthetic content becomes a material input to frontier model training is therefore within the normal planning horizon for training-data decisions. The operative uncertainty concerns the rate at which different labs adopt filtering approaches to exclude AI-generated content from their training corpora, and the extent to which such filtering remains feasible as detector performance against newer models declines.</p>
+
+    <p>A training regime in which the model distribution is increasingly shaped by prior model output reduces the corrective pressure previously provided by anchoring on human-generated text. Each successive generation inherits a narrower slice of the original distribution than the one before it, and the narrowing is cumulative rather than self-correcting in the absence of deliberate intervention.</p>
+  </section>
+
+  <!-- ================= SECTION 7: DETECTION THRESHOLD ================= -->
+  <section id="s7">
+    <h2>The detection threshold</h2>
+
+    <p>The policy response most commonly proposed to the conditions described above is the development of better AI-content detectors. The framing here matters. Treating the situation as a tool problem invites the expectation that an improved detector will eventually restore verification; treating it as a prevalence problem changes both the diagnostic and the set of plausible interventions.</p>
+
+    <p>Detection of synthetic content at scale is constrained by two parameters: the prevalence of synthetic content in the channel being monitored, and the accuracy of the detector being used against that channel. When prevalence rises and detector accuracy does not rise with it, false positives begin to swamp true positives even for detectors that perform well on an absolute basis. At sufficiently high prevalence, a detector that is right most of the time nonetheless produces enough false signals per decision that routine verification becomes operationally infeasible, regardless of which specific detection technique is adopted.</p>
+
+    <figure class="threshold" role="img" aria-label="Chart with two curves from 2020 to 2026. A teal line showing synthetic-content share rising from near zero to above 80 percent. A gray dashed line showing illustrative detector accuracy declining from about 80 percent to about 65 percent. A shaded region marks the detection threshold starting in November 2024 where the synthetic line rises above the detector line. Below the chart, a numbered event timeline lists six reference events with their dates.">
+      <svg viewBox="0 0 680 480" width="100%" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <style>
+          .tgl{stroke:#e8e4dc;stroke-width:0.5}
+          .tax{stroke:currentColor;stroke-width:0.5;opacity:0.45}
+          .ttk{font:400 9px Georgia,serif;fill:currentColor;opacity:0.75}
+          .tlb{font:500 10px Georgia,serif;fill:currentColor}
+          .tthresh{font:600 11px Georgia,serif;fill:#1a6b5a}
+          .tthresh-sub{font:400 9px Georgia,serif;fill:currentColor;opacity:0.75}
+          .tev-num{font:600 9px Consolas,ui-monospace,monospace;fill:#fff}
+          .tev-label{font:500 10px Georgia,serif;fill:currentColor}
+          .tev-date{font:400 9px Georgia,serif;fill:currentColor;opacity:0.7}
+          .titl{font:italic 9px Georgia,serif;fill:currentColor;opacity:0.7}
+        </style>
+
+        <!-- Threshold shaded region -->
+        <rect x="474" y="40" width="186" height="240" fill="#d4ede8" opacity="0.35"/>
+        <line x1="474" y1="40" x2="474" y2="280" stroke="#1a6b5a" stroke-width="0.5" stroke-dasharray="3 2"/>
+
+        <!-- ChatGPT vertical marker -->
+        <line x1="305" y1="40" x2="305" y2="280" stroke="#5D6D7E" stroke-width="0.5" stroke-dasharray="2 2"/>
+
+        <!-- Gridlines -->
+        <line class="tgl" x1="60" y1="280" x2="660" y2="280"/>
+        <line class="tgl" x1="60" y1="220" x2="660" y2="220"/>
+        <line class="tgl" x1="60" y1="160" x2="660" y2="160"/>
+        <line class="tgl" x1="60" y1="100" x2="660" y2="100"/>
+        <line class="tgl" x1="60" y1="40"  x2="660" y2="40"/>
+
+        <!-- Axes -->
+        <line class="tax" x1="60" y1="280" x2="660" y2="280"/>
+        <line class="tax" x1="60" y1="40"  x2="60"  y2="280"/>
+
+        <!-- Y tick labels -->
+        <text class="ttk" x="55" y="283" text-anchor="end">0%</text>
+        <text class="ttk" x="55" y="223" text-anchor="end">25%</text>
+        <text class="ttk" x="55" y="163" text-anchor="end">50%</text>
+        <text class="ttk" x="55" y="103" text-anchor="end">75%</text>
+        <text class="ttk" x="55" y="43" text-anchor="end">100%</text>
+
+        <!-- X tick labels -->
+        <text class="ttk" x="60"  y="296" text-anchor="middle">2020</text>
+        <text class="ttk" x="146" y="296" text-anchor="middle">2021</text>
+        <text class="ttk" x="231" y="296" text-anchor="middle">2022</text>
+        <text class="ttk" x="317" y="296" text-anchor="middle">2023</text>
+        <text class="ttk" x="403" y="296" text-anchor="middle">2024</text>
+        <text class="ttk" x="489" y="296" text-anchor="middle">2025</text>
+        <text class="ttk" x="574" y="296" text-anchor="middle">2026</text>
+
+        <!-- Y-axis title -->
+        <text transform="translate(16,160) rotate(-90)" font-family="Georgia,serif" font-size="11" text-anchor="middle" fill="currentColor" opacity="0.85">Share of new content (%)</text>
+
+        <!-- Detector accuracy curve (illustrative, dashed gray) -->
+        <path fill="none" stroke="#5D6D7E" stroke-width="0.9" stroke-dasharray="4 3"
+          d="M 60 88 L 305 93 L 403 102 L 510 112 L 596 122 L 660 126"/>
+        <text class="titl" x="130" y="82">detector accuracy (illustrative)</text>
+
+        <!-- Synthetic volume curve (measured, solid teal) -->
+        <path fill="none" stroke="#2d8b76" stroke-width="1.25"
+          d="M 60 280 L 146 278 L 305 273 L 403 232 L 474 160 L 510 102 L 596 83"/>
+        <!-- Projection dashed extension -->
+        <path fill="none" stroke="#2d8b76" stroke-width="1" stroke-dasharray="4 3" opacity="0.75"
+          d="M 596 83 L 660 75"/>
+
+        <!-- Measured dots (filled) -->
+        <circle cx="305" cy="273" r="2" fill="#1a6b5a"/>
+        <circle cx="474" cy="160" r="3" fill="#1a6b5a"/>
+        <circle cx="510" cy="102" r="2.5" fill="#1a6b5a"/>
+        <circle cx="596" cy="83"  r="2.5" fill="#1a6b5a"/>
+        <!-- Interpolated open dots -->
+        <circle cx="146" cy="278" r="1.5" fill="none" stroke="#1a6b5a" stroke-width="0.75"/>
+        <circle cx="403" cy="232" r="1.5" fill="none" stroke="#1a6b5a" stroke-width="0.75"/>
+
+        <!-- Threshold label -->
+        <text x="484" y="56" class="tthresh">Detection threshold</text>
+        <text x="484" y="70" class="tthresh-sub">synthetic share exceeds detector accuracy</text>
+
+        <!-- Synthetic-content curve label -->
+        <text x="200" y="260" class="tlb" style="fill:#1a6b5a;font-size:10px">synthetic content (measured share)</text>
+
+        <!-- Numbered event markers below x-axis -->
+        <line x1="305" y1="280" x2="305" y2="313" stroke="#5D6D7E" stroke-width="0.5"/>
+        <line x1="403" y1="280" x2="403" y2="313" stroke="#5D6D7E" stroke-width="0.5"/>
+        <line x1="474" y1="280" x2="474" y2="313" stroke="#1a6b5a" stroke-width="0.75"/>
+        <line x1="496" y1="280" x2="496" y2="331" stroke="#5D6D7E" stroke-width="0.5"/>
+        <line x1="510" y1="280" x2="510" y2="313" stroke="#5D6D7E" stroke-width="0.5"/>
+        <line x1="596" y1="280" x2="596" y2="313" stroke="#5D6D7E" stroke-width="0.5"/>
+
+        <g><circle cx="305" cy="319" r="6" fill="#5D6D7E"/><text class="tev-num" x="305" y="319" text-anchor="middle" dominant-baseline="central">1</text></g>
+        <g><circle cx="403" cy="319" r="6" fill="#5D6D7E"/><text class="tev-num" x="403" y="319" text-anchor="middle" dominant-baseline="central">2</text></g>
+        <g><circle cx="474" cy="319" r="7" fill="#1a6b5a"/><text class="tev-num" x="474" y="319" text-anchor="middle" dominant-baseline="central">3</text></g>
+        <g><circle cx="496" cy="337" r="6" fill="#5D6D7E"/><text class="tev-num" x="496" y="337" text-anchor="middle" dominant-baseline="central">4</text></g>
+        <g><circle cx="510" cy="319" r="6" fill="#5D6D7E"/><text class="tev-num" x="510" y="319" text-anchor="middle" dominant-baseline="central">5</text></g>
+        <g><circle cx="596" cy="319" r="6" fill="#5D6D7E"/><text class="tev-num" x="596" y="319" text-anchor="middle" dominant-baseline="central">6</text></g>
+
+        <!-- Event key -->
+        <text class="tlb" x="60" y="370">Reference events (numbered above)</text>
+
+        <!-- Column 1 -->
+        <g transform="translate(60,384)">
+          <circle cx="7" cy="6" r="6" fill="#5D6D7E"/>
+          <text class="tev-num" x="7" y="6" text-anchor="middle" dominant-baseline="central">1</text>
+          <text class="tev-label" x="22" y="4">ChatGPT public release</text>
+          <text class="tev-date" x="22" y="16">Nov 2022</text>
+
+          <circle cx="7" cy="40" r="6" fill="#5D6D7E"/>
+          <text class="tev-num" x="7" y="40" text-anchor="middle" dominant-baseline="central">2</text>
+          <text class="tev-label" x="22" y="38">CS abstracts reach 17.5% LLM-modified</text>
+          <text class="tev-date" x="22" y="50">Feb 2024</text>
+
+          <circle cx="7" cy="74" r="7" fill="#1a6b5a"/>
+          <text class="tev-num" x="7" y="74" text-anchor="middle" dominant-baseline="central">3</text>
+          <text class="tev-label" x="22" y="72" style="fill:#1a6b5a">AI-written web articles surpass human</text>
+          <text class="tev-date" x="22" y="84" style="fill:#1a6b5a">Nov 2024 &mdash; crossover</text>
+        </g>
+
+        <!-- Column 2 -->
+        <g transform="translate(370,384)">
+          <circle cx="7" cy="6" r="6" fill="#5D6D7E"/>
+          <text class="tev-num" x="7" y="6" text-anchor="middle" dominant-baseline="central">4</text>
+          <text class="tev-label" x="22" y="4">Springer retracts 129 papers (LLM text)</text>
+          <text class="tev-date" x="22" y="16">Feb 2025</text>
+
+          <circle cx="7" cy="40" r="6" fill="#5D6D7E"/>
+          <text class="tev-num" x="7" y="40" text-anchor="middle" dominant-baseline="central">5</text>
+          <text class="tev-label" x="22" y="38">74.2% of new web pages contain AI content</text>
+          <text class="tev-date" x="22" y="50">Apr 2025</text>
+
+          <circle cx="7" cy="74" r="6" fill="#5D6D7E"/>
+          <text class="tev-num" x="7" y="74" text-anchor="middle" dominant-baseline="central">6</text>
+          <text class="tev-label" x="22" y="72">Deezer: 44% of new music uploads fully AI</text>
+          <text class="tev-date" x="22" y="84">Apr 2026</text>
+        </g>
+      </svg>
+      <figcaption>
+        A diagrammatic representation of the prevalence-detection gap described in the accompanying text. The teal curve shows measured synthetic-content share across several channels plotted against time, with filled points at measured studies and open points at interpolated positions. The gray dashed curve is illustrative rather than measured and represents the general plateau in detector accuracy reported in detector-comparison literature. The shaded region to the right of the vertical marker identifies the period during which the measured synthetic share exceeds typical detector accuracy; events annotated below the axis occurred within this period.
+        <span class="src">Measured: <a href="#src-D2">D2</a>, <a href="#src-D1">D1</a>, <a href="#src-D4">D4</a>, <a href="#src-B1">B1</a>, <a href="#src-B4">B4</a>. The detector-accuracy curve is illustrative and not derived from a single primary source; it is drawn from the general pattern reported in public detector-comparison write-ups and self-reported false-positive rates.</span>
+      </figcaption>
+    </figure>
+
+    <p>The fraud triangle, first formulated by Donald Cressey, identifies three conditions under which fraudulent behavior becomes likely in a given population: opportunity, pressure, and rationalization. In the specific context of AI-generated content, all three conditions are unusually strong across the general population of writers, rather than being concentrated among a small number of bad actors. Opportunity is high because the cost of producing plausible synthetic prose is near zero and the probability of detection in most institutional settings is modest. Pressure is high because employers, publishers, editors, and instructors continue to reward written output at rates calibrated to an earlier era of production cost. Rationalization is widely available through common framings &mdash; &ldquo;the tool is just a tool,&rdquo; &ldquo;everyone is using it,&rdquo; &ldquo;the work is still mine&rdquo; &mdash; that have been normalized in public discussion. Under the fraud triangle framework, these conditions predict high rates of undisclosed AI use, and the measured rates reported in the studies cited above are consistent with that prediction.</p>
+
+    <p>A second observation concerns the discourse itself. The most widely repeated figure in public discussion of AI-generated content &mdash; the claim that 90% of online content will be AI-generated by 2026 &mdash; traces through a 2022 Europol report to a line in a 2020 book, which in turn attributed the figure to a single unsourced statement from an executive at a synthetic-media company<sup class="cite"><a href="#src-X1">X1</a></sup>. The number has been cited in thousands of subsequent sources. It has no denominator, no measurement methodology, and no primary source. It has nonetheless been cited as an authoritative statistic in published scholarly work.</p>
+
+    <p>This is a small point about a single number, but it sits inside a larger pattern. Public discussion of AI-generated content has absorbed the same quality-control failures it is attempting to describe. Secondary sources repeat primary estimates without verification. Rounded figures migrate into review articles and then into policy documents. The infrastructure that should be separating signal from noise is itself struggling to do so for numbers about the signal-to-noise problem, which is its own form of evidence about the state of things.</p>
+  </section>
+
+  <!-- ================= SECTION 8: WHAT DIES ================= -->
+  <section id="s8">
+    <h2>What dies</h2>
+
+    <p>The title of this essay is less figurative than it may first appear, and less apocalyptic. Written language is not going to disappear. Orders of magnitude more written content is being produced now than in any prior period. The concern addressed here is more specific. It is about the shared assumption, operating beneath most institutional uses of written text, that a given piece of writing reflects a specific person's attempt to communicate a specific argument. That assumption underwrites most of the value we derive from reviewing, citing, grading, and closely reading each other's work. It is also the assumption whose reliability the evidence in this essay calls into question.</p>
+
+    <p>The institutions built on top of this assumption &mdash; peer review, citation practice, grading, editorial vouching &mdash; continue to operate. Reviews are written, papers are published, grades are assigned. The evidence compiled here suggests, however, that the signals those institutions generate about the quality and authorship of submitted work are becoming less reliable as a proxy for the underlying quality they were designed to measure. The rate of that degradation is the open empirical question, and the studies cited throughout this piece represent early efforts to measure it across different institutional settings, with the usual caveats about sampling, detection methodology, and the short time horizon over which any of these measurements have been taken.</p>
+
+    <p>The question of what replaces or reinforces the current verification infrastructure is, in my reading, the most consequential one that knowledge-producing institutions will need to address over the next several years. Detection-tool improvements are part of that answer, but they are not the whole answer, because the conditions that produced the current prevalence of synthetic content are upstream of detection. Provenance tracking, institutional disclosure norms, credentialed authorship systems, and shifts in the kinds of work that institutions reward are all plausible components. None of them are close to being implemented at a scale that would match the rate of change documented here.</p>
+
+    <p>Summarizing the preceding sections: across student coursework, peer-reviewed publishing, the open web, and the training data pipeline for successor models, the measured share of synthetic content has risen past the point where baseline assumptions of human authorship can be sustained without explicit verification, and the institutional response has not kept pace with that change. My goal in writing this piece has been to compile the evidence for the first claim in a form a researcher can audit, and to make the case that the second claim is worth taking seriously in institutional planning.</p>
+  </section>
+
+  <!-- ================= AUTHOR NOTE ================= -->
+  <section class="author-note" id="author-note">
+    <p><strong>Author Note:</strong> As final proof of this phenomenon, all of the text in this article except for this section was written by AI using three prompts. The first built the overall structure of the argument, the second removed clear AI characteristics and added more of my written voice, and the third fixed some visualization issues in the charts and provided a final verification pass. While the core argument does come from me as they are issues that I&rsquo;ve been wrestling with over the last week &ndash; the actual effort into writing the text, sourcing and verifying the information, and making the figures? They were entirely written by AI. I didn&rsquo;t even know what ouroboros means (though I do like the song &ldquo;I Palindrome I&rdquo; by They Might be Giants, so that seems like a word I should know in retrospect).</p>
+  </section>
+
+  <!-- ================= SOURCES ================= -->
+  <section class="sources" id="sources">
+    <h2>Sources</h2>
+    <p style="font-size:13px;color:var(--fg-muted);margin-bottom:1.25rem">Every factual claim in the body text carries an inline citation keyed to an entry in this list. Each URL was retrieved and the specific claim verified against the page content prior to inclusion. Two widely-cited items (the Europol/Schick "90% by 2026" figure and the "verification difficulty" proxy) are included explicitly as examples of unverifiable public claims that have nonetheless been cited as authoritative, rather than as evidence for any argument in the text.</p>
+    <ol>
+      <li id="src-A1"><span class="k">A1</span><strong>HEPI / Kortext (2025).</strong> Student Generative AI Survey 2025. 1,041 UK undergraduates. 92% used genAI in 2025 (vs 66% in 2024); 88% used it on assessments (vs 53%). <a href="https://www.hepi.ac.uk/reports/student-generative-ai-survey-2025/">hepi.ac.uk</a></li>
+      <li id="src-A2"><span class="k">A2</span><strong>Digital Education Council (2024).</strong> Global AI Student Survey. 3,839 students across 16 countries. 86% use AI in studies; 54% weekly. <a href="https://www.digitaleducationcouncil.com/post/digital-education-council-global-ai-student-survey-2024">digitaleducationcouncil.com</a></li>
+      <li id="src-A3"><span class="k">A3</span><strong>Pew Research Center (Jan 2025).</strong> About a quarter of U.S. teens have used ChatGPT for schoolwork. 26% in 2024, double the 13% share in 2023. <a href="https://www.pewresearch.org/short-reads/2025/01/15/about-a-quarter-of-us-teens-have-used-chatgpt-for-schoolwork-double-the-share-in-2023/">pewresearch.org</a></li>
+      <li id="src-A4"><span class="k">A4</span><strong>Pew Research Center (Dec 2025).</strong> Teens, Social Media and AI Chatbots 2025. 59% of U.S. teens use ChatGPT; ~30% use AI chatbots daily. <a href="https://www.pewresearch.org/internet/2025/12/09/teens-social-media-and-ai-chatbots-2025/">pewresearch.org</a></li>
+      <li id="src-A5"><span class="k">A5</span><strong>Common Sense Media (Sep 2024).</strong> The Dawn of the AI Era. 40% of U.S. teens used genAI for school assignments; 46% of those did so without teacher permission. <a href="https://www.commonsensemedia.org/press-releases/new-report-shows-students-are-embracing-artificial-intelligence-despite-lack-of-parent-awareness-and">commonsensemedia.org</a></li>
+      <li id="src-A6"><span class="k">A6</span><strong>Tyton Partners (2024).</strong> Time for Class 2024. 59% of U.S. college students use genAI monthly+ for schoolwork, up from 43% in spring 2023. <a href="https://tytonpartners.com/time-for-class-2024/">tytonpartners.com</a></li>
+      <li id="src-A7"><span class="k">A7</span><strong>OpenAI / Fortune (Feb 2025).</strong> College students and ChatGPT. More than one-third of U.S. 18&ndash;24-year-olds use ChatGPT regularly; over 25% of messages are schoolwork. <a href="https://fortune.com/education/articles/openai-report-more-than-one-third-college-aged-adults-use-chatgpt/">fortune.com</a></li>
+      <li id="src-B1"><span class="k">B1</span><strong>Liang et al. (2025).</strong> Quantifying large language model usage in scientific papers. Nature Human Behaviour 9, 2599&ndash;2609. ~17.5% of CS abstracts LLM-modified by Feb 2024, up to 22% by Sep 2024; math 4.9%, Nature portfolio 6.3%; n = 1.12M papers. <a href="https://arxiv.org/html/2404.01268v1">arXiv:2404.01268</a></li>
+      <li id="src-B2"><span class="k">B2</span><strong>Kobak, Gonz&aacute;lez-M&aacute;rquez, Horv&aacute;t, Lause (2025).</strong> Delving into LLM-assisted writing in biomedical publications through excess vocabulary. Science Advances. &ge;13.5% of 2024 PubMed abstracts carry LLM signatures; up to 40% in subcorpora; n = 15M+ abstracts. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12219543/">pmc.ncbi.nlm.nih.gov</a></li>
+      <li id="src-B3"><span class="k">B3</span><strong>Science / AAAS news coverage (2025).</strong> Uses of "delve" in PubMed abstracts rose from 349 (2020) to 2,847 (2023). <a href="https://www.science.org/content/article/one-fifth-computer-science-papers-may-include-ai-content">science.org</a></li>
+      <li id="src-B4"><span class="k">B4</span><strong>Retraction Watch (Feb 2025).</strong> 129 papers retracted by Springer Nature's Neurosurgical Review for undisclosed LLM text; 87 from Saveetha University. <a href="https://retractionwatch.com/2025/02/10/as-springer-nature-journal-clears-ai-papers-one-universitys-retractions-rise-drastically/">retractionwatch.com</a></li>
+      <li id="src-B5"><span class="k">B5</span><strong>Retraction Watch (running tally).</strong> Papers and peer reviews with evidence of ChatGPT writing. 92 papers + 2 peer reviews flagged. <a href="https://retractionwatch.com/papers-and-peer-reviews-with-evidence-of-chatgpt-writing/">retractionwatch.com</a></li>
+      <li id="src-B6"><span class="k">B6</span><strong>Liang et al. (2024).</strong> Monitoring AI-Modified Content at Scale: A Case Study on the Impact of ChatGPT on AI Conference Peer Reviews. 10.6% (ICLR 2024) and 16.9% (EMNLP) reviewer text substantially ChatGPT-modified. <a href="https://arxiv.org/abs/2403.07183">arXiv:2403.07183</a></li>
+      <li id="src-C1"><span class="k">C1</span><strong>Gartner / Andrew White (2021).</strong> By 2024, 60% of data for AI/analytics projects will be synthetically generated (up from 1% in 2021). <a href="https://blogs.gartner.com/andrew_white/2021/07/24/by-2024-60-of-the-data-used-for-the-development-of-ai-and-analytics-projects-will-be-synthetically-generated/">blogs.gartner.com</a></li>
+      <li id="src-C2"><span class="k">C2</span><strong>Shumailov et al. (2024).</strong> AI models collapse when trained on recursively generated data. Nature 631, 755&ndash;759. Recursive training narrows the distribution; perplexity diverges within ~9 generations. <a href="https://www.nature.com/articles/s41586-024-07566-y">nature.com</a></li>
+      <li id="src-C3"><span class="k">C3</span><strong>Epoch AI (Villalobos, Ho, Sevilla et al.).</strong> Human-generated text training data projected exhausted between 2026 and 2032 (median ~2028; ~300T tokens). <a href="https://epoch.ai/blog/will-we-run-out-of-data-limits-of-llm-scaling-based-on-human-generated-data">epoch.ai</a></li>
+      <li id="src-C4"><span class="k">C4</span><strong>Global Market Insights (industry estimate).</strong> Synthetic Data Generation Market ~$310M (2024); ~35% CAGR 2025&ndash;2034. <a href="https://www.gminsights.com/industry-analysis/synthetic-data-generation-market">gminsights.com</a></li>
+      <li id="src-D1"><span class="k">D1</span><strong>Ahrefs (Apr 2025).</strong> 74.2% of newly published web pages contain AI-generated content; 25.8% pure human; 71.7% hybrid. n = 900K pages. <a href="https://ahrefs.com/blog/what-percentage-of-new-content-is-ai-generated/">ahrefs.com</a></li>
+      <li id="src-D2"><span class="k">D2</span><strong>Graphite (2025).</strong> More articles are now created by AI than humans. 52% of new English-language web articles predominantly AI-written as of May 2025; crossover November 2024. n = 65K CommonCrawl URLs. <a href="https://graphite.io/five-percent/more-articles-are-now-created-by-ai-than-humans">graphite.io</a></li>
+      <li id="src-D3"><span class="k">D3</span><strong>NewsGuard (Mar 2026).</strong> AI Tracking Center. 3,006 unreliable AI-generated news and information websites across 16 languages. <a href="https://www.newsguardtech.com/special-reports/ai-tracking-center/">newsguardtech.com</a></li>
+      <li id="src-D4"><span class="k">D4</span><strong>Deezer Newsroom (Apr 2026; Sep 2025).</strong> 44% of new music uploads fully AI-generated (Apr 2026); ~75,000 AI tracks per day, up from ~10,000/day in early 2025; 28% in Sep 2025. <a href="https://newsroom-deezer.com/2026/04/ai-generated-tracks-represent-44-of-new-uploaded-music/">newsroom-deezer.com (Apr 2026)</a> &middot; <a href="https://newsroom-deezer.com/2025/09/28-fully-ai-generated-music/">newsroom-deezer.com (Sep 2025)</a></li>
+      <li id="src-D5"><span class="k">D5</span><strong>Pangram Labs (Jul 2025).</strong> 3% of Amazon best-seller front-page reviews are AI-generated; 93% of those carry Verified Purchase; 74% are 5-star. n = 30K reviews across 500 best-selling products. <a href="https://www.pangram.com/blog/ai-amazon-reviews">pangram.com</a></li>
+      <li id="src-D6"><span class="k">D6</span><strong>Originality.ai (ongoing).</strong> 17.31% of Google top-20 search results contain AI content (Sep 2025); 2.27% baseline (Feb 2019); peak 19.56% (Jul 2025). Originality.ai sells AI-detection services; treat as interested party. <a href="https://originality.ai/ai-content-in-google-search-results">originality.ai</a></li>
+      <li id="src-D7"><span class="k">D7</span><strong>Graphika (Mar 2025).</strong> Character Flaws report. 10,000+ AI character-chatbots identified with labels indicating sexualized minor personas across five platforms. <a href="https://graphika.com/reports/character-flaws">graphika.com</a></li>
+      <li id="src-X1"><span class="k">X1</span><strong>Untraceable &mdash; referenced to critique the discourse, not as evidence.</strong> The oft-quoted claim that "90% of online content will be AI-generated by 2026" traces through a 2022 Europol report back to a 2020 book citing one Synthesia executive's unsourced estimate. Reason has scrutinized its provenance. <a href="https://reason.com/2023/01/27/that-time-we-tried-to-make-sense-of-a-statistic-in-a-new-york-times-story-on-deepfakes/">reason.com</a></li>
+    </ol>
+  </section>
+
+</main>
+
+  <div id="site-footer"></div>
+
+</div>
+
+<!-- ================= CHART.JS ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+<script>
+(function(){
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const C = {
+    fg: isDark ? '#EDEAE2' : '#1a1a1a',
+    fgMuted: isDark ? '#B4B2A9' : '#555',
+    grid: isDark ? '#2C2C2A' : '#e8e4dc',
+    faint: isDark ? '#444441' : '#ccc5b9'
+  };
+
+  const commonOpts = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { enabled: true }
+    }
+  };
+
+  // CHART 1A — Cost per 1M tokens (log)
+  new Chart(document.getElementById('chart1a'), {
+    type: 'line',
+    data: {
+      labels: ['2021','2022','2023','2024','2025'],
+      datasets: [{
+        label: 'Approx. cost per 1M output tokens (USD)',
+        data: [60, 36, 10, 3, 0.80],
+        borderColor: '#1a6b5a',
+        backgroundColor: 'rgba(26,107,90,0.08)',
+        borderWidth: 1.5,
+        pointRadius: 3,
+        pointBackgroundColor: '#1a6b5a',
+        tension: 0.25,
+        fill: true
+      }]
+    },
+    options: Object.assign({}, commonOpts, {
+      scales: {
+        y: {
+          type: 'logarithmic',
+          ticks: {
+            color: C.fgMuted,
+            callback: (v) => '$' + v
+          },
+          grid: { color: C.grid, lineWidth: 0.5 },
+          title: { display: false }
+        },
+        x: {
+          ticks: { color: C.fgMuted },
+          grid: { display: false }
+        }
+      }
+    })
+  });
+
+  // CHART 1B — Synthetic share + verification proxy
+  new Chart(document.getElementById('chart1b'), {
+    type: 'line',
+    data: {
+      labels: ['2021','2022','2023','2024','2025'],
+      datasets: [
+        {
+          label: 'Synthetic share of AI training data (Gartner)',
+          data: [1, 10, 30, 60, null],
+          borderColor: '#0D9488',
+          backgroundColor: 'rgba(13,148,136,0.08)',
+          borderWidth: 1.5,
+          pointRadius: 3,
+          pointBackgroundColor: '#0D9488',
+          tension: 0.25,
+          spanGaps: false
+        },
+        {
+          label: 'Verification difficulty (illustrative)',
+          data: [5, 12, 28, 55, 78],
+          borderColor: '#9333EA',
+          backgroundColor: 'rgba(147,51,234,0.04)',
+          borderWidth: 1.25,
+          borderDash: [4, 4],
+          pointRadius: 2,
+          pointBackgroundColor: '#9333EA',
+          tension: 0.25
+        }
+      ]
+    },
+    options: Object.assign({}, commonOpts, {
+      scales: {
+        y: {
+          min: 0, max: 100,
+          ticks: { color: C.fgMuted, callback: (v) => v + '%' },
+          grid: { color: C.grid, lineWidth: 0.5 }
+        },
+        x: {
+          ticks: { color: C.fgMuted },
+          grid: { display: false }
+        }
+      }
+    })
+  });
+
+  // CHART 2 — Student layer stacked horizontal
+  new Chart(document.getElementById('chart2'), {
+    type: 'bar',
+    data: {
+      labels: ['2024','2025'],
+      datasets: [
+        { label: 'Used genAI on assessments', data: [53, 88], backgroundColor: '#1a6b5a', borderColor: '#fff', borderWidth: 0.5 },
+        { label: 'Used genAI, not on assessments', data: [13, 4], backgroundColor: '#6bc4b0', borderColor: '#fff', borderWidth: 0.5 },
+        { label: 'Never used genAI', data: [34, 8], backgroundColor: '#9CA3AF', borderColor: '#fff', borderWidth: 0.5 }
+      ]
+    },
+    options: Object.assign({}, commonOpts, {
+      indexAxis: 'y',
+      scales: {
+        x: {
+          stacked: true, min: 0, max: 100,
+          ticks: { color: C.fgMuted, callback: (v) => v + '%' },
+          grid: { color: C.grid, lineWidth: 0.5 }
+        },
+        y: {
+          stacked: true,
+          ticks: { color: C.fg, font: { size: 14, weight: '500' } },
+          grid: { display: false }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: (ctx) => ctx.dataset.label + ': ' + ctx.parsed.x + '%' } }
+      }
+    })
+  });
+
+  // CHART 3 — The synthetic flood (time axis)
+  const parityData = [
+    { x: '2019-01-01', y: 50 },
+    { x: '2026-12-31', y: 50 }
+  ];
+  const novCrossover = [
+    { x: '2024-11-01', y: 0 },
+    { x: '2024-11-01', y: 100 }
+  ];
+
+  const chart3Annotations = {
+    id: 'chart3Annotations',
+    afterDatasetsDraw(chart) {
+      const { ctx, chartArea, scales } = chart;
+      const xScale = scales.x;
+      const yScale = scales.y;
+      if (!xScale || !yScale) return;
+
+      const nov2024Px = xScale.getPixelForValue(new Date('2024-11-01').getTime());
+
+      ctx.save();
+      ctx.font = '500 10px Georgia, serif';
+      ctx.fillStyle = C.fg;
+      ctx.textBaseline = 'top';
+
+      ctx.textAlign = 'left';
+      ctx.fillText('Nov 2024', nov2024Px + 4, chartArea.top + 4);
+      ctx.fillStyle = C.fgMuted;
+      ctx.font = '400 10px Georgia, serif';
+      ctx.fillText('web crossover', nov2024Px + 4, chartArea.top + 18);
+
+      const parityPx = yScale.getPixelForValue(50);
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'alphabetic';
+      ctx.font = '500 10px Georgia, serif';
+      const parityText = 'Parity (AI = human)';
+      const tw = ctx.measureText(parityText).width;
+      const bgColor = window.matchMedia('(prefers-color-scheme: dark)').matches ? '#0B0B0B' : '#faf8f5';
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(chartArea.left + 6, parityPx - 13, tw + 8, 12);
+      ctx.fillStyle = C.fg;
+      ctx.fillText(parityText, chartArea.left + 10, parityPx - 3);
+      ctx.restore();
+    }
+  };
+
+  new Chart(document.getElementById('chart3'), {
+    type: 'line',
+    plugins: [chart3Annotations],
+    data: {
+      datasets: [
+        {
+          label: 'Parity (AI = human)',
+          data: parityData,
+          borderColor: C.fgMuted,
+          borderWidth: 0.5,
+          borderDash: [6, 4],
+          pointRadius: 0,
+          fill: false,
+          order: 99
+        },
+        {
+          label: 'Web crossover (Nov 2024)',
+          data: novCrossover,
+          borderColor: C.fgMuted,
+          borderWidth: 0.5,
+          borderDash: [3, 3],
+          pointRadius: 0,
+          fill: false,
+          order: 98
+        },
+        {
+          label: 'Web articles, English (Graphite)',
+          data: [
+            { x: '2024-11-01', y: 50 },
+            { x: '2025-05-01', y: 52 }
+          ],
+          borderColor: '#0d4a3c',
+          backgroundColor: 'rgba(13,74,60,0.05)',
+          borderWidth: 2,
+          pointRadius: 4,
+          pointBackgroundColor: '#0d4a3c',
+          spanGaps: true,
+          tension: 0.2
+        },
+        {
+          label: 'Web pages with AI (Ahrefs, Apr 2025)',
+          data: [{ x: '2025-04-01', y: 74.2 }],
+          borderColor: '#13503f',
+          backgroundColor: '#13503f',
+          showLine: false,
+          pointRadius: 6,
+          pointBackgroundColor: '#13503f',
+          pointStyle: 'circle'
+        },
+        {
+          label: 'Music uploads fully AI (Deezer)',
+          data: [
+            { x: '2025-09-11', y: 28 },
+            { x: '2026-04-01', y: 44 }
+          ],
+          borderColor: '#1a6b5a',
+          backgroundColor: 'rgba(26,107,90,0.05)',
+          borderWidth: 2,
+          pointRadius: 4,
+          pointBackgroundColor: '#1a6b5a',
+          spanGaps: true,
+          tension: 0.2
+        },
+        {
+          label: 'Google top-20 results, 2019 baseline (Originality.ai)',
+          data: [ { x: '2019-02-01', y: 2.27 } ],
+          borderColor: '#6bc4b0',
+          backgroundColor: '#6bc4b0',
+          showLine: false,
+          pointRadius: 4,
+          pointBackgroundColor: '#6bc4b0'
+        },
+        {
+          label: 'Google top-20 results (Originality.ai)',
+          data: [
+            { x: '2024-03-05', y: 7.43 },
+            { x: '2024-03-23', y: 10.18 },
+            { x: '2024-04-22', y: 11.34 },
+            { x: '2024-05-22', y: 11.11 },
+            { x: '2024-06-24', y: 11.67 },
+            { x: '2024-07-24', y: 12.59 },
+            { x: '2024-08-26', y: 11.21 },
+            { x: '2024-09-24', y: 11.46 },
+            { x: '2024-10-28', y: 17.96 },
+            { x: '2024-11-25', y: 18.07 },
+            { x: '2025-01-21', y: 19.10 },
+            { x: '2025-05-05', y: 16.57 },
+            { x: '2025-06-05', y: 16.51 },
+            { x: '2025-07-08', y: 19.56 },
+            { x: '2025-08-18', y: 18.74 },
+            { x: '2025-09-17', y: 17.31 }
+          ],
+          borderColor: '#6bc4b0',
+          backgroundColor: 'rgba(107,196,176,0.04)',
+          borderWidth: 1.5,
+          pointRadius: 2.5,
+          pointBackgroundColor: '#6bc4b0',
+          tension: 0.2
+        },
+        {
+          label: 'Amazon best-seller reviews (Pangram, Jul 2025)',
+          data: [{ x: '2025-07-25', y: 3 }],
+          borderColor: '#a3ddd2',
+          backgroundColor: '#a3ddd2',
+          showLine: false,
+          pointRadius: 7,
+          pointBackgroundColor: '#a3ddd2',
+          pointStyle: 'triangle'
+        }
+      ]
+    },
+    options: Object.assign({}, commonOpts, {
+      scales: {
+        x: {
+          type: 'time',
+          time: { unit: 'year' },
+          min: '2019-01-01',
+          max: '2026-12-31',
+          ticks: { color: C.fgMuted },
+          grid: { display: false },
+          title: { display: false }
+        },
+        y: {
+          min: 0, max: 100,
+          ticks: { color: C.fgMuted, callback: (v) => v + '%' },
+          grid: { color: C.grid, lineWidth: 0.5 },
+          title: { display: true, text: 'AI share of new content (%)', color: C.fgMuted, font: { size: 12 } }
+        }
+      },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => ctx.dataset.label + ': ' + ctx.parsed.y + '%'
+          }
+        }
+      }
+    })
+  });
+})();
+</script>
+
+<!-- ================= HERO SIGNAL DEGRADE ================= -->
+<script>
+(function(){
+  const fig = document.querySelector('.hero-degrade');
+  if (!fig) return;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) {
+    const t = fig.querySelector('#turbFilter');
+    const d = fig.querySelector('#dispFilter');
+    if (t) t.setAttribute('baseFrequency', '0.22');
+    if (d) d.setAttribute('scale', '6');
+    return;
+  }
+  const tryBegin = (id) => {
+    const n = fig.querySelector('#' + id);
+    try { if (n && n.beginElement) n.beginElement(); } catch(_) {}
+  };
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tryBegin('turbAnim');
+        tryBegin('dispAnim');
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.55 });
+  obs.observe(fig);
+})();
+</script>
+
+<!-- ================= OUROBOROS PATHS + ANIMATION ================= -->
+<script>
+(function(){
+  const fig = document.querySelector('.ouroboros');
+  if (!fig) return;
+  const svg = fig.querySelector('svg');
+  const group = fig.querySelector('.curves');
+  const NS = 'http://www.w3.org/2000/svg';
+
+  const defs = document.createElementNS(NS, 'defs');
+  const clip = document.createElementNS(NS, 'clipPath');
+  clip.setAttribute('id', 'plotClip');
+  const cr = document.createElementNS(NS, 'rect');
+  cr.setAttribute('x','60'); cr.setAttribute('y','40'); cr.setAttribute('width','600'); cr.setAttribute('height','260');
+  clip.appendChild(cr);
+  defs.appendChild(clip);
+  svg.insertBefore(defs, svg.firstChild);
+  group.setAttribute('clip-path', 'url(#plotClip)');
+
+  const gens = [
+    { s: 1.50, h: 240, c: '#e0f5ef' },
+    { s: 1.30, h: 260, c: '#c2ebe0' },
+    { s: 1.10, h: 284, c: '#8fd5c4' },
+    { s: 0.90, h: 315, c: '#5fc0a8' },
+    { s: 0.72, h: 352, c: '#3daa8d' },
+    { s: 0.56, h: 397, c: '#289576' },
+    { s: 0.42, h: 454, c: '#1a7f61' },
+    { s: 0.32, h: 517, c: '#126a4f' },
+    { s: 0.25, h: 580, c: '#0a553e' }
+  ];
+  const x0 = 60, x1 = 660, baseline = 300;
+  const toX = (u) => x0 + ((u + 3) / 6) * (x1 - x0);
+
+  gens.forEach((g, i) => {
+    let d = '';
+    for (let u = -3; u <= 3.0001; u += 0.05) {
+      const y = baseline - g.h * Math.exp(-0.5 * (u / g.s) * (u / g.s));
+      d += (d ? ' L ' : 'M ') + toX(u).toFixed(2) + ' ' + y.toFixed(2);
+    }
+    const p = document.createElementNS(NS, 'path');
+    p.setAttribute('d', d);
+    p.setAttribute('stroke', g.c);
+    p.setAttribute('fill', g.c);
+    p.setAttribute('fill-opacity', '0.10');
+    p.setAttribute('stroke-width', '0.75');
+    p.style.opacity = '0';
+    group.appendChild(p);
+  });
+
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const counter = fig.querySelector('[data-gen]');
+
+  if (reduced) {
+    group.querySelectorAll('path').forEach(p => { p.style.opacity = '1'; });
+    if (counter) counter.textContent = '9';
+    return;
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      group.querySelectorAll('path').forEach((p, i) => {
+        setTimeout(() => {
+          p.style.opacity = '1';
+          if (counter) counter.textContent = String(i + 1);
+        }, i * 320);
+      });
+      obs.disconnect();
+    });
+  }, { threshold: 0.4 });
+  obs.observe(fig);
+})();
+</script>
+
+<script src="../js/site-nav.js" data-base=".."></script>
+</body>
+</html>
