@@ -1,30 +1,26 @@
 [
   {
-    "title": "What Happens When All the Words Die?",
-    "description": "A data-driven essay arguing that institutional systems for distinguishing human knowledge from synthetic noise are being outpaced by the rate at which that noise is produced. Covers academia, student coursework, the open web, and model training pipelines, with interactive visualizations and 26 cited sources.",
-    "tags": ["Research", "Analysis"],
-    "path": "projects/what-happens-when-all-the-words-die.html",
-    "date": "2026-04-27"
-  },
-  {
     "title": "The Break Room",
     "description": "Seven academic brain games: Fermi estimation, cipher cracking, methodology roasting, supply chain disaster scenarios, fact-or-fabrication, connection puzzles, and Set matching. A break room for nerds.",
     "tags": ["Teaching", "Research"],
     "path": "projects/break-room/index.html",
-    "date": "2026-04-07"
+    "date": "2026-04-07",
+    "ai": true
   },
   {
     "title": "API Call Assembly Line",
     "description": "A visualization that replays the actual sequence of API calls made during a Claude Code session as a manufacturing process. The visualization is self-referential, so every call is the one used to make the actual webpage.",
     "tags": ["Technology", "Analysis"],
     "path": "projects/assembly-line.html",
-    "date": "2026-04-06"
+    "date": "2026-04-06",
+    "ai": true
   },
   {
     "title": "Chicken Herding",
     "description": "An animated visualization of 695 API calls from a Claude Code session, rendered as chickens coming from a coop for every API called to make this website. Part of the \"Everything You Know About AI Is Wrong\" presentation.",
     "tags": ["Technology", "Analysis"],
     "path": "projects/chicken-sled.html",
-    "date": "2026-04-06"
+    "date": "2026-04-06",
+    "ai": true
   }
 ]

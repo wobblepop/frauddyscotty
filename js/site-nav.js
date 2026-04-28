@@ -98,11 +98,15 @@
             return '<span class="tag">' + t + '</span>';
           }).join(' ');
 
+          var desc = proj.ai
+            ? '<span class="written-by-chickens">*' + proj.description + '*</span>'
+            : '<p>' + proj.description + '</p>';
+
           return (
             '<div class="project-card">' +
             '  <h3>' + proj.title + '</h3>' +
             '  <div>' + tags + '</div>' +
-            '  <p>' + proj.description + '</p>' +
+            '  ' + desc +
             '  <a class="project-link" href="' + p(proj.path) + '">View Project &rarr;</a>' +
             '</div>'
           );
