@@ -1,5 +1,13 @@
 [
   {
+    "title": "What Happens When All the Words Die?",
+    "description": "A data-driven essay arguing that institutional systems for distinguishing human knowledge from synthetic noise are being outpaced by the rate at which that noise is produced. Covers academia, student coursework, the open web, and model training pipelines, with interactive visualizations and 26 cited sources.",
+    "tags": ["Research", "Analysis"],
+    "path": "projects/what-happens-when-all-the-words-die.html",
+    "date": "2026-04-27",
+    "ai": true
+  },
+  {
     "title": "The Break Room",
     "description": "Seven academic brain games: Fermi estimation, cipher cracking, methodology roasting, supply chain disaster scenarios, fact-or-fabrication, connection puzzles, and Set matching. A break room for nerds.",
     "tags": ["Teaching", "Research"],
