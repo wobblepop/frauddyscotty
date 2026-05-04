@@ -1,5 +1,13 @@
 [
   {
+    "title": "brainweird makeneatshit",
+    "description": "An interactive word carousel celebrating brainweird people who make neat things. Shift words with arrows or keyboard.",
+    "tags": ["Technology"],
+    "path": "projects/makeneatshit.html",
+    "date": "2026-05-04",
+    "ai": true
+  },
+  {
     "title": "What Happens When All the Words Die?",
     "description": "A data-driven essay arguing that institutional systems for distinguishing human knowledge from synthetic noise are being outpaced by the rate at which that noise is produced. Covers academia, student coursework, the open web, and model training pipelines, with interactive visualizations and 26 cited sources.",
     "tags": ["Research", "Analysis"],

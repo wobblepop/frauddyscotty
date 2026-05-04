@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>brainweird makeneatshit — Scott</title>
+<meta name="description" content="An interactive word carousel celebrating brainweird people who make neat things.">
+<meta property="og:title" content="brainweird makeneatshit — Scott">
+<meta property="og:description" content="An interactive word carousel celebrating brainweird people who make neat things.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://frauddyscotty.com/projects/makeneatshit.html">
+<link rel="canonical" href="https://frauddyscotty.com/projects/makeneatshit.html">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(ellipse at 50% 40%, #1a1035 0%, #0c0a1a 65%, #060612 100%);
+    overflow: hidden;
+    font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  }
+
+  canvas#bg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .stage {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 20px;
+  }
+
+  .arrow-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .arrow-btn:hover {
+    border-color: rgba(255, 107, 157, 0.45);
+    background: rgba(255, 107, 157, 0.05);
+    box-shadow: 0 0 28px rgba(255, 107, 157, 0.1),
+                inset 0 0 12px rgba(255, 107, 157, 0.03);
+    transform: scale(1.1);
+  }
+
+  .arrow-btn:active {
+    transform: scale(0.92);
+    transition-duration: 0.08s;
+  }
+
+
+  .arrow-btn svg {
+    width: 22px;
+    height: 22px;
+    stroke: rgba(255, 255, 255, 0.45);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    transition: stroke 0.35s;
+  }
+
+  .arrow-btn:hover svg {
+    stroke: #ff6b9d;
+  }
+
+  .track-wrapper {
+    position: relative;
+    overflow: visible;
+  }
+
+  .shelf {
+    position: absolute;
+    bottom: -6px;
+    left: -16px;
+    right: -16px;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.06) 12%,
+      rgba(255, 255, 255, 0.06) 88%,
+      transparent 100%
+    );
+  }
+
+  .shelf-glow {
+    position: absolute;
+    bottom: -8px;
+    left: -16px;
+    right: -16px;
+    height: 12px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(199, 146, 234, 0.03) 20%,
+      rgba(77, 150, 255, 0.04) 50%,
+      rgba(255, 107, 107, 0.03) 80%,
+      transparent 100%
+    );
+    filter: blur(6px);
+  }
+
+  .track {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    position: relative;
+  }
+
+  .word {
+    font-size: clamp(1.5rem, 3vw, 2.7rem);
+    font-weight: 700;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+    position: relative;
+    cursor: default;
+    transition: text-shadow 0.4s;
+  }
+
+  .word::before {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    color: inherit;
+    filter: blur(18px);
+    opacity: 0.35;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .word:hover {
+    text-shadow: 0 0 40px currentColor;
+  }
+
+  .hint {
+    position: fixed;
+    bottom: 24px;
+    color: rgba(255, 255, 255, 0.18);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    z-index: 1;
+    transition: opacity 1.5s;
+  }
+
+  .shuffle-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 10px 18px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.45);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    z-index: 2;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .shuffle-btn:hover {
+    border-color: rgba(255, 107, 157, 0.45);
+    background: rgba(255, 107, 157, 0.05);
+    color: #ff6b9d;
+    box-shadow: 0 0 28px rgba(255, 107, 157, 0.1);
+    transform: scale(1.05);
+  }
+
+  .shuffle-btn:active {
+    transform: scale(0.95);
+    transition-duration: 0.08s;
+  }
+
+  .shuffle-btn:focus-visible {
+    outline: 2px solid #ff6b9d;
+    outline-offset: 3px;
+    border-color: rgba(255, 107, 157, 0.45);
+    background: rgba(255, 107, 157, 0.05);
+    color: #ff6b9d;
+  }
+
+  .arrow-btn:focus-visible {
+    outline: 2px solid #ff6b9d;
+    outline-offset: 3px;
+    border-color: rgba(255, 107, 157, 0.45);
+    background: rgba(255, 107, 157, 0.05);
+    box-shadow: 0 0 28px rgba(255, 107, 157, 0.1),
+                inset 0 0 12px rgba(255, 107, 157, 0.03);
+  }
+
+  #site-nav { background: #0c0a1a; }
+  #site-footer { background: #0c0a1a; border-top: 1px solid rgba(255,255,255,0.06); }
+
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: #1a1035;
+    color: #ff6b9d;
+    padding: 8px 16px;
+    z-index: 100;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.875rem;
+    text-decoration: none;
+    border: 1px solid rgba(255, 107, 157, 0.4);
+    border-radius: 4px;
+  }
+
+  .skip-link:focus {
+    top: 8px;
+    left: 8px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .disclosure {
+    position: fixed;
+    bottom: 8px;
+    right: 12px;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    z-index: 1;
+    font-family: 'Space Grotesk', sans-serif;
+    max-width: 320px;
+    text-align: right;
+    line-height: 1.4;
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div id="site-nav"></div>
+
+<canvas id="bg"></canvas>
+
+<button class="shuffle-btn" id="shuffleBtn" aria-label="Shuffle word order">shuffle</button>
+
+<main id="main-content">
+<h1 class="sr-only">brainweird makeneatshit</h1>
+
+<div class="stage">
+  <button class="arrow-btn" id="leftArrow" aria-label="Shift left">
+    <svg viewBox="0 0 24 24"><polyline points="15,4 7,12 15,20"/></svg>
+  </button>
+
+  <div class="track-wrapper">
+    <div class="track" id="track"></div>
+    <div class="shelf"></div>
+    <div class="shelf-glow"></div>
+  </div>
+
+  <button class="arrow-btn" id="rightArrow" aria-label="Shift right">
+    <svg viewBox="0 0 24 24"><polyline points="9,4 17,12 9,20"/></svg>
+  </button>
+</div>
+
+<div class="hint" id="hint">arrow keys or click</div>
+
+<div class="disclosure">Made as a personal project by Scott DuHadway using a bunch of Chickens named Opus and Haiku in Claude Code</div>
+
+</main>
+
+<div id="site-footer"></div>
+<script src="../js/site-nav.js" data-base=".."></script>
+
+<script>
+const PALETTE = ['#ff6b6b','#ff8e53','#ffd93d','#6bcb77','#4d96ff','#c792ea','#ff6b9d'];
+
+// ─── particles ───
+const cv = document.getElementById('bg');
+const cx = cv.getContext('2d');
+
+function resize() { cv.width = innerWidth; cv.height = innerHeight; }
+resize();
+addEventListener('resize', resize);
+
+const dots = Array.from({length: 55}, () => ({
+  x: Math.random() * innerWidth,
+  y: Math.random() * innerHeight,
+  r: Math.random() * 1.4 + 0.4,
+  dx: (Math.random() - 0.5) * 0.18,
+  dy: (Math.random() - 0.5) * 0.18,
+  c: PALETTE[Math.floor(Math.random() * PALETTE.length)],
+  a: Math.random() * 0.2 + 0.04,
+  p: Math.random() * 6.28
+}));
+
+(function loop() {
+  cx.clearRect(0, 0, cv.width, cv.height);
+  for (const d of dots) {
+    d.x += d.dx; d.y += d.dy; d.p += 0.012;
+    if (d.x < -5) d.x = cv.width + 5;
+    if (d.x > cv.width + 5) d.x = -5;
+    if (d.y < -5) d.y = cv.height + 5;
+    if (d.y > cv.height + 5) d.y = -5;
+    cx.globalAlpha = Math.max(0.01, d.a + Math.sin(d.p) * 0.06);
+    cx.beginPath();
+    cx.arc(d.x, d.y, d.r, 0, 6.28);
+    cx.fillStyle = d.c;
+    cx.fill();
+  }
+  cx.globalAlpha = 1;
+  requestAnimationFrame(loop);
+})();
+
+// ─── words ───
+const words = ['because','brainweird','people','are','good','makeneatshit','people'];
+const track = document.getElementById('track');
+const GAP = 18;
+const queue = [];
+let animating = false;
+
+function render() {
+  track.innerHTML = '';
+  words.forEach((w, i) => {
+    const s = document.createElement('span');
+    s.className = 'word';
+    s.textContent = w;
+    s.setAttribute('data-text', w);
+    s.style.color = PALETTE[i % PALETTE.length];
+    track.appendChild(s);
+  });
+}
+
+function initialReveal() {
+  render();
+  Array.from(track.children).forEach((el, i) => {
+    el.style.opacity = '0';
+    el.animate([
+      { transform: 'translateY(24px) scale(0.92)', opacity: 0 },
+      { transform: 'translateY(0) scale(1)', opacity: 1 }
+    ], {
+      duration: 520,
+      delay: i * 70 + 100,
+      easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+      fill: 'forwards'
+    });
+  });
+}
+initialReveal();
+
+// ─── queue processor ───
+function processQueue() {
+  if (animating || queue.length === 0) return;
+  const action = queue.shift();
+  if (action === 'shuffle') runShuffle();
+  else runShift(action);
+}
+
+// ─── shift ───
+function runShift(dir) {
+  animating = true;
+
+  const hint = document.getElementById('hint');
+  if (hint) hint.style.opacity = '0';
+
+  const els = Array.from(track.children);
+  const left = dir === 'left';
+  const dIdx = left ? 0 : els.length - 1;
+  const dep = els[dIdx];
+  const depW = dep.offsetWidth + GAP;
+  const tipDir = left ? 1 : -1;
+
+  dep.style.transformOrigin = left ? '85% 80%' : '15% 80%';
+
+  dep.animate([
+    { transform: 'translateY(0) rotate(0deg) scale(1)', opacity: 1 },
+    { transform: `translateY(12px) rotate(${tipDir * 8}deg) scale(0.97)`, opacity: 0.65, offset: 0.22 },
+    { transform: `translateY(220px) rotate(${tipDir * 32}deg) scale(0.6)`, opacity: 0 }
+  ], {
+    duration: 680,
+    easing: 'cubic-bezier(0.4, 0, 1, 0.35)',
+    fill: 'forwards'
+  });
+
+  const movers = left ? els.slice(1) : els.slice(0, -1);
+  movers.forEach((el, i) => {
+    el.animate([
+      { transform: 'translateX(0)' },
+      { transform: `translateX(${left ? -depW : depW}px)` }
+    ], {
+      duration: 560,
+      delay: 60 + i * 15,
+      easing: 'cubic-bezier(0.4, 0, 0.15, 1)',
+      fill: 'forwards'
+    });
+  });
+
+  setTimeout(() => {
+    if (left) words.push(words.shift());
+    else words.unshift(words.pop());
+    render();
+
+    const fresh = Array.from(track.children);
+    const aIdx = left ? fresh.length - 1 : 0;
+    const arr = fresh[aIdx];
+    const slideIn = left ? 25 : -25;
+
+    const rise = arr.animate([
+      { transform: `translateY(110px) translateX(${slideIn}px) scale(0.7)`, opacity: 0 },
+      { transform: 'translateY(-2px) translateX(0) scale(1.015)', opacity: 0.85, offset: 0.72 },
+      { transform: 'translateY(0) translateX(0) scale(1)', opacity: 1 }
+    ], {
+      duration: 520,
+      easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+    });
+
+    rise.onfinish = () => {
+      animating = false;
+      processQueue();
+    };
+  }, 640);
+}
+
+// ─── shuffle ───
+function runShuffle() {
+  animating = true;
+
+  const hint = document.getElementById('hint');
+  if (hint) hint.style.opacity = '0';
+
+  const els = Array.from(track.children);
+  els.forEach((el, i) => {
+    const dir = (i % 2 === 0) ? -1 : 1;
+    el.animate([
+      { transform: 'translateY(0) scale(1)', opacity: 1 },
+      { transform: `translateY(180px) rotate(${dir * 20}deg) scale(0.5)`, opacity: 0 }
+    ], {
+      duration: 500,
+      delay: i * 40,
+      easing: 'cubic-bezier(0.4, 0, 1, 0.35)',
+      fill: 'forwards'
+    });
+  });
+
+  setTimeout(() => {
+    for (let i = words.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [words[i], words[j]] = [words[j], words[i]];
+    }
+    render();
+
+    Array.from(track.children).forEach((el, i) => {
+      el.style.opacity = '0';
+      const anim = el.animate([
+        { transform: 'translateY(110px) scale(0.7)', opacity: 0 },
+        { transform: 'translateY(-2px) scale(1.015)', opacity: 0.85, offset: 0.72 },
+        { transform: 'translateY(0) scale(1)', opacity: 1 }
+      ], {
+        duration: 520,
+        delay: i * 60,
+        easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+        fill: 'forwards'
+      });
+
+      if (i === words.length - 1) {
+        anim.onfinish = () => {
+          animating = false;
+          processQueue();
+        };
+      }
+    });
+  }, 500 + words.length * 40);
+}
+
+function enqueue(action) { queue.push(action); processQueue(); }
+
+document.getElementById('leftArrow').addEventListener('click', () => enqueue('left'));
+document.getElementById('rightArrow').addEventListener('click', () => enqueue('right'));
+document.getElementById('shuffleBtn').addEventListener('click', () => enqueue('shuffle'));
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') enqueue('left');
+  if (e.key === 'ArrowRight') enqueue('right');
+});
+</script>
+
+</body>
+</html>
