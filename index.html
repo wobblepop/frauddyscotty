@@ -3,13 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scott — Home</title>
-  <meta name="description" content="Personal site of Scott DuHadway — academic, researcher, skeptical technologist, and chicken whisperer.">
-  <meta property="og:title" content="Scott — Home">
-  <meta property="og:description" content="Personal site of Scott DuHadway — academic, researcher, skeptical technologist, and chicken whisperer.">
+  <title>Scott DuHadway</title>
+  <meta name="description" content="Personal site of Scott DuHadway. Research, projects, and things that are verifiably his.">
+  <meta property="og:title" content="Scott DuHadway">
+  <meta property="og:description" content="Personal site of Scott DuHadway. Research, projects, and things that are verifiably his.">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://frauddyscotty.com/index.html">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .intro {
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .featured {
+      border: 1px solid var(--color-border);
+      padding: 1.5rem 1.75rem;
+      background: var(--color-bg);
+      margin-bottom: 2rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .featured:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .featured h3 {
+      margin-top: 0;
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .featured p {
+      font-size: 0.92rem;
+      color: var(--color-text-mid);
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+
+    .featured-label {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.15em 0.55em;
+      border-radius: 2px;
+      background: #d8eaf5;
+      color: #1a5a7a;
+      margin-bottom: 0.75rem;
+    }
+
+    .featured-link {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-decoration: none;
+      color: var(--color-accent);
+    }
+
+    .featured-link:hover {
+      color: var(--color-accent-hover);
+    }
+  </style>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to content</a>
@@ -17,43 +72,20 @@
 
     <div id="site-nav"></div>
 
-    <!-- Classification Stamp -->
-    <div class="classification">
-      Clearance Level: Public so I can share stuff with people
-    </div>
-    <div class="chicken-disclosure">
-      <p>* Text written by chickens will be marked with asterisks and a dashed border (AI-generated).</p>
-    </div>
-
-    <!-- Main Content -->
     <main id="main-content">
-      <h1>Welcome to the Archive</h1>
+      <h1>Hi.</h1>
 
-      <span class="written-by-scott">Text in blue is written by me, otherwise see above re: chickens.</span> 
+      <div class="intro">
+        <p>Welcome to my site! I'm Scott DuHadway - and if you want to know whether something is mine, this stuff is where I put random things. I'm not sure what the future holds - but information on the internet is going to be increasingly unstable. So all of the content on this page came from me (for better or for worse).</p>
+      </div>
 
-      <span class="written-by-chickens">*If you are looking for something specific, the navigation above will
-        guide you. If you are browsing aimlessly, you are in good
-        company.<sup><a href="#fn1" id="ref1">1</a></sup>*</span>
+      <h2>Featured Project</h2>
 
-      <h2>Recent Activity</h2>
-
-      <span class="written-by-chickens">*<strong>2026-04-06</strong> &mdash; Site launched. Infrastructure
-        declared "good enough." No one was harmed in the deployment process.*</span>
-      <span class="written-by-chickens">*<strong>Forthcoming</strong> &mdash; Additional project uploads,
-        writings, and materials of varying academic defensibility.*</span> 
-	<span class="written-by-scott">↑ Seriously? That's how you want to describe my academic work? Thanks Reviewer 2</span> 
-	<span class="written-by-scott"> Shit... I'm talking to my chickens again</span>
-    <span class="written-by-chickens">*<strong>2026-04-06</strong> &mdash; <a href="projects/assembly-line.html">API Call Assembly Line</a> published. An interactive replay of the API calls behind a Claude Code session, visualized as a factory assembly line.*</span>
-    <span class="written-by-chickens">*<strong>2026-04-06</strong> &mdash; <a href="projects/chicken-sled.html">Chicken Herding</a> published. 695 API calls animated as chickens on a dog sled. Part of the "Everything You Know About AI Is Wrong" presentation.*</span>
-	<span class="written-by-scott"> 2026-04-10 I had AI make a bunch of minigames to distract me when I want to take a break from work, rather than going to reddit. Check out <a href="projects/break-room/index.html">The Break Room
-</a> under projects. </span> 
-		
-      <!-- Footnotes -->
-      <div class="footnote">
-        <p id="fn1">
-          <span class="written-by-scott2">*<sup>1</sup> Placeholder for Footnotes</span>
-          <a href="#ref1">&uarr;</a>
-        </p>
+      <div class="featured">
+        <span class="featured-label">Latest</span>
+        <h3>brainweird makeneatshit</h3>
+        <p>An interactive word carousel celebrating brainweird people who make neat things.</p>
+        <a class="featured-link" href="projects/makeneatshit.html">Check it out &rarr;</a>
       </div>
 
     </main>
@@ -64,3 +96,5 @@
   <script src="js/site-nav.js" data-base="."></script>
 </body>
 </html>
+</content>
+</invoke>

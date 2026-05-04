@@ -27,10 +27,9 @@
   /* ── Nav items (single source of truth) ── */
   var navItems = [
     { label: 'Home',        href: 'index.html' },
-    { label: 'Projects',    href: 'projects.html' },
     { label: 'Research',    href: 'research.html' },
-    { label: 'About',       href: 'about.html' },
-    { label: 'Field Notes', href: 'field-notes.html' }
+    { label: 'Projects',    href: 'projects.html' },
+    { label: 'AI',          href: 'ai.html' }
   ];
 
   /* ── Detect current page for active state ── */
@@ -98,15 +97,10 @@
             return '<span class="tag">' + t + '</span>';
           }).join(' ');
 
-          var desc = proj.ai
-            ? '<span class="written-by-chickens">*' + proj.description + '*</span>'
-            : '<p>' + proj.description + '</p>';
-
           return (
             '<div class="project-card">' +
             '  <h3>' + proj.title + '</h3>' +
             '  <div>' + tags + '</div>' +
-            '  ' + desc +
             '  <a class="project-link" href="' + p(proj.path) + '">View Project &rarr;</a>' +
             '</div>'
           );
