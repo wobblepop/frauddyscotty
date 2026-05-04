@@ -222,8 +222,20 @@
                 inset 0 0 12px rgba(255, 107, 157, 0.03);
   }
 
-  #site-nav { background: #0c0a1a; }
-  #site-footer { background: #0c0a1a; border-top: 1px solid rgba(255,255,255,0.06); }
+  #site-nav {
+    background: #0c0a1a;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+  }
+
+  #site-footer {
+    background: #0c0a1a;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    z-index: 10;
+    width: 100%;
+  }
 
   .skip-link {
     position: absolute;
