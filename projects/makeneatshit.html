@@ -17,11 +17,18 @@
   body {
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     background: radial-gradient(ellipse at 50% 40%, #1a1035 0%, #0c0a1a 65%, #060612 100%);
     overflow: hidden;
     font-family: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  }
+
+  main#main-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 
   canvas#bg {
@@ -168,8 +175,8 @@
     background: rgba(255, 255, 255, 0.02);
     border: 1.5px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
-    width: 42px;
-    height: 42px;
+    width: 54px;
+    height: 54px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -178,18 +185,19 @@
     flex-shrink: 0;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
+    color: rgba(255, 255, 255, 0.45);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
   }
 
   .shuffle-btn:hover {
     border-color: rgba(255, 107, 157, 0.45);
     background: rgba(255, 107, 157, 0.05);
+    color: #ff6b9d;
     box-shadow: 0 0 28px rgba(255, 107, 157, 0.1),
                 inset 0 0 12px rgba(255, 107, 157, 0.03);
     transform: scale(1.1);
-  }
-
-  .shuffle-btn:hover svg {
-    stroke: #ff6b9d;
   }
 
   .shuffle-btn:active {
@@ -202,17 +210,7 @@
     outline-offset: 3px;
     border-color: rgba(255, 107, 157, 0.45);
     background: rgba(255, 107, 157, 0.05);
-  }
-
-  .shuffle-btn svg {
-    width: 18px;
-    height: 18px;
-    stroke: rgba(255, 255, 255, 0.45);
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    fill: none;
-    transition: stroke 0.35s;
+    color: #ff6b9d;
   }
 
   .arrow-btn:focus-visible {
@@ -299,9 +297,7 @@
     <svg viewBox="0 0 24 24"><polyline points="9,4 17,12 9,20"/></svg>
   </button>
 
-  <button class="shuffle-btn" id="shuffleBtn" aria-label="Shuffle word order">
-    <svg viewBox="0 0 24 24"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
-  </button>
+  <button class="shuffle-btn" id="shuffleBtn" aria-label="Shuffle word order">?</button>
 </div>
 
 <div class="hint" id="hint">arrow keys or click</div>
