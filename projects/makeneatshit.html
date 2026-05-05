@@ -310,6 +310,8 @@
   </button>
 
   <button class="shuffle-btn" id="shuffleBtn" aria-label="Shuffle word order">?</button>
+
+  <button class="arrow-btn" id="nextPhrase" aria-label="Next phrase" style="font-size: 1rem; font-weight: 700; color: rgba(255,255,255,0.45); font-family: 'Space Grotesk', sans-serif;">&gt;&gt;</button>
 </div>
 
 <div class="hint" id="hint">arrow keys or click</div>
@@ -368,14 +370,35 @@ const GAP = 18;
 const queue = [];
 let animating = false;
 
+const WORD_COLORS = {
+  'because': '#ff6b6b',
+  'brainweird': '#ff8e53',
+  'people': '#ffd93d',
+  'are': '#6bcb77',
+  'good': '#4d96ff',
+  'makeneatshit': '#c792ea'
+};
+
+const DISPLAY = { 'makeneatshit': 'make neat shit' };
+
+const PHRASES = [
+  ['because','brainweird','people','are','good','makeneatshit','people'],
+  ['people','are','good','makeneatshit','people','because','brainweird'],
+  ['good','makeneatshit','people','because','brainweird','people','are'],
+  ['makeneatshit','people','because','brainweird','people','are','good'],
+  ['people','because','brainweird','people','are','good','makeneatshit']
+];
+let phraseIndex = 0;
+
 function render() {
   track.innerHTML = '';
   words.forEach((w, i) => {
     const s = document.createElement('span');
     s.className = 'word';
-    s.textContent = w;
-    s.setAttribute('data-text', w);
-    s.style.color = PALETTE[i % PALETTE.length];
+    const display = DISPLAY[w] || w;
+    s.textContent = display;
+    s.setAttribute('data-text', display);
+    s.style.color = WORD_COLORS[w] || '#ff6b9d';
     track.appendChild(s);
   });
 }
@@ -402,6 +425,7 @@ function processQueue() {
   if (animating || queue.length === 0) return;
   const action = queue.shift();
   if (action === 'shuffle') runShuffle();
+  else if (action === 'next') runNextPhrase();
   else runShift(action);
 }
 
@@ -521,11 +545,61 @@ function runShuffle() {
   }, 500 + words.length * 40);
 }
 
+// ─── next sensible phrase ───
+function runNextPhrase() {
+  animating = true;
+
+  const hint = document.getElementById('hint');
+  if (hint) hint.style.opacity = '0';
+
+  const els = Array.from(track.children);
+  els.forEach((el, i) => {
+    el.animate([
+      { transform: 'translateY(0) scale(1)', opacity: 1 },
+      { transform: 'translateY(-60px) scale(0.9)', opacity: 0 }
+    ], {
+      duration: 350,
+      delay: i * 30,
+      easing: 'cubic-bezier(0.4, 0, 1, 0.35)',
+      fill: 'forwards'
+    });
+  });
+
+  setTimeout(() => {
+    phraseIndex = (phraseIndex + 1) % PHRASES.length;
+    const phrase = PHRASES[phraseIndex];
+    for (let i = 0; i < words.length; i++) words[i] = phrase[i];
+    render();
+
+    Array.from(track.children).forEach((el, i) => {
+      el.style.opacity = '0';
+      const anim = el.animate([
+        { transform: 'translateY(40px) scale(0.9)', opacity: 0 },
+        { transform: 'translateY(-2px) scale(1.01)', opacity: 0.9, offset: 0.7 },
+        { transform: 'translateY(0) scale(1)', opacity: 1 }
+      ], {
+        duration: 420,
+        delay: i * 50,
+        easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+        fill: 'forwards'
+      });
+
+      if (i === words.length - 1) {
+        anim.onfinish = () => {
+          animating = false;
+          processQueue();
+        };
+      }
+    });
+  }, 350 + words.length * 30);
+}
+
 function enqueue(action) { queue.push(action); processQueue(); }
 
 document.getElementById('leftArrow').addEventListener('click', () => enqueue('left'));
 document.getElementById('rightArrow').addEventListener('click', () => enqueue('right'));
 document.getElementById('shuffleBtn').addEventListener('click', () => enqueue('shuffle'));
+document.getElementById('nextPhrase').addEventListener('click', () => enqueue('next'));
 
 document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft') enqueue('left');
