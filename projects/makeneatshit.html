@@ -381,23 +381,56 @@ const WORD_COLORS = {
 
 const DISPLAY = { 'makeneatshit': 'make neat shit' };
 
-const PHRASES = [
-  ['because','brainweird','people','are','good','makeneatshit','people'],
-  ['people','are','good','makeneatshit','people','because','brainweird'],
-  ['good','makeneatshit','people','because','brainweird','people','are'],
-  ['makeneatshit','people','because','brainweird','people','are','good'],
-  ['people','because','brainweird','people','are','good','makeneatshit']
+const ALL_PHRASES = [
+  {w:['brainweird','people','makeneatshit','because','people','are','good'], p:{6:'.'}},
+  {w:['brainweird','people','are','good','because','people','makeneatshit'], p:{6:'.'}},
+  {w:['people','are','good','because','brainweird','people','makeneatshit'], p:{6:'.'}},
+  {w:['good','people','makeneatshit','because','people','are','brainweird'], p:{6:'.'}},
+  {w:['people','makeneatshit','because','brainweird','people','are','good'], p:{6:'.'}},
+  {w:['people','makeneatshit','because','good','people','are','brainweird'], p:{6:'.'}},
+  {w:['people','are','brainweird','because','good','people','makeneatshit'], p:{6:'.'}},
+  {w:['good','people','are','brainweird','because','people','makeneatshit'], p:{6:'.'}},
+  {w:['because','brainweird','people','are','good','people','makeneatshit'], p:{4:',', 6:'.'}},
+  {w:['because','people','are','good','brainweird','people','makeneatshit'], p:{3:',', 6:'.'}},
+  {w:['because','people','are','brainweird','good','people','makeneatshit'], p:{3:',', 6:'.'}},
+  {w:['because','good','people','are','brainweird','people','makeneatshit'], p:{4:',', 6:'.'}},
+  {w:['because','brainweird','people','makeneatshit','people','are','good'], p:{3:',', 6:'.'}},
+  {w:['because','good','people','makeneatshit','people','are','brainweird'], p:{3:',', 6:'.'}},
+  {w:['because','people','makeneatshit','brainweird','people','are','good'], p:{2:',', 6:'.'}},
+  {w:['because','people','makeneatshit','good','people','are','brainweird'], p:{2:',', 6:'.'}},
+  {w:['are','brainweird','people','good','because','people','makeneatshit'], p:{6:'?'}},
+  {w:['are','people','good','because','brainweird','people','makeneatshit'], p:{6:'?'}},
+  {w:['are','people','brainweird','because','good','people','makeneatshit'], p:{6:'?'}},
+  {w:['are','good','people','brainweird','because','people','makeneatshit'], p:{6:'?'}},
+  {w:['makeneatshit','because','brainweird','people','are','good','people'], p:{0:',', 6:'.'}},
+  {w:['makeneatshit','because','good','people','are','brainweird','people'], p:{0:',', 6:'.'}},
+  {w:['brainweird','people','are','good','people','because','makeneatshit'], p:{4:' —', 6:'.'}},
+  {w:['good','people','are','brainweird','people','because','makeneatshit'], p:{4:' —', 6:'.'}},
+  {w:['good','brainweird','people','are','people','because','makeneatshit'], p:{0:',', 4:' —', 6:'.'}},
+  {w:['brainweird','good','people','are','people','because','makeneatshit'], p:{0:',', 4:' —', 6:'.'}},
+  {w:['good','people','are','because','brainweird','people','makeneatshit'], p:{6:'.'}},
+  {w:['brainweird','people','are','because','good','people','makeneatshit'], p:{6:'.'}},
+  {w:['good','brainweird','people','are','because','people','makeneatshit'], p:{0:',', 6:'.'}},
+  {w:['brainweird','good','people','are','because','people','makeneatshit'], p:{0:',', 6:'.'}},
+  {w:['because','good','brainweird','people','are','people','makeneatshit'], p:{1:',', 4:',', 6:'.'}},
+  {w:['because','brainweird','good','people','are','people','makeneatshit'], p:{1:',', 4:',', 6:'.'}},
+  {w:['people','are','because','good','brainweird','people','makeneatshit'], p:{3:',', 6:'.'}},
+  {w:['people','are','because','brainweird','good','people','makeneatshit'], p:{3:',', 6:'.'}},
+  {w:['are','good','people','because','brainweird','people','makeneatshit'], p:{6:'?'}},
+  {w:['are','brainweird','people','because','good','people','makeneatshit'], p:{6:'?'}}
 ];
 let phraseIndex = 0;
+let currentPunct = null;
 
 function render() {
   track.innerHTML = '';
   words.forEach((w, i) => {
     const s = document.createElement('span');
     s.className = 'word';
-    const display = DISPLAY[w] || w;
-    s.textContent = display;
-    s.setAttribute('data-text', display);
+    const base = DISPLAY[w] || w;
+    const suffix = currentPunct && currentPunct[i] ? currentPunct[i] : '';
+    s.textContent = base + suffix;
+    s.setAttribute('data-text', base + suffix);
     s.style.color = WORD_COLORS[w] || '#ff6b9d';
     track.appendChild(s);
   });
@@ -432,6 +465,7 @@ function processQueue() {
 // ─── shift ───
 function runShift(dir) {
   animating = true;
+  currentPunct = null;
 
   const hint = document.getElementById('hint');
   if (hint) hint.style.opacity = '0';
@@ -516,10 +550,10 @@ function runShuffle() {
   });
 
   setTimeout(() => {
-    for (let i = words.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [words[i], words[j]] = [words[j], words[i]];
-    }
+    const idx = Math.floor(Math.random() * ALL_PHRASES.length);
+    const phrase = ALL_PHRASES[idx];
+    for (let i = 0; i < words.length; i++) words[i] = phrase.w[i];
+    currentPunct = phrase.p;
     render();
 
     Array.from(track.children).forEach((el, i) => {
@@ -566,9 +600,10 @@ function runNextPhrase() {
   });
 
   setTimeout(() => {
-    phraseIndex = (phraseIndex + 1) % PHRASES.length;
-    const phrase = PHRASES[phraseIndex];
-    for (let i = 0; i < words.length; i++) words[i] = phrase[i];
+    phraseIndex = (phraseIndex + 1) % ALL_PHRASES.length;
+    const phrase = ALL_PHRASES[phraseIndex];
+    for (let i = 0; i < words.length; i++) words[i] = phrase.w[i];
+    currentPunct = phrase.p;
     render();
 
     Array.from(track.children).forEach((el, i) => {
