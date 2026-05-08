@@ -1,5 +1,13 @@
 [
   {
+    "title": "My Existential Crisis and Plan in 5 Minutes",
+    "description": "A 5-minute scrolling presentation on what happens when AI makes content creation cheaper than content review, featuring a building-block visualization of every equation in a business degree.",
+    "tags": ["Teaching", "Research"],
+    "path": "projects/presentation-talk.html",
+    "date": "2026-05-08",
+    "ai": true
+  },
+  {
     "title": "brainweird makeneatshit",
     "description": "An interactive word carousel celebrating brainweird people who make neat things. Shift words with arrows or keyboard.",
     "tags": ["Technology"],

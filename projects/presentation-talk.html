@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Existential Crisis and Plan in 5 Minutes — Scott</title>
+<meta name="description" content="A 5-minute presentation on what happens when AI makes content creation cheaper than content review, and what business education could look like in response.">
+<meta property="og:title" content="My Existential Crisis and Plan in 5 Minutes — Scott">
+<meta property="og:description" content="A 5-minute presentation on what happens when AI makes content creation cheaper than content review, and what business education could look like in response.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://frauddyscotty.com/projects/presentation-talk.html">
+<link rel="canonical" href="https://frauddyscotty.com/projects/presentation-talk.html">
+<style>
+:root {
+  --purple-50: #EEEDFE; --purple-600: #534AB7; --purple-800: #3C3489; --purple-900: #26215C;
+  --teal-50: #E1F5EE; --teal-600: #0F6E56; --teal-800: #085041;
+  --blue-50: #E6F1FB; --blue-600: #185FA5; --blue-800: #0C447C;
+  --amber-50: #FAEEDA; --amber-600: #854F0B; --amber-800: #633806;
+  --coral-50: #FAECE7; --coral-600: #993C1D; --coral-800: #712B13;
+  --gray-50: #F1EFE8; --gray-100: #D3D1C7; --gray-600: #5F5E5A; --gray-800: #444441;
+  --green-50: #EAF3DE; --green-600: #3B6D11; --green-800: #27500A;
+  --red-50: #FCEBEB; --red-600: #A32D2D; --red-800: #791F1F;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.7;
+  color: #2C2C2A;
+  background: #fff;
+}
+
+/* TIMER */
+.timer-wrap {
+  position: fixed;
+  top: 1.25rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
+}
+
+.timer {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+  color: var(--gray-600);
+  background: rgba(255,255,255,0.9);
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--gray-100);
+}
+
+.pause-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  border: 1px solid var(--gray-100);
+  background: rgba(255,255,255,0.9);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-600);
+  font-size: 14px;
+  transition: background 0.2s;
+  padding: 0;
+}
+
+.pause-btn:hover { background: var(--gray-50); }
+
+/* HERO / OVERVIEW */
+.hero {
+  min-height: calc(100vh - 5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 3rem;
+}
+
+.hero h1 {
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--purple-900);
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+  max-width: 750px;
+}
+
+.hero-byline {
+  font-size: 18px;
+  color: var(--gray-600);
+  margin-bottom: 2.5rem;
+}
+
+.start-link {
+  display: inline-block;
+  padding: 18px 36px;
+  background: var(--purple-600);
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.start-link:hover {
+  background: var(--purple-800);
+  transform: translateY(2px);
+}
+
+/* SECTIONS */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 3rem 4rem;
+  border-top: 1px solid var(--gray-100);
+}
+
+.section h2 {
+  font-size: 38px;
+  font-weight: 600;
+  color: var(--purple-900);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 13px;
+  color: var(--purple-600);
+  text-decoration: none;
+}
+
+.back-link:hover { text-decoration: underline; }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 2.5rem;
+  margin-top: 1.5rem;
+  align-items: start;
+}
+
+.example-box {
+  background: var(--amber-50);
+  border: 1px solid #e8d5b0;
+  border-radius: 10px;
+  padding: 1.5rem;
+  font-size: 14px;
+  color: var(--amber-800);
+  line-height: 1.6;
+}
+
+.example-box .example-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--amber-600);
+  margin-bottom: 8px;
+}
+
+.main-text {
+  font-size: 20px;
+  color: var(--gray-800);
+  line-height: 1.7;
+}
+
+.main-text a {
+  color: var(--purple-600);
+  text-decoration: none;
+  border-bottom: 1px solid var(--purple-50);
+  transition: border-color 0.2s;
+}
+
+.main-text a:hover { border-bottom-color: var(--purple-600); }
+
+/* Bar chart */
+.bar-chart {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bar-label {
+  width: 260px;
+  text-align: right;
+  font-size: 15px;
+  color: var(--gray-800);
+  flex-shrink: 0;
+}
+
+.bar-track {
+  flex: 1;
+  height: 40px;
+  background: var(--gray-50);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.bar-fill.bar-1 { background: var(--teal-600); width: 1.67%; min-width: 80px; }
+.bar-fill.bar-2 { background: var(--blue-600); width: 8.33%; min-width: 80px; }
+.bar-fill.bar-3 { background: var(--coral-600); width: 100%; }
+
+.detail-text {
+  font-size: 17px;
+  color: var(--gray-600);
+  margin-top: 1rem;
+  line-height: 1.7;
+}
+
+/* CTA */
+.cta-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 14px 32px;
+  background: var(--purple-600);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.cta-link:hover { background: var(--purple-800); }
+
+/* BUILDING VISUALIZATION */
+.building-stage {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin: 2rem 0 3rem;
+  min-height: 500px;
+}
+
+.house {
+  position: relative;
+  width: 1000px;
+  max-width: 100%;
+}
+
+.layer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 4px;
+  position: relative;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.brick {
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: 'Courier New', monospace;
+  font-weight: 500;
+  text-align: center;
+  border: 0.5px solid;
+  white-space: nowrap;
+}
+
+.layer-label {
+  position: absolute;
+  right: calc(100% + 16px);
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.layer-label .label-name { font-size: 12px; font-weight: 500; }
+.layer-label .label-courses { font-size: 10px; margin-top: 2px; }
+
+.ground {
+  width: 100%;
+  height: 12px;
+  background: #D3D1C7;
+  border-radius: 0 0 4px 4px;
+  margin-top: 4px;
+}
+
+.layer-0 .brick { background: #EEEDFE; border-color: #534AB7; color: #3C3489; }
+.layer-0 .layer-label .label-name { color: #3C3489; }
+.layer-0 .layer-label .label-courses { color: #534AB7; }
+
+.layer-1 .brick { background: #FBEAF0; border-color: #993556; color: #72243E; }
+.layer-1 .layer-label .label-name { color: #72243E; }
+.layer-1 .layer-label .label-courses { color: #993556; }
+
+.layer-2 .brick { background: #F1EFE8; border-color: #5F5E5A; color: #444441; }
+.layer-2 .layer-label .label-name { color: #444441; }
+.layer-2 .layer-label .label-courses { color: #5F5E5A; }
+
+.layer-3 .brick { background: #E1F5EE; border-color: #0F6E56; color: #085041; }
+.layer-3 .layer-label .label-name { color: #085041; }
+.layer-3 .layer-label .label-courses { color: #0F6E56; }
+
+.layer-4 .brick { background: #E6F1FB; border-color: #185FA5; color: #0C447C; }
+.layer-4 .layer-label .label-name { color: #0C447C; }
+.layer-4 .layer-label .label-courses { color: #185FA5; }
+
+.layer-5 .brick { background: #FAECE7; border-color: #993C1D; color: #712B13; }
+.layer-5 .layer-label .label-name { color: #712B13; }
+.layer-5 .layer-label .label-courses { color: #993C1D; }
+
+.layer-6 .brick { background: #EAF3DE; border-color: #3B6D11; color: #27500A; }
+.layer-6 .layer-label .label-name { color: #27500A; }
+.layer-6 .layer-label .label-courses { color: #3B6D11; }
+
+.layer-7 .brick { background: #FAEEDA; border-color: #854F0B; color: #633806; }
+.layer-7 .layer-label .label-name { color: #633806; }
+.layer-7 .layer-label .label-courses { color: #854F0B; }
+
+.layer-8 .brick { background: #FCEBEB; border-color: #A32D2D; color: #791F1F; }
+.layer-8 .layer-label .label-name { color: #791F1F; }
+.layer-8 .layer-label .label-courses { color: #A32D2D; }
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--purple-600);
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 200;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+@media (max-width: 768px) {
+  .two-col { grid-template-columns: 1fr; }
+  .section { padding: 3rem 1.5rem; }
+  .hero h1 { font-size: 34px; }
+  .hero { padding: 3rem 1.5rem; }
+  .section h2 { font-size: 26px; }
+  .bar-label { width: 160px; font-size: 13px; }
+  .layer-label { display: none; }
+  .question-list li a { font-size: 15px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div id="site-nav"></div>
+
+<!-- TIMER -->
+<div class="timer-wrap">
+  <div class="timer" id="timer">0:00</div>
+  <button class="pause-btn" id="pauseBtn" title="Pause / Resume">&#9646;&#9646;</button>
+</div>
+
+<!-- HERO: OVERVIEW WITH LINKED QUESTIONS -->
+<main id="main-content">
+<header class="hero" id="top">
+  <h1>My Existential Crisis and Plan in 5-Min</h1>
+  <div class="hero-byline">Scott DuHadway &mdash; May, 2026</div>
+  <a href="#cost" id="startBtn" class="start-link">What happens when all the words die? &darr;</a>
+</header>
+
+<!-- SECTION 1 -->
+<section class="section" id="cost">
+  <a href="#top" class="back-link">&larr; Back to overview</a>
+  <h2>What happens when all the words die?</h2>
+  <p class="main-text">For perhaps the first time ever, it is now far cheaper to create digital content than to review it.</p>
+  <p style="margin-top: 0.5rem;"><a href="https://frauddyscotty.com/projects/what-happens-when-all-the-words-die.html" target="_blank" rel="noopener noreferrer" class="main-text" style="font-size: 15px;">frauddyscotty.com/projects/what-happens-when-all-the-words-die.html</a></p>
+  <div class="two-col">
+    <div>
+      <div class="bar-chart">
+        <div class="bar-row">
+          <div class="bar-label">Write a business plan</div>
+          <div class="bar-track"><div class="bar-fill bar-1">1 min</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Read a business plan</div>
+          <div class="bar-track"><div class="bar-fill bar-2">5 min</div></div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Report an AI-written plan to student conduct</div>
+          <div class="bar-track"><div class="bar-fill bar-3">1 hour</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="example-box">
+      <div class="example-label">Real example</div>
+      Last week my friend who owns a $500k/year company doing voice acting wanted to invest in new businesses, and his lawyer sent him a new business opportunity &mdash; which was fraudulent data created by AI.
+    </div>
+  </div>
+  <div class="example-box" style="margin-top: 1.5rem;">
+    <div class="example-label">Real Example 2*</div>
+    The bar graph above was created by Claude when I had it make this presentation. Took 10 seconds to write it out, 1 minute to review it, and 2 minutes to write this example as a correction.
+  </div>
+</section>
+
+<!-- SECTION 2 -->
+<section class="section" id="worried">
+  <a href="#top" class="back-link">&larr; Back to overview</a>
+  <h2>Should we be worried?</h2>
+  <div class="two-col">
+    <div>
+      <p class="main-text">Institutions that rely on receiving and processing digital information will collapse if they don't change.</p>
+    </div>
+    <div class="example-box">
+      <div class="example-label">Example</div>
+      <a href="https://mitsloan.mit.edu/press/update-mit-sloan-management-review" target="_blank" rel="noopener noreferrer" style="color: var(--amber-800); font-weight: 500;">MIT Sloan Management Review</a> just shut down.
+      <p style="margin-top: 0.75rem; margin-bottom: 0; font-size: 13px; color: var(--amber-800); opacity: 0.85;">They didn't say this was why &mdash; but maybe it's because every single professor ever just received a tool that could rewrite every paper they've written as an industry-facing piece.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 -->
+<section class="section" id="without-words">
+  <a href="#top" class="back-link">&larr; Back to overview</a>
+  <h2>What does business look like without words?</h2>
+  <p class="main-text">Business is built on math and decisions &mdash; not words. Words let us make the right decisions.</p>
+
+  <div class="building-stage">
+    <div class="house">
+
+      <!-- Layer 0: Foundation (top) -->
+      <div class="layer layer-0">
+        <div class="layer-label">
+          <div class="label-name">Foundation</div>
+          <div class="label-courses">BA 101Z, 169Z, 211Z, 213Z, 303, 311</div>
+        </div>
+        <div class="brick">Assets = Liabilities + Equity</div>
+        <div class="brick">Net Income = Revenue - Expenses</div>
+        <div class="brick">Revenue = Price &times; Quantity</div>
+        <div class="brick">Q<sub>sold</sub> = min(Demand, Supply)</div>
+        <div class="brick">Total Cost = Fixed + Variable &times; Q</div>
+        <div class="brick">&Delta;Cash = NI + D&amp;A - &Delta;WC - CapEx + &Delta;Debt</div>
+        <div class="brick">FV = PV &times; (1 + r)<sup>n</sup></div>
+        <div class="brick">E<sub>d</sub> = (%&Delta;Q<sub>d</sub>) / (%&Delta;P)</div>
+      </div>
+
+      <!-- Layer 1: Revenue -->
+      <div class="layer layer-1">
+        <div class="layer-label">
+          <div class="label-name">Revenue enrichment</div>
+          <div class="label-courses">BA 311, Mktg 340U, 363, 441, 442, 460, 462</div>
+        </div>
+        <div class="brick">dN/dt = [p + qN/m][m - N]</div>
+        <div class="brick">CLV = Margin &times; Ret/(1+r-Ret)</div>
+        <div class="brick">Brand(t+1) = Brand(t)(1-d) + Lift</div>
+        <div class="brick">Share = f(Price, Quality, Brand)</div>
+        <div class="brick">E<sub>cross</sub> = %&Delta;Q<sub>A</sub> / %&Delta;P<sub>B</sub></div>
+      </div>
+
+      <!-- Layer 2: Cost -->
+      <div class="layer layer-2">
+        <div class="layer-label">
+          <div class="label-name">Cost structure</div>
+          <div class="label-courses">BA 213Z, Actg 360, 381</div>
+        </div>
+        <div class="brick">Unit Cost = DM + DL + OH</div>
+        <div class="brick">(Actual P - Std P) &times; Actual Q</div>
+        <div class="brick">(Actual Q - Std Q) &times; Std P</div>
+        <div class="brick">D&amp;A = (Cost - Salvage) / Life</div>
+        <div class="brick">DOL = CM / Operating Income</div>
+      </div>
+
+      <!-- Layer 3: Operations -->
+      <div class="layer layer-3">
+        <div class="layer-label">
+          <div class="label-name">Operations</div>
+          <div class="label-courses">BA 339, GSCM 429, 439, 479</div>
+        </div>
+        <div class="brick">EOQ = &radic;(2DS / H)</div>
+        <div class="brick">OEE = Avail &times; Perf &times; Quality</div>
+        <div class="brick">L = &lambda; &times; W</div>
+        <div class="brick">Cpk = min[(USL-&mu;)/3&sigma;, (&mu;-LSL)/3&sigma;]</div>
+        <div class="brick">PERT = (a + 4m + b) / 6</div>
+      </div>
+
+      <!-- Layer 4: Finance -->
+      <div class="layer layer-4">
+        <div class="layer-label">
+          <div class="label-name">Finance</div>
+          <div class="label-courses">BA 303, Fin 319, 352, 431, 449</div>
+        </div>
+        <div class="brick">WACC = (E/V)R<sub>e</sub> + (D/V)R<sub>d</sub>(1-t)</div>
+        <div class="brick">R<sub>e</sub> = R<sub>f</sub> + &beta;(R<sub>m</sub> - R<sub>f</sub>)</div>
+        <div class="brick">NPV = &Sigma;[CF<sub>t</sub> / (1+r)<sup>t</sup>] - I<sub>0</sub></div>
+        <div class="brick">V = &Sigma;[FCF / (1+WACC)<sup>t</sup>] + TV</div>
+      </div>
+
+      <!-- Layer 5: Workforce -->
+      <div class="layer layer-5">
+        <div class="layer-label">
+          <div class="label-name">Workforce</div>
+          <div class="label-courses">BA 302, Mgmt 351, 461, 471</div>
+        </div>
+        <div class="brick">Y<sub>n</sub> = Y<sub>1</sub> &times; n<sup>ln(rate)/ln(2)</sup></div>
+        <div class="brick">Turnover = Separations / Avg HC</div>
+        <div class="brick">Productivity = Output / Labor Hours</div>
+        <div class="brick">Training ROI = (Gain - Cost) / Cost</div>
+      </div>
+
+      <!-- Layer 6: Macro -->
+      <div class="layer layer-6">
+        <div class="layer-label">
+          <div class="label-name">Macro environment</div>
+          <div class="label-courses">EC 201Z, EC 202Z</div>
+        </div>
+        <div class="brick">GDP = C + I + G + (X - M)</div>
+        <div class="brick">(1+r<sub>nom</sub>) = (1+r<sub>real</sub>)(1+&pi;)</div>
+        <div class="brick">&pi; = &pi;<sup>e</sup> - &beta;(u - u<sub>n</sub>)</div>
+        <div class="brick">k = 1 / (1 - MPC)</div>
+      </div>
+
+      <!-- Layer 7: Risk -->
+      <div class="layer layer-7">
+        <div class="layer-label">
+          <div class="label-name">Risk &amp; measurement</div>
+          <div class="label-courses">BA 327, Actg 381-383, Fin 419</div>
+        </div>
+        <div class="brick">ROE = Margin &times; Turnover &times; Leverage</div>
+        <div class="brick">Z = 1.2(WC/A) + 1.4(RE/A) + 3.3(EBIT/A) + ...</div>
+        <div class="brick">CCC = DIO + DSO - DPO</div>
+      </div>
+
+      <!-- Layer 8: Strategy (bottom) -->
+      <div class="layer layer-8">
+        <div class="layer-label">
+          <div class="label-name">Strategy</div>
+          <div class="label-courses">BA 495, Mgmt 445, Mktg 464</div>
+        </div>
+        <div class="brick">HHI = &Sigma;(share<sub>i</sub>)<sup>2</sup></div>
+        <div class="brick">(P - MC) / P = -1 / E<sub>d</sub></div>
+        <div class="brick">g = ROE &times; (1 - Payout)</div>
+      </div>
+
+      <div class="ground"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4 -->
+<section class="section" id="solution">
+  <a href="#top" class="back-link">&larr; Back to overview</a>
+  <h2>What can we do without words?</h2>
+  <p class="main-text">We can build a custom multi-course business simulation for undergraduate education that can include <strong>every course</strong>. Not to replace the content &mdash; but to make it so that there is an objective measure of whether the students are learning what you are teaching.</p>
+  <br>
+  <a href="https://bus.frauddyscotty.com" target="_blank" rel="noopener noreferrer" class="cta-link">bus.frauddyscotty.com &rarr;</a>
+</section>
+</main>
+
+<div id="site-footer"></div>
+<script src="../js/site-nav.js" data-base=".."></script>
+<script>
+(function() {
+  var timerEl = document.getElementById('timer');
+  var startBtn = document.getElementById('startBtn');
+  var pauseBtn = document.getElementById('pauseBtn');
+  var started = false;
+  var paused = false;
+  var startTime = null;
+  var pausedElapsed = 0;
+  var timerInterval = null;
+
+  function updateTimerDisplay() {
+    var elapsed;
+    if (paused) {
+      elapsed = Math.floor(pausedElapsed / 1000);
+    } else {
+      elapsed = Math.floor((Date.now() - startTime) / 1000);
+    }
+    var minutes = Math.floor(elapsed / 60);
+    var seconds = elapsed % 60;
+    timerEl.textContent = minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+  }
+
+  function startTimer() {
+    if (started) return;
+    started = true;
+    startTime = Date.now();
+    timerInterval = setInterval(updateTimerDisplay, 200);
+  }
+
+  pauseBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (!started) return;
+
+    if (!paused) {
+      paused = true;
+      pausedElapsed = Date.now() - startTime;
+      scrolling = false;
+      if (resumeTimeout) clearTimeout(resumeTimeout);
+      pauseBtn.innerHTML = '&#9654;';
+      pauseBtn.title = 'Resume';
+    } else {
+      paused = false;
+      startTime = Date.now() - pausedElapsed;
+      pauseBtn.innerHTML = '&#9646;&#9646;';
+      pauseBtn.title = 'Pause';
+
+      // Resume auto-scroll from current position
+      var currentPos = window.scrollY;
+      var maxScroll = getMaxScroll();
+      var range = maxScroll - scrollOrigin;
+      var currentProgress = (currentPos - scrollOrigin) / range;
+      if (currentProgress < 0) currentProgress = 0;
+      if (currentProgress > 1) currentProgress = 1;
+
+      scrolling = true;
+      scrollStart = performance.now() - currentProgress * duration;
+      requestAnimationFrame(autoScroll);
+    }
+  });
+
+  // Auto-scroll — 2 minutes from the content start to the bottom
+  var duration = 120000;
+  var scrollOrigin = 0;
+  var scrollStart = null;
+  var scrolling = false;
+
+  function getMaxScroll() {
+    return document.documentElement.scrollHeight - window.innerHeight;
+  }
+
+  function autoScroll(timestamp) {
+    if (!scrolling) return;
+    if (!scrollStart) scrollStart = timestamp;
+
+    var elapsed = timestamp - scrollStart;
+    var progress = Math.min(elapsed / duration, 1);
+
+    var ease = progress < 0.5
+      ? 2 * progress * progress
+      : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+    var maxScroll = getMaxScroll();
+    var range = maxScroll - scrollOrigin;
+    window.scrollTo(0, scrollOrigin + ease * range);
+
+    if (progress < 1) {
+      requestAnimationFrame(autoScroll);
+    }
+  }
+
+  // Pause on user interaction, resume after 3s
+  var resumeTimeout = null;
+
+  function pauseScroll() {
+    if (!started || paused) return;
+    scrolling = false;
+    if (resumeTimeout) clearTimeout(resumeTimeout);
+    resumeTimeout = setTimeout(function() {
+      if (paused) return;
+      scrolling = true;
+      var currentPos = window.scrollY;
+      var maxScroll = getMaxScroll();
+      var range = maxScroll - scrollOrigin;
+      var currentProgress = (currentPos - scrollOrigin) / range;
+      if (currentProgress < 0) currentProgress = 0;
+      if (currentProgress > 1) currentProgress = 1;
+
+      scrollStart = performance.now() - currentProgress * duration;
+      requestAnimationFrame(autoScroll);
+    }, 3000);
+  }
+
+  window.addEventListener('wheel', pauseScroll, { passive: true });
+  window.addEventListener('touchstart', pauseScroll, { passive: true });
+  window.addEventListener('mousedown', pauseScroll);
+  window.addEventListener('keydown', function(e) {
+    if (['ArrowUp','ArrowDown','PageUp','PageDown','Home','End',' '].indexOf(e.key) !== -1) {
+      pauseScroll();
+    }
+  });
+
+  // Click the start link: begin timer + auto-scroll from section 1
+  startBtn.addEventListener('click', function(e) {
+    startTimer();
+
+    // Let the browser scroll to #cost first, then start auto-scroll from there
+    setTimeout(function() {
+      scrollOrigin = window.scrollY;
+      scrolling = true;
+      scrollStart = null;
+      requestAnimationFrame(autoScroll);
+    }, 600);
+  });
+})();
+</script>
+
+</body>
+</html>
