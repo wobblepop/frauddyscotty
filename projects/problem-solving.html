@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Problem-Solving in Action — Scott</title>
+<meta name="description" content="Eight real examples of seeing a problem, building a solution, and creating an outcome — from airline scheduling to ethical sourcing to tabletop RPGs.">
+<meta property="og:title" content="Problem-Solving in Action — Scott">
+<meta property="og:description" content="Eight real examples of seeing a problem, building a solution, and creating an outcome.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://frauddyscotty.com/projects/problem-solving.html">
+<link rel="canonical" href="https://frauddyscotty.com/projects/problem-solving.html">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#FAFAF8;--card-bg:#ffffff;--card-border:#D3D1C7;
+  --text-1:#2C2C2A;--text-2:#5F5E5A;--text-3:#888780;
+  --coral-bg:#FAECE7;--coral-bd:#993C1D;--coral-tx:#712B13;
+  --blue-bg:#E6F1FB;--blue-bd:#185FA5;--blue-tx:#0C447C;
+  --teal-bg:#E1F5EE;--teal-bd:#0F6E56;--teal-tx:#085041;
+  --num-bg:#B4B2A9;--num-tx:#ffffff;
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#1c1c1a;--card-bg:#2C2C2A;--card-border:#444441;
+  --text-1:#F1EFE8;--text-2:#B4B2A9;--text-3:#888780;
+  --coral-bg:#3d1e10;--coral-bd:#F0997B;--coral-tx:#F5C4B3;
+  --blue-bg:#0a3460;--blue-bd:#85B7EB;--blue-tx:#B5D4F4;
+  --teal-bg:#063830;--teal-bd:#5DCAA5;--teal-tx:#9FE1CB;
+  --num-bg:#5F5E5A;--num-tx:#F1EFE8;
+}}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  background:var(--bg);color:var(--text-1);line-height:1.5;
+}
+.container{max-width:840px;margin:0 auto;padding:0 24px 40px}
+h1{font-size:22px;font-weight:500;margin-bottom:4px}
+.subtitle{font-size:14px;color:var(--text-2);margin-bottom:28px}
+.legend{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  margin-bottom:28px;padding:14px 20px;
+  background:var(--card-bg);border:0.5px solid var(--card-border);border-radius:8px;
+}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500}
+.legend-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.legend-arrow{color:var(--text-3);font-size:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:680px){.grid{grid-template-columns:1fr}}
+.card{
+  background:var(--card-bg);border:0.5px solid var(--card-border);
+  border-radius:8px;padding:20px;display:flex;flex-direction:column;
+  cursor:pointer;transition:border-color 0.15s;
+}
+.card:hover,.card:focus-visible{border-color:var(--text-3);outline:none}
+.card:focus-visible{outline:2px solid var(--blue-bd);outline-offset:2px}
+.overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);
+  z-index:100;align-items:center;justify-content:center;padding:24px;
+}
+.overlay.open{display:flex}
+.modal{
+  background:var(--card-bg);border:0.5px solid var(--card-border);
+  border-radius:8px;padding:28px 28px 24px;max-width:600px;width:100%;
+  position:relative;max-height:80vh;overflow-y:auto;
+}
+.modal-title{font-size:16px;font-weight:500;margin-bottom:16px;padding-right:28px}
+.modal-body{font-size:14px;line-height:1.65;color:var(--text-2)}
+.modal-close{
+  position:absolute;top:16px;right:16px;width:28px;height:28px;
+  border:0.5px solid var(--card-border);border-radius:50%;background:var(--card-bg);
+  color:var(--text-2);font-size:16px;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;
+}
+.modal-close:hover{background:var(--bg)}
+.card-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.card-num{
+  width:22px;height:22px;border-radius:50%;flex-shrink:0;
+  background:var(--num-bg);color:var(--num-tx);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:500;
+}
+.card-title{font-size:15px;font-weight:500}
+.section{
+  border-left:3px solid;padding:6px 12px;margin-bottom:6px;
+  border-radius:0 4px 4px 0;font-size:13px;line-height:1.45;
+}
+.section:last-child{margin-bottom:0}
+.section-label{font-size:11px;font-weight:500;margin-bottom:1px;opacity:0.7}
+.problem{border-color:var(--coral-bd);background:var(--coral-bg);color:var(--coral-tx)}
+.solution{border-color:var(--blue-bd);background:var(--blue-bg);color:var(--blue-tx)}
+.outcome{border-color:var(--teal-bd);background:var(--teal-bg);color:var(--teal-tx)}
+.skip-link{
+  position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;
+  z-index:200;background:var(--card-bg);color:var(--text-1);padding:8px 16px;
+  font-size:14px;text-decoration:none;border:2px solid var(--text-1);border-radius:4px;
+}
+.skip-link:focus{position:fixed;left:16px;top:16px;width:auto;height:auto}
+@media(prefers-color-scheme:dark){
+  .sn-header{border-bottom-color:#444441}
+  .sn-title a{color:#F1EFE8!important}
+  .sn-subtitle{color:#B4B2A9!important}
+  .sn-nav a{color:#5DCAA5!important}
+  .sn-nav a:hover,.sn-nav a.sn-active{border-bottom-color:#5DCAA5!important}
+  .sn-nav a:focus-visible{outline-color:#5DCAA5!important}
+  .sn-footer{border-top-color:#444441;color:#B4B2A9}
+  .sn-footer a{color:#5DCAA5!important}
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div id="site-nav"></div>
+
+<div class="container">
+  <main id="main-content">
+    <h1>Problem-solving in action</h1>
+    <p class="subtitle">See a problem, build a solution, create an outcome</p>
+
+    <div class="legend" aria-label="Color legend: coral for problem, blue for solution, teal for outcome">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--coral-bd)" aria-hidden="true"></div>Problem</div>
+      <span class="legend-arrow" aria-hidden="true">&rarr;</span>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--blue-bd)" aria-hidden="true"></div>Solution</div>
+      <span class="legend-arrow" aria-hidden="true">&rarr;</span>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--teal-bd)" aria-hidden="true"></div>Outcome</div>
+    </div>
+
+    <div class="grid" role="list">
+
+      <div class="card" role="listitem" tabindex="0" aria-label="Todo list redesign — click or press Enter for details">
+        <div class="card-header">
+          <div class="card-num" aria-hidden="true">1</div>
+          <div class="card-title">Todo list redesign</div>
+        </div>
+        <div class="section problem">
+          <div class="section-label">Problem</div>
+          Tired of using Excel for my todo list
+        </div>
+        <div class="section solution">
+          <div class="section-label">Solution</div>
+          Built an ADHD-friendly HTML version using AI tools
+        </div>
+        <div class="section outcome">
+          <div class="section-label">Outcome</div>
+          A more pleasant, visually engaging daily tool
+        </div>
+      </div>
+
+      <div class="card" role="listitem" tabindex="0" aria-label="Airline scheduling pitch — click or press Enter for details">
+        <div class="card-header">
+          <div class="card-num" aria-hidden="true">2</div>
+          <div class="card-title">Airline scheduling pitch</div>
+        </div>
+        <div class="section problem">
+          <div class="section-label">Problem</div>
+          Wanted a job at a startup airline
+        </div>
+        <div class="section solution">
+          <div class="section-label">Solution</div>
+          Wrote a paper proposing a pull-based scheduling system for the industry
+        </div>
+        <div class="section outcome">
+          <div class="section-label">Outcome</div>
+          Got hired; the airline still sells this system today
+        </div>
+      </div>
+
+      <div class="card" role="listitem" tabindex="0" aria-label="Ethical sourcing framework — click or press Enter for details">
+        <div class="card-header">
+          <div class="card-num" aria-hidden="true">3</div>
+          <div class="card-title">Ethical sourcing framework</div>
+        </div>
+        <div class="section problem">
+          <div class="section-label">Problem</div>
+          University faced an ethical sourcing crisis without good tools
+        </div>
+        <div class="section solution">
+          <div class="section-label">Solution</div>
+          Created a 2&times;2 decision matrix aligned with institutional goals and strategies
+        </div>
+        <div class="section outcome">
+          <div class="section-label">Outcome</div>
+          Included in the committee's recommendation to the president
+        </div>
+      </div>
+
+      <div class="card" role="listitem" tabindex="0" aria-label="Airport market analyzer — click or press Enter for details">
+        <div class="card-header">
+          <div class="card-num" aria-hidden="true">4</div>
+          <div class="card-title">Airport market analyzer</div>
+        </div>
+        <div class="section problem">
+          <div class="section-label">Problem</div>
+          Needed to identify which airports the airline could service
+        </div>
+        <div class="section solution">
+          <div class="section-label">Solution</div>
+          Built an Excel tool using lat/long, aircraft range, and population density data
+        </div>
+        <div class="section outcome">
+          <div class="section-label">Outcome</div>
+          Easy-to-use tool for evaluating new market opportunities
+        </div>
+      </div>
+
+      <div class="card" role="listitem" tabindex="0" aria-label="Auto-reorder spreadsheet — click or press Enter for details">
+        <div class="card-header">
+          <div class="card-num" aria-hidden="true">5</div>
+          <div class="card-title">Auto-reorder spreadsheet</div>
+        </div>
+        <div class="section problem">
+          <div class="section-label">Problem</div>
+          Daily manual checks of an online inventory system were tedious
+        </div>
+        <div class="section solution">
+          <div class="section-label">Solution</div>
+          Built an Excel tool that auto-queried the website for part numbers and reorder points
+        </div>
+        <div class="section outcome">
+          <div class="section-label">Outcome</div>
+          Everyone in the facility adopted it
+        </div>
+      </div>
+
+      <div class="card" role="listitem" tabindex="0" aria-label="Co-DM gaming platform — click or press Enter for details">
+        <div class="card-header">
+          <div class="card-num" aria-hidden="true">6</div>
+          <div class="card-title">Co-DM gaming platform</div>
+        </div>
+        <div class="section problem">
+          <div class="section-label">Problem</div>
+          No platforms supported co-DM tabletop RPG sessions
+        </div>
+        <div class="section solution">
+          <div class="section-label">Solution</div>
+          Built a custom online platform with a co-DM that replicated and extended digital tabletop features
+        </div>
+        <div class="section outcome">
+          <div class="section-label">Outcome</div>
+          Feature-rich game with sound, art, chat, and party-splitting
+        </div>
+      </div>
+
+      <div class="card" role="listitem" tabindex="0" aria-label="Ethics teaching moment — click or press Enter for details">
+        <div class="card-header">
+          <div class="card-num" aria-hidden="true">7</div>
+          <div class="card-title">Ethics teaching moment</div>
+        </div>
+        <div class="section problem">
+          <div class="section-label">Problem</div>
+          A student concern about course structure conflicted with learning goals
+        </div>
+        <div class="section solution">
+          <div class="section-label">Solution</div>
+          Turned the issue into a real ethical decision-making example for the class
+        </div>
+        <div class="section outcome">
+          <div class="section-label">Outcome</div>
+          An authentic lesson in applied ethics, not just a hypothetical
+        </div>
+      </div>
+
+      <div class="card" role="listitem" tabindex="0" aria-label="This assignment — click or press Enter for details">
+        <div class="card-header">
+          <div class="card-num" aria-hidden="true">8</div>
+          <div class="card-title">This assignment</div>
+        </div>
+        <div class="section problem">
+          <div class="section-label">Problem</div>
+          Struggled to make the team experience valuable in this course
+        </div>
+        <div class="section solution">
+          <div class="section-label">Solution</div>
+          Replaced it with this assignment
+        </div>
+        <div class="section outcome">
+          <div class="section-label">Outcome</div>
+          Hopefully you get a lot out of it
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <button class="modal-close" id="modal-close" aria-label="Close detail view">&times;</button>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<div id="site-footer"></div>
+<script src="../js/site-nav.js" data-base=".."></script>
+<script>
+var titles = [
+  "Todo list redesign",
+  "Airline scheduling pitch",
+  "Ethical sourcing framework",
+  "Airport market analyzer",
+  "Auto-reorder spreadsheet",
+  "Co-DM gaming platform",
+  "Ethics teaching moment",
+  "This assignment"
+];
+var texts = [
+  "Problem: I was tired of using Excel for my todo list → Solution: I built one that was more visually interesting and more ADHD friendly as an HTML project by taking the excel file and converting it to HTML using AI tools → Outcome: I have a todo list tool that is more pleasant to use.",
+  "Problem: I wanted a job from a startup airline company → Solution: I wrote a 2-page paper explaining what I thought their most critical problem was and how to solve it using operations concepts that I had learned to convert it to a pull-based scheduling system for the airline industry → Outcome: I got the job, and that’s what the airline is still selling now.",
+  "Problem: The university went through an ethical sourcing crisis and didn’t have a good set of tools to address it → Solution: I created a paper explaining the problem and offering a solution as a 2×2 decision matrix that could be used to make more ethical sourcing decisions based on alignment with PDX goals and strategies to more appropriately source key partnerships in an ethical way and shared it with the committee → Outcome: The strategic sourcing committee included my paper as part of their recommendation to the president.",
+  "Problem: The airline company I was working for needed and I needed to know what potential airports they could service. Solution: I built an excel tool that integrated lat/long data for every airline, calculated the range of a Cessna using the curvature of the earth, and showed every pairwise connection between US airports for specific ranges, based on population densities for the target market. Outcome: EZ to use tool to evaluate new market opportunities.",
+  "Problem: The paper company I was working with had an online inventory system, but automatic reordering so everyone checked every day the information. That annoyed me when I had to do it. Solution: I built an excel tool that automatically queried the website, downloaded part numbers for everything on that sheet, and then you could calculate the reorder points locally with Excel instead. Outcome: Everyone in the facility started using my excel spreadsheet.",
+  "Problem: I wanted to play Stars without Numbers (space DND) as Co-DM with my brother, but there aren’t very many systems that support that game or the Co-DM roles → My brother and I built a custom online platform that we can host the games on that replicates any feature from a digital tabletop system, and several features we wanted for that game. → Outcome: We played a great game of SWN which had a lot of really neat supplemental features like sound effects, popup art, party-splitting features, chat, private DM channels, etc.",
+  "Problem: A student raised a concern about the online structure for the course but addressing would negatively impact student learning → Solution: I turned the problem into a teaching opportunity by showing how I think ethical decision making should be approached and using it as an example of how to approach ethical decision-making in reality, not just as a hypothetical → Outcome: No idea, but I hope students will make more ethical decisions in their careers.",
+  "Problem: I have struggled to find a way to make the team experience valuable in this course → Solution: Replace it with this assignment → Outcome: I hope you get a lot out of it."
+];
+var overlay = document.getElementById("overlay");
+var modalTitle = document.getElementById("modal-title");
+var modalBody = document.getElementById("modal-body");
+var cards = document.querySelectorAll(".card");
+
+function openModal(i) {
+  modalTitle.textContent = titles[i];
+  modalBody.textContent = texts[i];
+  overlay.classList.add("open");
+  document.getElementById("modal-close").focus();
+}
+
+cards.forEach(function(card, i) {
+  card.addEventListener("click", function() { openModal(i); });
+  card.addEventListener("keydown", function(e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(i); }
+  });
+});
+document.getElementById("modal-close").addEventListener("click", function(e) {
+  e.stopPropagation();
+  overlay.classList.remove("open");
+});
+overlay.addEventListener("click", function(e) {
+  if (e.target === overlay) overlay.classList.remove("open");
+});
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") overlay.classList.remove("open");
+});
+</script>
+</body>
+</html>

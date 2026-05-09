@@ -1,5 +1,13 @@
 [
   {
+    "title": "Problem-Solving in Action",
+    "description": "Eight real examples of seeing a problem, building a solution, and creating an outcome — from airline scheduling to ethical sourcing to tabletop RPGs. Click any card for the full story.",
+    "tags": ["Teaching", "Analysis"],
+    "path": "projects/problem-solving.html",
+    "date": "2026-05-09",
+    "ai": true
+  },
+  {
     "title": "My Existential Crisis and Plan in 5 Minutes",
     "description": "A 5-minute scrolling presentation on what happens when AI makes content creation cheaper than content review, featuring a building-block visualization of every equation in a business degree.",
     "tags": ["Teaching", "Research"],
