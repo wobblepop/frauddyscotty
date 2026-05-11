@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scotty's Supply Solutions — Company Overview</title>
+<meta name="description" content="Scotty's Supply Solutions is a mid-sized company expanding across six strategic product lines, each with its own sourcing challenge and supply chain structure.">
+<meta property="og:title" content="Scotty's Supply Solutions — Company Overview">
+<meta property="og:description" content="A mid-sized company expanding across six product lines, each with its own sourcing challenge and supply chain structure.">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://frauddyscotty.com/projects/scottys-supply-solutions.html">
+<style>
+  :root {
+    --navy: #041E42;
+    --navy-mid: #1E407C;
+    --navy-light: #b9cde5;
+    --navy-wash: #f4f7fb;
+    --ink: #1a1a1a;
+    --ink-2: #4a4a4a;
+    --ink-3: #737373;
+    --bg: #ffffff;
+    --bg-alt: #f7f7f5;
+    --rule: #d6d3cd;
+    --amber: #b87a14;
+    --amber-wash: #fdf5e6;
+    --teal: #0f6e56;
+    --teal-wash: #e6f5ef;
+    --coral: #993c1d;
+    --coral-wash: #faece7;
+    --purple: #534AB7;
+    --purple-wash: #eeedfe;
+    --green: #3b6d11;
+    --green-wash: #eaf3de;
+    --red: #a32d2d;
+    --red-wash: #fcebeb;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .hero {
+    background: var(--navy);
+    color: #fff;
+    padding: 3.5rem 2rem 3rem;
+    text-align: center;
+  }
+  .hero-inner { max-width: 800px; margin: 0 auto; }
+  .hero h1 { font-size: 2.2rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+  .hero .tagline { font-size: 1rem; color: var(--navy-light); max-width: 600px; margin: 0 auto 1.5rem; }
+  .hero-stats { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .hero-stat { text-align: center; }
+  .hero-stat .num { font-size: 2rem; font-weight: 500; display: block; line-height: 1.2; }
+  .hero-stat .label { font-size: 0.78rem; color: var(--navy-light); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  nav.sticky-nav {
+    background: var(--navy);
+    position: sticky; top: 0; z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: center; flex-wrap: wrap;
+  }
+  nav.sticky-nav a {
+    color: var(--navy-light); text-decoration: none;
+    padding: 0.7rem 1.2rem; font-size: 0.78rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    transition: color 0.2s, border-color 0.2s;
+    border-bottom: 3px solid transparent;
+  }
+  nav.sticky-nav a:hover { color: #fff; }
+  nav.sticky-nav a.active { color: #fff; border-bottom-color: var(--navy-light); }
+
+  .section { padding: 3rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-alt { background: var(--navy-wash); }
+  .section-header { margin-bottom: 2rem; }
+  .section-header h2 { font-size: 1.5rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; }
+  .section-header p { color: var(--ink-2); font-size: 0.92rem; max-width: 700px; }
+
+  .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+  .product-card { background: var(--bg); border: 0.5px solid var(--rule); border-radius: 12px; overflow: hidden; transition: box-shadow 0.2s; }
+  .product-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+  .card-accent { height: 4px; }
+  .card-body { padding: 1.25rem 1.5rem 1.5rem; }
+  .card-body h3 { font-size: 1.05rem; font-weight: 500; color: var(--ink); margin-bottom: 0.15rem; }
+  .card-context { font-size: 0.78rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.75rem; display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; }
+  .card-body p { font-size: 0.88rem; color: var(--ink-2); margin-bottom: 0.75rem; }
+  .card-details { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1rem; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 0.5px solid var(--rule); }
+  .detail-item { font-size: 0.82rem; }
+  .detail-label { color: var(--ink-3); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; display: block; }
+  .detail-value { color: var(--ink); font-weight: 500; }
+  .challenge-tag { display: inline-block; font-size: 0.72rem; padding: 0.15rem 0.45rem; border-radius: 4px; margin: 0.15rem 0.15rem 0 0; font-weight: 500; }
+
+  .overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .overview-card { background: var(--bg); border: 0.5px solid var(--rule); border-radius: 8px; padding: 1rem 1.25rem; }
+  .overview-card .ov-label { font-size: 0.72rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.25rem; }
+  .overview-card .ov-value { font-size: 1.3rem; font-weight: 500; color: var(--navy); }
+  .overview-card .ov-note { font-size: 0.78rem; color: var(--ink-3); margin-top: 0.15rem; }
+
+  .sc-tabs { display: flex; gap: 0; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 0.5px solid var(--rule); }
+  .sc-tab {
+    padding: 0.65rem 1.1rem; font-size: 0.82rem; font-weight: 500;
+    background: none; border: none; cursor: pointer; color: var(--ink-3);
+    border-bottom: 3px solid transparent; transition: all 0.15s;
+  }
+  .sc-tab:hover { color: var(--ink); }
+  .sc-tab.active { color: var(--navy); border-bottom-color: var(--navy); }
+
+  .sc-panel { display: none; }
+  .sc-panel.active { display: block; }
+
+  .sc-flow { margin: 0 auto; }
+  .tier { margin-bottom: 0.25rem; }
+  .tier-label {
+    font-size: 0.68rem; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--ink-3); margin-bottom: 0.5rem;
+    padding-left: 0.25rem;
+  }
+  .tier-cards { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+  .sc-node {
+    border: 0.5px solid var(--rule); border-radius: 8px;
+    padding: 0.6rem 0.85rem; min-width: 130px; max-width: 220px; flex: 1;
+    font-size: 0.82rem; background: var(--bg);
+  }
+  .sc-node strong { display: block; font-size: 0.82rem; font-weight: 500; margin-bottom: 0.1rem; }
+  .sc-node .node-detail { font-size: 0.72rem; color: var(--ink-3); line-height: 1.4; }
+  .sc-node.accent-navy { border-left: 3px solid var(--navy-mid); }
+  .sc-node.accent-amber { border-left: 3px solid var(--amber); }
+  .sc-node.accent-purple { border-left: 3px solid var(--purple); }
+  .sc-node.accent-teal { border-left: 3px solid var(--teal); }
+  .sc-node.accent-green { border-left: 3px solid var(--green); }
+  .sc-node.accent-coral { border-left: 3px solid var(--coral); }
+  .sc-node.accent-red { border-left: 3px solid var(--red); }
+  .sc-node.hq { background: var(--navy); color: #fff; border: none; }
+  .sc-node.hq strong { color: #fff; }
+  .sc-node.hq .node-detail { color: var(--navy-light); }
+  .sc-node.suspended { opacity: 0.5; border-style: dashed; }
+  .sc-node.suspended strong::after { content: " (suspended)"; font-weight: 400; font-size: 0.72rem; color: var(--red); }
+
+  .flow-arrow {
+    text-align: center; color: var(--ink-3); font-size: 0.82rem;
+    padding: 0.35rem 0; line-height: 1;
+  }
+  .flow-arrow::before { content: ""; display: block; width: 1px; height: 12px; background: var(--rule); margin: 0 auto 2px; }
+
+  .flow-note {
+    font-size: 0.75rem; color: var(--ink-3); font-style: italic;
+    margin-top: 0.5rem; padding: 0.5rem 0.75rem;
+    background: var(--navy-wash); border-radius: 6px;
+    border-left: 3px solid var(--navy-light);
+  }
+
+  .challenges-table {
+    width: 100%; border-collapse: collapse; font-size: 0.85rem;
+    background: var(--bg); border: 0.5px solid var(--rule);
+    border-radius: 8px; overflow: hidden;
+  }
+  .challenges-table th {
+    background: var(--navy); color: #fff; padding: 0.65rem 0.75rem;
+    text-align: left; font-weight: 500; font-size: 0.78rem;
+    text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  .challenges-table td { padding: 0.55rem 0.75rem; border-bottom: 0.5px solid var(--rule); vertical-align: top; }
+  .challenges-table tr:last-child td { border-bottom: none; }
+  .challenges-table tr:nth-child(even) td { background: var(--navy-wash); }
+
+  .footer {
+    background: var(--navy); color: var(--navy-light);
+    text-align: center; padding: 2rem; font-size: 0.82rem;
+  }
+  .footer strong { color: #fff; }
+
+  .skip-link {
+    position: absolute; left: -9999px; top: auto;
+    padding: 0.5rem 1rem; background: var(--navy); color: #fff;
+    font-size: 0.85rem; z-index: 200; text-decoration: none;
+  }
+  .skip-link:focus { left: 0; top: 0; }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 1.6rem; }
+    .hero-stats { gap: 1.5rem; }
+    .product-grid { grid-template-columns: 1fr; }
+    .section { padding: 2rem 1rem; }
+    .card-details { grid-template-columns: 1fr; }
+    .tier-cards { flex-direction: column; }
+    .sc-node { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<header class="hero">
+  <div class="hero-inner">
+    <h1>Scotty's Supply Solutions</h1>
+    <p class="tagline">A mid-sized company expanding across six strategic product lines, each with its own sourcing challenge and supply chain structure.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">~100</span><span class="label">Employees</span></div>
+      <div class="hero-stat"><span class="num">6</span><span class="label">Product lines</span></div>
+      <div class="hero-stat"><span class="num">3</span><span class="label">Continents sourced</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="sticky-nav">
+  <a href="#overview" class="active">Overview</a>
+  <a href="#products">Products</a>
+  <a href="#supply-chains">Supply chains</a>
+  <a href="#challenges">Challenges</a>
+</nav>
+
+<main id="main-content">
+<div id="overview" class="section-alt">
+  <div class="section" style="padding-top:2rem; padding-bottom:2rem;">
+    <div class="section-header">
+      <h2>Company overview</h2>
+      <p>Leadership has identified six strategic sourcing needs spanning new product launches, internal operations, and supplier opportunities.</p>
+    </div>
+    <div class="overview-grid">
+      <div class="overview-card">
+        <div class="ov-label">Annual volume (mice)</div>
+        <div class="ov-value">100K-300K</div>
+        <div class="ov-note">Year 1 to Year 3+ ramp</div>
+      </div>
+      <div class="overview-card">
+        <div class="ov-label">Coffee bags / year</div>
+        <div class="ov-value">500,000</div>
+        <div class="ov-note">12 oz bags, 6 SKUs</div>
+      </div>
+      <div class="overview-card">
+        <div class="ov-label">T-shirt drops</div>
+        <div class="ov-value">52 / year</div>
+        <div class="ov-note">Currently suspended (tariffs)</div>
+      </div>
+      <div class="overview-card">
+        <div class="ov-label">California rolls / day</div>
+        <div class="ov-value">~1,000</div>
+        <div class="ov-note">Employees + public sales</div>
+      </div>
+      <div class="overview-card">
+        <div class="ov-label">Bicycle sourcing</div>
+        <div class="ov-value">Taiwan</div>
+        <div class="ov-note">32 components, 3 product tiers</div>
+      </div>
+      <div class="overview-card">
+        <div class="ov-label">PC bundle</div>
+        <div class="ov-value">CPU+RAM+SSD</div>
+        <div class="ov-note">Cleanroom assembly, B2B resale</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="products">
+  <div class="section">
+    <div class="section-header">
+      <h2>Product lines</h2>
+      <p>Six distinct sourcing challenges, from commodity electronics to perishable food to collectible apparel.</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="card-accent" style="background: var(--navy-mid);"></div>
+        <div class="card-body">
+          <span class="card-context" style="background: var(--navy-wash); color: var(--navy-mid);">Generic goods expansion</span>
+          <h3>Product 1: Basic wired optical mouse</h3>
+          <p>Entry-level consumer electronics. Reliable, no-frills mouse undercutting branded alternatives. Components sourced from Asia, assembled in-house at a small Portland-area facility.</p>
+          <div class="card-details">
+            <div class="detail-item"><span class="detail-label">Volume (Yr 1 / Yr 3)</span><span class="detail-value">100K / 300K units</span></div>
+            <div class="detail-item"><span class="detail-label">Assembly</span><span class="detail-value">In-house (Portland)</span></div>
+            <div class="detail-item"><span class="detail-label">Est. cost per mouse</span><span class="detail-value">$1-$3 BOM + labor</span></div>
+            <div class="detail-item"><span class="detail-label">Lead time</span><span class="detail-value">35-50 days (components)</span></div>
+          </div>
+          <div style="margin-top:0.75rem;">
+            <span class="challenge-tag" style="background:var(--coral-wash);color:var(--coral);">No supplier history</span>
+            <span class="challenge-tag" style="background:var(--amber-wash);color:var(--amber);">Cost model from scratch</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="card-accent" style="background: var(--amber);"></div>
+        <div class="card-body">
+          <span class="card-context" style="background: var(--amber-wash); color: var(--amber);">Branding loss leader</span>
+          <h3>Product 2: 12 oz bag of ground coffee</h3>
+          <p>Private-label coffee sold at or below cost for brand awareness. Colombia supplies 80% (commodity), Brazil 20% (premium direct trade). Contract roasting via Joe's Garage Coffee.</p>
+          <div class="card-details">
+            <div class="detail-item"><span class="detail-label">Volume</span><span class="detail-value">500K bags / year</span></div>
+            <div class="detail-item"><span class="detail-label">Origins</span><span class="detail-value">Brazil 20%, Colombia 80%</span></div>
+            <div class="detail-item"><span class="detail-label">SKUs</span><span class="detail-value">6 (medium/dark, whole/ground)</span></div>
+            <div class="detail-item"><span class="detail-label">Margin</span><span class="detail-value">Negative (controlled)</span></div>
+          </div>
+          <div style="margin-top:0.75rem;">
+            <span class="challenge-tag" style="background:var(--red-wash);color:var(--red);">Brand risk if quality fails</span>
+            <span class="challenge-tag" style="background:var(--amber-wash);color:var(--amber);">Every cent matters</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="card-accent" style="background: var(--purple);"></div>
+        <div class="card-body">
+          <span class="card-context" style="background: var(--purple-wash); color: var(--purple);">Weekly drop model</span>
+          <h3>Product 3: Custom AI t-shirt</h3>
+          <p>White crew neck with weekly AI-generated screen prints. Original 4-country supply chain (TX, China, Vietnam, Indonesia) suspended due to Section 301 tariffs. Redesigning toward nearshore model.</p>
+          <div class="card-details">
+            <div class="detail-item"><span class="detail-label">Drops</span><span class="detail-value">1 new design / week</span></div>
+            <div class="detail-item"><span class="detail-label">Original lead time</span><span class="detail-value">85-115 days</span></div>
+            <div class="detail-item"><span class="detail-label">Status</span><span class="detail-value" style="color:var(--red);">Suspended</span></div>
+            <div class="detail-item"><span class="detail-label">Proposed fix</span><span class="detail-value">GOEX nearshore / USMCA</span></div>
+          </div>
+          <div style="margin-top:0.75rem;">
+            <span class="challenge-tag" style="background:var(--red-wash);color:var(--red);">Tariff disruption</span>
+            <span class="challenge-tag" style="background:var(--purple-wash);color:var(--purple);">85-115 day lead time</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="card-accent" style="background: var(--teal);"></div>
+        <div class="card-body">
+          <span class="card-context" style="background: var(--teal-wash); color: var(--teal);">Employee food program</span>
+          <h3>Product 4: California roll (8-piece)</h3>
+          <p>Founding-days tradition turned daily operation. ~1,000 rolls/day via in-house kitchen plus vendor overflow. Ingredients from regional distributors including TransOcean, Mission Produce, and Sysco.</p>
+          <div class="card-details">
+            <div class="detail-item"><span class="detail-label">Daily volume</span><span class="detail-value">~1,000 rolls</span></div>
+            <div class="detail-item"><span class="detail-label">Est. cost per roll</span><span class="detail-value">$2-$4</span></div>
+            <div class="detail-item"><span class="detail-label">Prep model</span><span class="detail-value">In-house + vendor</span></div>
+            <div class="detail-item"><span class="detail-label">Key risk</span><span class="detail-value">Avocado price volatility</span></div>
+          </div>
+          <div style="margin-top:0.75rem;">
+            <span class="challenge-tag" style="background:var(--coral-wash);color:var(--coral);">No demand forecasting</span>
+            <span class="challenge-tag" style="background:var(--red-wash);color:var(--red);">Food safety gaps</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="card-accent" style="background: var(--green);"></div>
+        <div class="card-body">
+          <span class="card-context" style="background: var(--green-wash); color: var(--green);">Brand-building flagship</span>
+          <h3>Product 5: Single-speed commuter bicycle</h3>
+          <p>Premium-feeling bike at mid-range price. 32 components sourced primarily from APM Co. (Taiwan) and Shimano (Japan). 3PL distribution model recommended (~$1.5K/mo vs. ~$22K/mo traditional) [student estimate].</p>
+          <div class="card-details">
+            <div class="detail-item"><span class="detail-label">Primary supplier</span><span class="detail-value">APM Co. (Taiwan)</span></div>
+            <div class="detail-item"><span class="detail-label">Components</span><span class="detail-value">32 tracked parts</span></div>
+            <div class="detail-item"><span class="detail-label">Product tiers</span><span class="detail-value">Basic / Standard / Premium</span></div>
+            <div class="detail-item"><span class="detail-label">Margin target</span><span class="detail-value">Strong positive</span></div>
+          </div>
+          <div style="margin-top:0.75rem;">
+            <span class="challenge-tag" style="background:var(--red-wash);color:var(--red);">Zero documentation</span>
+            <span class="challenge-tag" style="background:var(--coral-wash);color:var(--coral);">Language barrier</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="card-accent" style="background: var(--coral);"></div>
+        <div class="card-body">
+          <span class="card-context" style="background: var(--coral-wash); color: var(--coral);">Internal need + resale</span>
+          <h3>Product 6: Desktop PC bundle (CPU + RAM + SSD)</h3>
+          <p>Cleanroom-assembled component bundles. CPU from Intel ($589 OEM), RAM and SSD from Samsung/SK Hynix/Micron. AI-driven memory shortage (DRAM up ~3-5x, NAND up ~2-4x vs. mid-2025) creates major sourcing risk.</p>
+          <div class="card-details">
+            <div class="detail-item"><span class="detail-label">CPU</span><span class="detail-value">Intel i9-14900K ($589)</span></div>
+            <div class="detail-item"><span class="detail-label">Tier 1 suppliers</span><span class="detail-value">TSMC, Micron, Unimicron</span></div>
+            <div class="detail-item"><span class="detail-label">Assembly</span><span class="detail-value">ISO cleanroom (SMT)</span></div>
+            <div class="detail-item"><span class="detail-label">Market risk</span><span class="detail-value">DRAM ~3-5x, NAND ~2-4x spot</span></div>
+          </div>
+          <div style="margin-top:0.75rem;">
+            <span class="challenge-tag" style="background:var(--red-wash);color:var(--red);">Memory shortage crisis</span>
+            <span class="challenge-tag" style="background:var(--amber-wash);color:var(--amber);">Volume depends on cost</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="supply-chains" class="section-alt">
+  <div class="section">
+    <div class="section-header">
+      <h2>Supply chain structures</h2>
+      <p>Each product line has a distinct supply chain with different geographies, suppliers, and process flows. Select a product to view its detailed structure.</p>
+    </div>
+    <div class="sc-tabs" role="tablist" aria-label="Supply chain details by product">
+      <button class="sc-tab active" role="tab" aria-selected="true" aria-controls="sc-mouse" onclick="showSC('mouse', this)">Optical mouse</button>
+      <button class="sc-tab" role="tab" aria-selected="false" aria-controls="sc-coffee" onclick="showSC('coffee', this)">Ground coffee</button>
+      <button class="sc-tab" role="tab" aria-selected="false" aria-controls="sc-tshirt" onclick="showSC('tshirt', this)">AI t-shirt</button>
+      <button class="sc-tab" role="tab" aria-selected="false" aria-controls="sc-sushi" onclick="showSC('sushi', this)">California roll</button>
+      <button class="sc-tab" role="tab" aria-selected="false" aria-controls="sc-bike" onclick="showSC('bike', this)">Commuter bicycle</button>
+      <button class="sc-tab" role="tab" aria-selected="false" aria-controls="sc-pc" onclick="showSC('pc', this)">PC bundle</button>
+    </div>
+
+    <!-- ═══ OPTICAL MOUSE ═══ -->
+    <div id="sc-mouse" class="sc-panel active" role="tabpanel">
+      <div class="sc-flow">
+        <div class="tier">
+          <div class="tier-label">Tier 1 suppliers (Asia, 35-50 day lead time)</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-navy"><strong>Pan Taiwan</strong><div class="node-detail">Plastic shells (top/bottom), lens, scroll wheel. Injection molding. Est. 1977, ISO certified. Taiwan. [<a href="https://oem.pantaiwan.com.tw/" style="color:var(--navy-light)">pantaiwan.com.tw</a>]</div></div>
+            <div class="sc-node accent-navy"><strong>PCBTok (China) / Lectronix (Michigan)</strong><div class="node-detail">PCB assembly with MCU, sensor, passives, USB connector. 40-50 days. [Student-sourced suppliers]</div></div>
+            <div class="sc-node accent-navy"><strong>LECC Technology</strong><div class="node-detail">Laser/optics modules. ISO 9001/13485 certified. Taiwan. [Student-selected; LECC specializes in laser modules — a dedicated mouse sensor supplier (e.g., PixArt) may be more appropriate]</div></div>
+            <div class="sc-node accent-navy"><strong>GQEM (Zhejiang Gaoqiao)</strong><div class="node-detail">Microswitches (L/R buttons). Est. 2004, 200+ employees, CE/ISO 9001. Wenzhou, China. [<a href="https://www.gqele.com/" style="color:var(--navy-light)">gqele.com</a>]</div></div>
+          </div>
+          <div class="tier-cards">
+            <div class="sc-node accent-navy"><strong>Kaihua Electronics (Kailh)</strong><div class="node-detail">Scroll wheel encoder. Est. 1990, global switch brand. Dongguan, China. [<a href="https://www.kailhswitch.com/" style="color:var(--navy-light)">kailhswitch.com</a>]</div></div>
+            <div class="sc-node accent-navy"><strong>Everlight Electronics</strong><div class="node-detail">Red LED 5mm for optical sensing. 7-10 day lead. Major LED manufacturer, Taiwan HQ. [<a href="https://www.everlight.com/" style="color:var(--navy-light)">everlight.com</a>]</div></div>
+            <div class="sc-node accent-navy"><strong>TME US, LLC</strong><div class="node-detail">Microswitches (listed as default supplier in inventory system for L/R buttons). 14-21 day lead. [Note: Tier 1 doc lists GQEM; inventory system lists TME — student docs disagree on primary vs. backup]</div></div>
+            <div class="sc-node accent-navy"><strong>Packaging Bee / ZH Packaging</strong><div class="node-detail">Retail box (UK), quick start guide (Shenzhen). 14-21 days.</div></div>
+          </div>
+        </div>
+        <div class="flow-arrow">Sea freight ($200-$1,000/shipment) to Portland area</div>
+        <div class="tier">
+          <div class="tier-label">Scotty's assembly plant (Portland, 500-1,000 sq ft)</div>
+          <div class="tier-cards">
+            <div class="sc-node hq"><strong>PCB sub-assembly</strong><div class="node-detail">SMT components soldered, sensor + MCU mounted. WIP stage, 2 day internal lead.</div></div>
+            <div class="sc-node hq"><strong>Housing sub-assembly</strong><div class="node-detail">Top/bottom shells, scroll wheel, switches installed. 1 day internal lead.</div></div>
+            <div class="sc-node hq"><strong>Final assembly + QC</strong><div class="node-detail">PCB into housing, USB cable, glide feet, testing. 25-35 units/day, 1-2 workers.</div></div>
+          </div>
+        </div>
+        <div class="flow-arrow">Packaging (retail box + tray + guide + barcode label)</div>
+        <div class="tier">
+          <div class="tier-label">Distribution</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-navy"><strong>Finished goods inventory</strong><div class="node-detail">3 SKUs: Standard Black, Standard White, Gaming Black. 1-2 months buffer stock.</div></div>
+            <div class="sc-node accent-navy"><strong>Outbound shipping</strong><div class="node-detail">$5-$12 per unit to customers. Batch production every 14-21 days.</div></div>
+          </div>
+        </div>
+        <div class="flow-note">Startup costs $7,500-$26,000. Fixed costs $4,000-$10,000/month. [Source: Operation Needs & Estimated Cost.docx — student estimates] Student-estimated variable cost of $10-$24/mouse includes labor and overhead; component-only BOM is closer to $2-$5/unit at volume. For reference, OEM wired mice from China wholesale at $0.50-$2.00/unit for finished goods at 100K+ volume [<a href="https://www.alibaba.com/showroom/bulk-computer-mouse.html" style="color:var(--navy-light)">Alibaba market data</a>]. The gap reflects in-house assembly costs vs. outsourced manufacturing.</div>
+      </div>
+    </div>
+
+    <!-- ═══ COFFEE ═══ -->
+    <div id="sc-coffee" class="sc-panel" role="tabpanel">
+      <div class="sc-flow">
+        <div class="tier">
+          <div class="tier-label">Origins (Tier 2+: coffee farms)</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-amber" style="flex:4;max-width:none;">
+              <strong>Colombia (80% of volume)</strong>
+              <div class="node-detail">4 SKUs: Medium Whole, Medium Ground, Dark Whole, Dark Ground. Commodity product, affordable but quality. Two options: buy green unroasted via distributor, or buy finished from roaster. 3-month timeline to shelves.</div>
+            </div>
+            <div class="sc-node accent-amber" style="flex:2;max-width:none;">
+              <strong>Brazil (20% of volume)</strong>
+              <div class="node-detail">2 SKUs: Medium Whole Bean, Dark Whole Bean. Premium specialty, direct trade from Amazonas/Minas Gerais farmers. 6-month partnership development, 1 year to full production.</div>
+            </div>
+          </div>
+        </div>
+        <div class="flow-arrow">Green bean import (Colombia: via distributor; Brazil: via importer agent)</div>
+        <div class="tier">
+          <div class="tier-label">Tier 1: Contract roasting and packaging</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-amber" style="max-width:none;flex:1;">
+              <strong>Joe's Garage Coffee (contract manufacturer)</strong>
+              <div class="node-detail">20+ years in specialty coffee. Roast-to-order, co-packaging, and toll-roasting services. Kent, WA — short shipping to Portland. Handles roasting, grinding, packing, and labeling with Scotty's branding. Est. $0.65/lb variable cost [student estimate — actual pricing not confirmed with Joe's Garage]. 60-90 day setup. [<a href="https://joesgaragecoffee.com/" style="color:var(--amber)">joesgaragecoffee.com</a>]</div>
+            </div>
+          </div>
+        </div>
+        <div class="flow-arrow">Finished bags to Scotty's distribution center</div>
+        <div class="tier">
+          <div class="tier-label">Scotty's distribution center (Portland, OR)</div>
+          <div class="tier-cards">
+            <div class="sc-node hq"><strong>Receiving + QA</strong><div class="node-detail">Inbound receipts, sampling, quality audit. Packed bags awaiting labels or labeled cases awaiting shipment.</div></div>
+            <div class="sc-node hq"><strong>Inventory</strong><div class="node-detail">6 SKUs: 3 roast levels x ground/whole. Corrugated shipping cases (24-count). Standard GMA pallets, stretch wrap.</div></div>
+          </div>
+        </div>
+        <div class="flow-arrow">Delivery to retailers</div>
+        <div class="tier">
+          <div class="tier-label">End customer</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-amber"><strong>Retail partners</strong><div class="node-detail">500K bags/year sold as loss leader. Brand awareness driver for full product line.</div></div>
+          </div>
+        </div>
+        <div class="flow-note">Staffing: 1 manager, 0.5 QA coordinator, 0.25 SC analyst, 0.5 warehouse, 0.25 marketing [student staffing plan]. Contract manufacturing eliminates need for roasting equipment capital investment (~$250K-$400K if in-house). Joe's Garage Coffee verified: 50,000 sq ft facility, 15M+ lbs/year capacity, USDA Organic/FDA/Fair Trade certified. [Source: Coffee Supply Chain/Collaboration docs]</div>
+      </div>
+    </div>
+
+    <!-- ═══ T-SHIRT ═══ -->
+    <div id="sc-tshirt" class="sc-panel" role="tabpanel">
+      <div class="sc-flow">
+        <div style="margin-bottom:1.5rem;">
+          <div style="font-size:0.88rem;font-weight:500;color:var(--red);margin-bottom:0.75rem;">Original supply chain (suspended due to Section 301 tariffs)</div>
+          <div class="tier">
+            <div class="tier-cards">
+              <div class="sc-node suspended accent-purple"><strong>Texas cotton farms</strong><div class="node-detail">Raw cotton fiber. 3-5 days harvesting + prep.</div></div>
+              <div class="sc-node suspended accent-purple"><strong>Chinese textile mills</strong><div class="node-detail">Spinning, weaving, dyeing white. 15-20 days. TARIFF TRIGGER: Section 301.</div></div>
+              <div class="sc-node suspended accent-purple"><strong>Vietnamese factories</strong><div class="node-detail">Cut and sew blank t-shirts. 10-15 days. +7-10 days shipping from China.</div></div>
+              <div class="sc-node suspended accent-purple"><strong>Indonesian screen printers</strong><div class="node-detail">Weekly AI design application. 7-10 days. +5-7 days shipping from Vietnam.</div></div>
+            </div>
+          </div>
+          <div class="flow-note" style="border-left-color:var(--red);">Total lead time: 85-115 days [student estimate based on multi-country routing]. Section 301 tariffs (List 3/4A: 7.5%+ on Chinese textiles, plus additional duties) + logistics costs now compress margins to unviable levels [<a href="https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions" style="color:var(--navy-light)">USTR</a>]. Production suspended indefinitely. [Source: student Supply Chain Current State Analysis]</div>
+        </div>
+        <div>
+          <div style="font-size:0.88rem;font-weight:500;color:var(--green);margin-bottom:0.75rem;">Redesigned supply chain (nearshore/domestic hybrid)</div>
+          <div class="tier">
+            <div class="tier-label">Tier 1 suppliers (blank tees)</div>
+            <div class="tier-cards">
+              <div class="sc-node accent-green"><strong>GOEX Apparel</strong><div class="node-detail">Primary strategic supplier. US fabric, Haiti manufacturing (LIFE S.A. factory, Port-au-Prince), Kansas City printing. Certified B Corp, Fair Labor Association verified. Nearshore = reduced tariff exposure + lead times. [<a href="https://goexapparel.com/" style="color:var(--green)">goexapparel.com</a>]</div></div>
+              <div class="sc-node accent-green"><strong>Gildan</strong><div class="node-detail">Primary cheap blanks. Largest apparel manufacturer. Low cost, US distributors nationwide.</div></div>
+              <div class="sc-node accent-green"><strong>Printful / RushOrderTees</strong><div class="node-detail">On-demand for small batch (Legendary/Mythical tiers). RushOrderTees for urgent next-day jobs.</div></div>
+            </div>
+          </div>
+          <div class="flow-arrow">Blank tees ($2.59 Heavy Cotton / $6.90 Fine Jersey) [student BOM pricing] to print shop</div>
+          <div class="tier">
+            <div class="tier-label">Screen printing (weekly changeover)</div>
+            <div class="tier-cards">
+              <div class="sc-node hq" style="max-width:none;flex:1;"><strong>Print operations</strong><div class="node-detail">Weekly AI design file (in-house) applied via screen printing. Water-based discharge ink ($14.94/oz), screen mesh ($13.50/yd), emulsion ($69.45/gal). Conveyor dryer ($9,195), flash cure ($2,965). Hybrid MTO/MTS model: blanks = MTS, prints = MTO.</div></div>
+            </div>
+          </div>
+          <div class="flow-arrow">Packaging: recyclable polybags ($89/2,000 units) + QC labels ($33.29/500)</div>
+          <div class="tier">
+            <div class="tier-label">Fulfillment</div>
+            <div class="tier-cards">
+              <div class="sc-node accent-purple"><strong>Custom Ink (bulk)</strong><div class="node-detail">Mid-to-large volume production for Classic (20K) and Exclusive (5K) tiers.</div></div>
+              <div class="sc-node accent-purple"><strong>Direct fulfillment</strong><div class="node-detail">5 rarity tiers: Legendary (100), Mythical (500), Rare (1,500), Exclusive (5,000), Classic (20,000).</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="flow-note">Key decision pending: USMCA route (Mexico/Canada, 0% tariffs, 5-day shipping) vs. optimized Asian route with duty-free zones. Tier 2 risks: cotton suppliers, fabric mills, dye/chemical suppliers, ink suppliers. [Source: T-shirt collaboration deliverables]</div>
+      </div>
+    </div>
+
+    <!-- ═══ CALIFORNIA ROLL ═══ -->
+    <div id="sc-sushi" class="sc-panel" role="tabpanel">
+      <div class="sc-flow">
+        <div class="tier">
+          <div class="tier-label">Tier 2+ (upstream risks)</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-red"><strong>Avocado farming</strong><div class="node-detail">Mexico and California. Seasonal, price volatile, weather/import disruptions. Major cost risk.</div></div>
+            <div class="sc-node accent-red"><strong>Pollock fisheries</strong><div class="node-detail">Sustainability concerns, overfishing regulations, traceability requirements for imitation crab.</div></div>
+            <div class="sc-node accent-red"><strong>Nori harvesting</strong><div class="node-detail">Limited to Asia. Climate/environmental sensitivity. Supply disruptions affect lead times.</div></div>
+            <div class="sc-node accent-red"><strong>Cold chain logistics</strong><div class="node-detail">Cross-tier risk. Temperature failures = spoilage, quality issues, food safety violations.</div></div>
+          </div>
+        </div>
+        <div class="flow-arrow">Regional distribution</div>
+        <div class="tier">
+          <div class="tier-label">Tier 1 suppliers (direct ingredient sourcing)</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-teal"><strong>Trans-Ocean / Beaver Street Fisheries</strong><div class="node-detail">Imitation crab (pollock surimi). $4.99/lb [student est. from Fred Meyer retail; wholesale pricing would be lower]. #1 US surimi brand, est. 1985. [<a href="https://trans-ocean.com/" style="color:var(--teal)">trans-ocean.com</a>]</div></div>
+            <div class="sc-node accent-teal"><strong>Mission Produce (NASDAQ: AVO) / Calavo</strong><div class="node-detail">Avocados. $1.27/lb [student est. from Tridge market data]. Mission is a $1B+ global avocado leader. Price volatility is top supply chain risk. [<a href="https://missionproduce.com/" style="color:var(--teal)">missionproduce.com</a>]</div></div>
+            <div class="sc-node accent-teal"><strong>Producers Rice Mill / Lundberg</strong><div class="node-detail">Sushi-grade rice. $0.07/oz. Staple, stable supply.</div></div>
+          </div>
+          <div class="tier-cards" style="margin-top:0.5rem;">
+            <div class="sc-node accent-teal"><strong>JFC International / Takaokaya</strong><div class="node-detail">Nori sheets. $0.34/sheet. Asia-sourced seaweed.</div></div>
+            <div class="sc-node accent-teal"><strong>Sysco / US Foods</strong><div class="node-detail">Packaging ($0.23/container), soy sauce ($0.02/pkt), wasabi, condiments, chopsticks.</div></div>
+          </div>
+        </div>
+        <div class="flow-arrow">Cold chain delivery to HQ</div>
+        <div class="tier">
+          <div class="tier-label">HQ Kitchen (production)</div>
+          <div class="tier-cards">
+            <div class="sc-node hq"><strong>Rice preparation</strong><div class="node-detail">Unprepped rice + vinegar + sugar + salt. Cooked and seasoned in bulk batches.</div></div>
+            <div class="sc-node hq"><strong>Ingredient prep</strong><div class="node-detail">Slice avocado, cut cucumber, portion crab. Prepped ahead for batch assembly.</div></div>
+            <div class="sc-node hq"><strong>Roll assembly + cutting</strong><div class="node-detail">Nori + rice + fillings on sushi mat. Cut to 8-piece rolls. ~1,000/day target. Also: local vendor overflow on busy days.</div></div>
+            <div class="sc-node hq"><strong>Packaging</strong><div class="node-detail">Plastic container + lid, soy sauce packet, wasabi. QC check before distribution.</div></div>
+          </div>
+        </div>
+        <div class="flow-arrow">Same-day distribution</div>
+        <div class="tier">
+          <div class="tier-label">Consumption channels</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-teal"><strong>Employee cafeteria</strong><div class="node-detail">Primary channel. Employee meal version. ~1,000 people daily, 1-2 rolls each.</div></div>
+            <div class="sc-node accent-teal"><strong>Retail counter (HQ)</strong><div class="node-detail">Public-facing retail. Convenience version with condiments. Brand symbol.</div></div>
+            <div class="sc-node accent-teal"><strong>Events + charity</strong><div class="node-detail">Internal meetings, company events, occasional charity deliveries.</div></div>
+          </div>
+        </div>
+        <div class="flow-note">Facility costs: $3K-$8K/month lease, $15K-$30K equipment [student estimates]. Variable: $2-$4 per roll [student estimate — includes ingredient costs at retail/foodservice pricing from WebstaurantStore and Tridge]. Supplier scorecard: Quality 25%, Food Safety 25%, Cost 25%, Delivery 10%, Sustainability 10%, Responsiveness 5%. Ingredient prices: nori $0.34/sheet [<a href="https://www.webstaurantstore.com/full-sheet-green-seaweed-sushi-nori-pack/877SAMNG500.html" style="color:var(--navy-light)">WebstaurantStore</a>], rice $0.07/oz [<a href="https://www.webstaurantstore.com/kokuho-yellow-medium-grain-white-rice-50-lb/112KOKUHOY50.html" style="color:var(--navy-light)">WebstaurantStore</a>], avocado $1.27/lb [<a href="https://www.tridge.com/market-overview/fresh-avocado/US" style="color:var(--navy-light)">Tridge</a>]. [Source: California roll collaboration deliverables, BOM xlsx]</div>
+      </div>
+    </div>
+
+    <!-- ═══ COMMUTER BICYCLE ═══ -->
+    <div id="sc-bike" class="sc-panel" role="tabpanel">
+      <div class="sc-flow">
+        <div class="tier">
+          <div class="tier-label">Tier 2+ (raw materials)</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-green"><strong>Aluminum + metal suppliers</strong><div class="node-detail">Raw materials for frames, rims, handlebars, chain. Upstream to Taiwan manufacturers.</div></div>
+            <div class="sc-node accent-green"><strong>Rubber + tire materials</strong><div class="node-detail">Raw materials for tires and grips. Upstream to component suppliers.</div></div>
+          </div>
+        </div>
+        <div class="flow-arrow">Material supply to Taiwan + Japan factories</div>
+        <div class="tier">
+          <div class="tier-label">Tier 1 suppliers</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-green" style="max-width:none;flex:3;">
+              <strong>APM Co. (Taiwan) -- primary supplier</strong>
+              <div class="node-detail">Supplies majority of 32 components: frames ($45-90), fork ($12-35), headset, stem, handlebars ($5-18), grips, pedals ($3-12), chain ($3-9), cassette ($12-30), brake levers ($5-15), cables, hubs ($12-40/pr), rims ($15-35/pr), spokes, tires ($5-15), saddle ($4-15), seatpost, kickstand, lights, water bottle cage, bell, rear carrier ($18-40), helmet, fasteners.</div>
+            </div>
+          </div>
+          <div class="tier-cards" style="margin-top:0.5rem;">
+            <div class="sc-node accent-green"><strong>Shimano (Japan)</strong><div class="node-detail">High-priority drivetrain: crankset ($18-45), bottom bracket ($5-15), brake calipers ($8-25), rotors/pads ($3-9).</div></div>
+            <div class="sc-node accent-green"><strong>Made-in-China</strong><div class="node-detail">Transactional / cost-focused: inner tubes ($0.58-0.65), fenders ($0.30-1.10), rear rack ($2.50-3.80), bearings ($0.30).</div></div>
+          </div>
+        </div>
+        <div class="flow-arrow">Hong Kong port (packaging + logistics hub)</div>
+        <div class="tier">
+          <div class="tier-label">Logistics + distribution</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-green"><strong>Ocean freight</strong><div class="node-detail">Hong Kong to US West Coast. Container shipping for assembled bicycles.</div></div>
+            <div class="sc-node hq"><strong>3PL warehouse (US)</strong><div class="node-detail">Recommended model: $1,540/month vs. $21,940 traditional warehouse [student estimates from collaboration analysis]. 1,000 sq ft. Inbound receiving + outbound fulfillment.</div></div>
+          </div>
+        </div>
+        <div class="flow-arrow">Order fulfillment</div>
+        <div class="tier">
+          <div class="tier-label">Product tiers</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-green"><strong>Basic commuter</strong><div class="node-detail">Single-speed, mechanical brakes, standard tires, minimal accessories.</div></div>
+            <div class="sc-node accent-green"><strong>Standard commuter</strong><div class="node-detail">Multi-speed (Shimano), disc brakes, puncture-resistant tires, lights + kickstand.</div></div>
+            <div class="sc-node accent-green"><strong>Premium commuter</strong><div class="node-detail">Lightweight frame, hydraulic disc brakes, belt drive, full accessories (rack, fenders, lights, carrier).</div></div>
+          </div>
+        </div>
+        <div class="flow-note">AHP supplier scoring: Cost 30%, Quality 30%, Delivery 20%, Flexibility 10%, Sustainability 10%. High-priority components (frame, drivetrain) shift to Quality 35%, Cost 25%. Transactional items (cables, chains) shift to Cost 45%. Taipei International Cycle Show is key sourcing event. [Source: commuter bike collaboration deliverables]</div>
+      </div>
+    </div>
+
+    <!-- ═══ PC BUNDLE ═══ -->
+    <div id="sc-pc" class="sc-panel" role="tabpanel">
+      <div class="sc-flow">
+        <div class="tier">
+          <div class="tier-label">Tier 3-4: Raw materials</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-coral"><strong>Silicon (Shin-Etsu)</strong><div class="node-detail">Ultra-pure 300mm silicon wafers. Foundation for all semiconductor components.</div></div>
+            <div class="sc-node accent-coral"><strong>Metals (Cu, Au, Al)</strong><div class="node-detail">Wiring, contacts, connectors, thermal heat spreaders. Global sourcing.</div></div>
+            <div class="sc-node accent-coral"><strong>Specialty metals</strong><div class="node-detail">Tantalum (capacitors), palladium (PCB traces/contacts). Not technically rare earths — these are refractory/precious metals. [Student doc attributed to MP Materials, which actually mines rare earths (neodymium, cerium) at Mountain Pass, CA.] Geopolitical concentration risk regardless.</div></div>
+            <div class="sc-node accent-coral"><strong>ABF film (Ajinomoto)</strong><div class="node-detail">Critical CPU substrate insulation. Highly centralized supply = bottleneck risk.</div></div>
+          </div>
+        </div>
+        <div class="flow-arrow">Wafer fab input + equipment (ASML lithography monopoly)</div>
+        <div class="tier">
+          <div class="tier-label">Tier 2: Semiconductor fabrication</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-coral"><strong>TSMC</strong><div class="node-detail">Global leader in advanced foundry (5nm/3nm). Fabs chipset/GPU dies for various customers. [Note: Intel i9-14900K uses Intel 7 process, fabbed by Intel, not TSMC. TSMC is relevant for other bundle components or future product roadmap. Student doc incorrectly attributed CPU fab to TSMC.]</div></div>
+            <div class="sc-node accent-coral"><strong>Samsung / SK Hynix / Micron</strong><div class="node-detail">DRAM fabs (DDR4 8Gb chips) + NAND fabs (512Gb TLC). Samsung announced DDR4 phase-out but extended production into 2026 due to demand [<a href="https://www.trendforce.com/news/2025/09/02/news-samsung-sk-hynix-reportedly-delay-phase-out-to-2026-as-ddr4-becomes-unexpected-cash-cow/" style="color:var(--coral)">TrendForce</a>]. Micron exited Crucial consumer SSD/DRAM line (Feb 2026) [<a href="https://www.tomshardware.com/pc-components/dram/micron-is-killing-crucial-ssds-and-memory-in-ai-pivot-company-refocuses-on-hbm-and-enterprise-customers" style="color:var(--coral)">Tom's Hardware</a>].</div></div>
+            <div class="sc-node accent-coral"><strong>Unimicron</strong><div class="node-detail">Multi-layer bare PCBs for M.2 2280 SSDs and RAM modules. High-frequency boards.</div></div>
+          </div>
+        </div>
+        <div class="flow-arrow">Dies, wafers, and bare PCBs to Scotty's cleanroom</div>
+        <div class="tier">
+          <div class="tier-label">Tier 1: Scotty's Supply Solutions (cleanroom assembly — student-proposed model)</div>
+          <div class="tier-cards">
+            <div class="sc-node hq"><strong>CPU packaging</strong><div class="node-detail">Die on substrate + IHS (Auras, nickel-plated copper) + TIM (Indium Corp). $589 OEM tray price. 80% cost = silicon die.</div></div>
+            <div class="sc-node hq"><strong>RAM assembly</strong><div class="node-detail">8x DRAM ICs on PCB + passives + heat spreader + SPD EEPROM. Legacy ~$25/module, current spot ~$75-$125 (~3-5x increase). [Student doc claimed 18x; actual increases per Counterpoint/TrendForce are ~3-5x cumulative by early 2026]</div></div>
+            <div class="sc-node hq"><strong>SSD assembly</strong><div class="node-detail">2-4 NAND ICs + controller IC + DRAM cache on M.2 PCB. Legacy ~$40, current spot ~$80-$160 (~2-4x increase). Firmware + testing. [Student doc claimed 8x; actual NAND increases are ~2-4x per TrendForce data]</div></div>
+          </div>
+        </div>
+        <div class="flow-arrow">Kitting: CPU + RAM + SSD into retail bundle (ESD bags, foam inserts, manual)</div>
+        <div class="tier">
+          <div class="tier-label">Distribution</div>
+          <div class="tier-cards">
+            <div class="sc-node accent-coral"><strong>Internal use</strong><div class="node-detail">Employee workstations, lab machines, infrastructure builds. Standardized component sets.</div></div>
+            <div class="sc-node accent-coral"><strong>B2B resale</strong><div class="node-detail">IT departments, system builders, small businesses. Volume pricing below retail markup.</div></div>
+          </div>
+        </div>
+        <div class="flow-note">Legacy bundle cost ~$655-680 [student estimate from bomv2.html]. Current market inflated by AI-driven HBM demand: DRAM spot ~3-5x above mid-2025 [<a href="https://counterpointresearch.com/en/insights/Memory-Prices-Surge-Up-to-90-From-Q4-2025" style="color:var(--navy-light)">Counterpoint Research</a>], NAND spot ~2-4x. Samsung delayed DDR4 EOL; Micron exited consumer SSD (Feb 2026). ASML holds 100% EUV lithography market share [<a href="https://en.wikipedia.org/wiki/ASML_Holding" style="color:var(--navy-light)">Wikipedia</a>]. Intel i9-14900K OEM tray price $589 [<a href="https://www.intel.com/content/www/us/en/products/sku/236773/intel-core-i9-processor-14900k-36m-cache-up-to-6-00-ghz/specifications.html" style="color:var(--navy-light)">Intel ARK</a>]. MRO: solder paste (Indium Corp), cleanroom suits (DuPont). [Source: PC Bundle Client Deliverable docs]</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="challenges">
+  <div class="section">
+    <div class="section-header">
+      <h2>Key challenges by product</h2>
+      <p>A summary of the primary obstacles each supply chain must address.</p>
+    </div>
+    <div style="overflow-x:auto;">
+    <table class="challenges-table">
+      <thead>
+        <tr>
+          <th style="width:15%;">Product</th>
+          <th style="width:20%;">Strategic intent</th>
+          <th style="width:32%;">Top challenges</th>
+          <th style="width:33%;">First priorities</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Optical mouse</strong></td>
+          <td>Execution on cost; undercut branded alternatives</td>
+          <td>No electronics sourcing experience. Cost model built from scratch. Supplier information asymmetry (they know costs, we don't). 35-50 day component lead times from Asia.</td>
+          <td>Build cost model for PCB assembly + injection molding. Establish relationships with Pan Taiwan, Lectronix, LECC, GQEM. Secure sea freight pricing.</td>
+        </tr>
+        <tr>
+          <td><strong>Ground coffee</strong></td>
+          <td>Loss leader for brand; minimize loss while maintaining quality</td>
+          <td>Negative margin must stay controlled. Quality failure damages brand. Colombia vs. Brazil cost/quality tradeoff. Brazil requires 6-month partnership development + importer agent.</td>
+          <td>Finalize contract with Joe's Garage Coffee. Evaluate green bean vs. finished coffee from Colombia distributor. Begin Brazil direct trade farmer outreach (Amazonas/Minas Gerais).</td>
+        </tr>
+        <tr>
+          <td><strong>AI t-shirt</strong></td>
+          <td>Collectible weekly drops; stability + agility</td>
+          <td>Production suspended: Section 301 tariffs on China processing make original 4-country chain unviable (tariffs + logistics > retail price). 85-115 day lead time incompatible with weekly drops. Inventory scattered across 4 countries.</td>
+          <td>Evaluate USMCA nearshore route (Mexico/Canada, 0% tariff, 5-day shipping) vs. optimized Asian route. Establish GOEX Apparel as primary nearshore supplier. Separate blank sourcing (MTS) from print operations (MTO).</td>
+        </tr>
+        <tr>
+          <td><strong>California roll</strong></td>
+          <td>Feed employees + public; preserve cultural brand asset</td>
+          <td>No demand forecasting (shortages + overproduction). Inconsistent ingredient quality (avocado, crab). Scattered budgets across departments. Food safety gaps between kitchen and outside vendor. $2-$4 variable cost per roll with no centralized tracking.</td>
+          <td>Map end-to-end costs and establish centralized budget. Implement demand forecasting for ~1,000 rolls/day. Standardize food safety across internal and vendor operations. Lock in contracts with TransOcean, Mission Produce, JFC International.</td>
+        </tr>
+        <tr>
+          <td><strong>Commuter bicycle</strong></td>
+          <td>Flagship lifestyle brand; healthy profit margin</td>
+          <td>Previous manager retired with zero documentation and was sole Taiwanese-language contact. Supplier oversaturation in Taiwan makes selection difficult. 32 components across 3 supplier tiers to coordinate. Language barrier with all Taiwan-based suppliers.</td>
+          <td>Attend Taipei International Cycle Show to evaluate suppliers. Establish APM Co. (Taiwan) as primary and Shimano (Japan) as drivetrain specialist. Set up 3PL model ($1,540/mo vs. $21,940 traditional [student estimate]). Create communication standards for overseas suppliers.</td>
+        </tr>
+        <tr>
+          <td><strong>PC bundle</strong></td>
+          <td>Internal use + B2B resale at volume pricing</td>
+          <td>AI-driven memory shortage: DRAM spot ~3-5x above mid-2025, NAND ~2-4x [Counterpoint Research, TrendForce]. Samsung delayed DDR4 phase-out (extended into 2026). Micron exited Crucial consumer SSD/DRAM line (Feb 2026). ASML EUV lithography monopoly (100% market share) creates upstream single-point-of-failure. Legacy $655 bundle [student estimate] now significantly more expensive.</td>
+          <td>Secure contract pricing for DRAM/NAND (~70% of spot). Diversify memory suppliers beyond Samsung (SK Hynix, remaining Micron capacity). Define compatibility testing process. Assess whether current spot prices still support viable B2B resale margins.</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer class="footer">
+  <strong>Scotty's Supply Solutions</strong> -- Company supply chain overview<br>
+  Sources: Scotty's Supply Solutions company files [Introduction.docx, product-specific BOMs, executive summaries, collaboration deliverables, inventory systems, supplier documents]<br>
+  <span style="font-size:0.75rem;display:block;margin-top:0.5rem;color:rgba(185,205,229,0.7);">Data provenance: Cost estimates, lead times, and supplier selections originate from student collaboration deliverables unless marked with an external source link. All named suppliers have been verified as real companies. Bracketed annotations distinguish [student estimates] from externally sourced data. Validated May 2026.</span><br>
+  CEO: Scott DuHadway<br>
+  <span style="font-size:0.75rem;display:block;margin-top:0.5rem;color:rgba(185,205,229,0.7);">Made as a personal project by Scott DuHadway using a bunch of Chickens named Opus and Haiku in Claude Code</span>
+</footer>
+
+<script>
+function showSC(id, btn) {
+  document.querySelectorAll('.sc-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.sc-tab').forEach(function(t) { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+  document.getElementById('sc-' + id).classList.add('active');
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+}
+document.querySelectorAll('nav.sticky-nav a').forEach(function(link) {
+  link.addEventListener('click', function() {
+    document.querySelectorAll('nav.sticky-nav a').forEach(function(l) { l.classList.remove('active'); });
+    this.classList.add('active');
+  });
+});
+var sections = document.querySelectorAll('[id]');
+var navLinks = document.querySelectorAll('nav.sticky-nav a');
+window.addEventListener('scroll', function() {
+  var scrollPos = window.scrollY + 120;
+  sections.forEach(function(section) {
+    if (section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
+      var id = section.getAttribute('id');
+      navLinks.forEach(function(link) {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + id) link.classList.add('active');
+      });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

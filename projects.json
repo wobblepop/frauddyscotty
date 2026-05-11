@@ -1,5 +1,13 @@
 [
   {
+    "title": "Scotty's Supply Solutions",
+    "description": "An interactive company overview of a mid-sized firm expanding across six product lines — optical mice, coffee, AI t-shirts, California rolls, commuter bicycles, and PC bundles — each with its own supply chain structure and sourcing challenges.",
+    "tags": ["Teaching", "Analysis"],
+    "path": "projects/scottys-supply-solutions.html",
+    "date": "2026-05-11",
+    "ai": true
+  },
+  {
     "title": "Problem-Solving in Action",
     "description": "Eight real examples of seeing a problem, building a solution, and creating an outcome — from airline scheduling to ethical sourcing to tabletop RPGs. Click any card for the full story.",
     "tags": ["Teaching", "Analysis"],
@@ -33,7 +41,7 @@
   },
   {
     "title": "The Break Room",
-    "description": "Seven academic brain games: Fermi estimation, cipher cracking, methodology roasting, supply chain disaster scenarios, fact-or-fabrication, connection puzzles, and Set matching. A break room for nerds.",
+    "description": "Eight academic brain games: Fermi estimation, cipher cracking, methodology roasting, supply chain disaster scenarios, fact-or-fabrication, connection puzzles, Set matching, and Wordl. A break room for nerds.",
     "tags": ["Teaching", "Research"],
     "path": "projects/break-room/index.html",
     "date": "2026-04-07",
