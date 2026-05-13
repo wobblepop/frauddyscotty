@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Optimum Negotiation Strategies: Chicken Hunt Edition</title>
+<meta name="description" content="An interactive exercise in spotting AI-generated errors in negotiation research. Shoot the pixel-art chickens to reveal 21 hidden mistakes in citations, statistics, and attributions.">
+<meta property="og:title" content="Optimum Negotiation Strategies: Chicken Hunt Edition">
+<meta property="og:description" content="An interactive exercise in spotting AI-generated errors in negotiation research. Shoot the pixel-art chickens to reveal 21 hidden mistakes.">
+<meta property="og:url" content="https://frauddyscotty.com/projects/negotiation-duck-hunt.html">
+<link rel="canonical" href="https://frauddyscotty.com/projects/negotiation-duck-hunt.html">
+<style>
+
+  :root {
+    --color-primary: #1a3a5c;
+    --color-primary-light: #2d5a8a;
+    --color-accent: #378add;
+    --color-accent-light: #85b7eb;
+    --color-bg: #ffffff;
+    --color-bg-alt: #f4f7fa;
+    --color-text: #1a1a1a;
+    --color-text-muted: #5f5e5a;
+    --color-border: #d3d1c7;
+    --color-highlight: #e6f1fb;
+    --color-teal: #1d9e75;
+    --color-coral: #d85a30;
+    --color-amber: #ba7517;
+    --color-retro-green: #63c74d;
+    --color-retro-red: #e43b44;
+    --color-retro-sky: #63c74d;
+    --nes-brown: #8b5e3c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.6;
+  }
+
+  /* === CHICKEN CANVAS === */
+  #chicken-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    pointer-events: none;
+    image-rendering: pixelated;
+  }
+
+  body { cursor: crosshair; }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* === CONTENT === */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  h1 {
+    color: var(--color-primary);
+    font-size: 1.8rem;
+    border-bottom: 3px solid var(--color-accent);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    color: var(--color-primary);
+    font-size: 1.35rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  h3 {
+    color: var(--color-primary-light);
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p { margin-bottom: 1rem; }
+  strong { color: var(--color-primary); }
+
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--color-accent-light);
+  }
+  a:hover { border-bottom-style: solid; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  thead th {
+    background: var(--color-primary);
+    color: #fff;
+    padding: 0.6rem 0.8rem;
+    text-align: left;
+    font-weight: 600;
+  }
+
+  tbody td {
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  tbody tr:nth-child(even) { background: var(--color-bg-alt); }
+
+  ul, ol { margin: 0.5rem 0 1.5rem 1.5rem; }
+  li { margin-bottom: 0.4rem; }
+
+  .callout {
+    background: var(--color-highlight);
+    border-left: 4px solid var(--color-accent);
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .callout p { margin-bottom: 0; }
+
+  .callout-warn {
+    background: #fef7ec;
+    border-left: 4px solid var(--color-amber);
+  }
+
+  .source-cite {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .vs-table td:first-child {
+    font-weight: 600;
+    color: var(--color-primary);
+    width: 30%;
+  }
+
+  .concept-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .concept-card {
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    padding: 1rem;
+  }
+
+  .concept-card h4 {
+    color: var(--color-primary);
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .concept-card p {
+    font-size: 0.9rem;
+    margin-bottom: 0;
+  }
+
+  .key-finding {
+    display: inline-block;
+    background: var(--color-primary);
+    color: #fff;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-right: 0.3rem;
+  }
+
+  .protocol-list {
+    counter-reset: protocol;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+  }
+
+  .protocol-list li {
+    counter-increment: protocol;
+    padding: 0.6rem 0.8rem 0.6rem 3rem;
+    position: relative;
+    margin-bottom: 0.3rem;
+    border-radius: 4px;
+  }
+
+  .protocol-list li:nth-child(odd) { background: var(--color-bg-alt); }
+
+  .protocol-list li::before {
+    content: counter(protocol);
+    position: absolute;
+    left: 0.8rem;
+    top: 0.6rem;
+    background: var(--color-primary);
+    color: #fff;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  /* === CHICKEN TARGETS === */
+  .error-zone {
+    position: relative;
+    border: 2px dashed transparent;
+    border-radius: 6px;
+    padding: 0.4rem 0.6rem;
+    margin: 0.3rem -0.6rem;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .error-zone:not(.shot):hover {
+    border-color: rgba(228, 59, 68, 0.3);
+    background: rgba(228, 59, 68, 0.03);
+  }
+
+  .dead-chicken {
+    display: inline-block;
+    transform: rotate(180deg);
+    font-size: 1.4rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    opacity: 0.7;
+  }
+
+  .wrong-text {
+    transition: all 0.5s ease;
+  }
+
+  .wrong-text.struck {
+    color: var(--color-retro-red);
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    opacity: 0.6;
+  }
+
+  .correct-text {
+    display: none;
+    color: var(--color-retro-green);
+    font-weight: 600;
+    padding: 0.5rem 0.8rem;
+    margin-top: 0.4rem;
+    background: rgba(99, 199, 77, 0.08);
+    border-left: 3px solid var(--color-retro-green);
+    border-radius: 0 4px 4px 0;
+    animation: fadeSlideIn 0.5s ease;
+    font-size: 0.9rem;
+  }
+
+  .correct-text.visible {
+    display: block;
+  }
+
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .text-block { margin-bottom: 1rem; }
+  .concept-text { font-size: 0.9rem; margin-bottom: 0; }
+
+  .shot-label {
+    display: none;
+    font-family: monospace;
+    font-size: 0.5rem;
+    color: var(--color-retro-red);
+    margin-top: 0.2rem;
+  }
+
+  .shot-label.visible {
+    display: inline-block;
+    animation: fadeSlideIn 0.3s ease;
+  }
+
+
+  @media (max-width: 600px) {
+    .content { padding: 1rem; }
+    h1 { font-size: 1.4rem; }
+    table { font-size: 0.8rem; }
+    .concept-grid { grid-template-columns: 1fr; }
+    .protocol-list li { padding-left: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div id="site-nav"></div>
+
+<canvas id="chicken-canvas" role="img" aria-label="Interactive chicken hunt game overlay. Pixel-art chickens fly across the screen near hidden errors. Click on a chicken to shoot it and reveal the correction below."></canvas>
+<p class="sr-only">This page contains an interactive game where pixel-art chickens fly near deliberate errors in the text. Click a chicken to reveal the correction. If you cannot use the game, visit the corrected version linked below for all corrections.</p>
+
+<main id="main-content">
+<div class="content">
+
+<h1>Optimum Negotiation Strategies</h1>
+<p class="subtitle">An evidence-based summary drawn from experimental research, meta-analyses, and field studies in negotiation science (1981&ndash;2025)</p>
+
+<p style="margin-top:1.5em; font-style:italic; color:var(--color-text); line-height:1.8;">When this was first created, it looked great. Well sourced, well argued. The claims are connected to negotiations, and have all the right words. Did my chickens do a good job? Or did some of them escape? See if you can spot the errors. If you'd rather just see the corrected version, <a href="negotiation-strategies-corrected.html" style="color:var(--color-accent);">click here</a>.</p>
+
+<p style="margin-top:1em; font-style:italic; color:var(--color-text); line-height:1.8;">Here is a <a href="negotiation-verification-report.html" style="color:var(--color-accent);">more detailed review</a> by some chickens that I trained to be very suspicious and fact check every single statement from the original.</p>
+
+<!-- Section 1: Preparation -->
+<h2>1. Preparation Is the Foundation</h2>
+
+<div class="text-block">The single largest predictor of negotiation outcomes is <strong>what happens before anyone sits down at the table</strong>.
+
+<!-- ERROR 8: Aspirations claim overstated beyond source -->
+<div class="error-zone" id="error8">
+
+  <span class="wrong-text" id="wrong8">Research from the Harvard Program on Negotiation shows that parties' initial aspirations and expectations before bargaining have nearly the same impact on the final outcome as everything they do and say during the negotiation itself.</span>
+  <span class="shot-label" id="label8">UNSUPPORTED CLAIM</span>
+  <div class="correct-text" id="correct8">The cited Harvard PON page says failing to prepare is &ldquo;the single biggest mistake negotiators make&rdquo; but never quantifies aspirations as having &ldquo;nearly the same impact&rdquo; as all in-negotiation behavior. The AI embellished beyond its source.</div>
+</div>
+<span class="source-cite">[<a href="https://www.pon.harvard.edu/daily/negotiation-skills-daily/negotiation-preparation-checklist/">Harvard PON</a>]</span></div>
+
+<h3>Core Concepts to Prepare</h3>
+
+<div class="concept-grid">
+  <div class="concept-card">
+    <h4>BATNA</h4>
+    <p>Best Alternative to a Negotiated Agreement. Your walk-away option. The stronger your BATNA, the more power you hold. <span class="source-cite">[<a href="https://www.pon.harvard.edu/daily/batna/negotiation-research-you-can-use-the-irrational-impact-of-disappearing-batnas-nb/">Harvard PON</a>]</span></p>
+  </div>
+  <div class="concept-card">
+    <h4>Reservation Point</h4>
+    <p>Your absolute bottom line&mdash;the worst deal you would still accept over your BATNA. Below this, you walk. <span class="source-cite">[<a href="https://www.pon.harvard.edu/tag/reservation-point/">Harvard PON</a>]</span></p>
+  </div>
+  <div class="concept-card">
+    <h4>Aspiration Point</h4>
+    <div class="concept-text">Your ambitious but defensible target.
+    <!-- ERROR 14: Finding cited to wrong source -->
+    <div class="error-zone" id="error14">
+
+      <span class="wrong-text" id="wrong14">Research consistently shows that <strong>higher aspirations produce better outcomes</strong>, provided they remain justifiable. <span class="source-cite">[<a href="https://www.pon.harvard.edu/daily/negotiation-skills-daily/negotiation-preparation-checklist/">Harvard PON</a>]</span></span>
+      <span class="shot-label" id="label14">WRONG CITATION</span>
+      <div class="correct-text" id="correct14">The finding is real (Galinsky, Mussweiler &amp; Medvec, 2002), but the <strong>cited source</strong> (Harvard PON preparation checklist) does not say this. That page defines aspiration point as &ldquo;the ambitious, but not outrageous, goal&rdquo; but never states higher aspirations produce better outcomes. The AI attached a real finding to the wrong citation.
+        <!-- ERROR 22: Wrong PubMed link (nested inside correction 14) -->
+        <div class="error-zone" id="error22" style="margin-top:0.4rem;">
+
+          <span class="wrong-text" id="wrong22">The correct source is Galinsky, Mussweiler &amp; Medvec (2002). <span class="source-cite">[<a href="https://pubmed.ncbi.nlm.nih.gov/11642352/">PubMed</a>]</span></span>
+          <span class="shot-label" id="label22">WRONG PUBMED LINK</span>
+          <div class="correct-text" id="correct22">PubMed 11642352 is &ldquo;First offers as anchors&rdquo; by Galinsky &amp; Mussweiler (2001)&mdash;a <strong>two-author 2001 paper</strong> about anchoring, not the three-author 2002 paper about aspirations. The correct PubMed ID is <strong>12416917</strong>: &ldquo;Disconnecting outcomes and evaluations&rdquo; (JPSP 83:1131-1140). The AI corrector linked to the wrong paper. [<a href="https://pubmed.ncbi.nlm.nih.gov/12416917/">Correct PubMed</a>]</div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="concept-card">
+    <h4>ZOPA</h4>
+    <div class="concept-text">Zone of Possible Agreement&mdash;the overlap between both sides' reservation points. If no ZOPA exists, no deal is possible.
+    <!-- ERROR 12: Dead link (403 Forbidden) -->
+    <div class="error-zone" id="error12">
+
+      <span class="wrong-text" id="wrong12"><span class="source-cite">[<a href="https://online.hbs.edu/blog/post/understanding-zopa">Harvard Business School</a>]</span></span>
+      <span class="shot-label" id="label12">DEAD LINK (403)</span>
+      <div class="correct-text" id="correct12">
+        <!-- ERROR 13: AI verifier falsely flagged a working link -->
+        <div class="error-zone" id="error13" style="margin-top:0.4rem;">
+
+          <span class="wrong-text" id="wrong13">The AI-generated link returns HTTP 403 Forbidden. The ZOPA definition is correct, but the source is inaccessible.</span>
+          <span class="shot-label" id="label13">FALSE POSITIVE</span>
+          <div class="correct-text" id="correct13">The link works fine in a browser&mdash;it returns 403 only to automated tools (bot protection). The AI <em>verifier</em> falsely flagged a working link because it couldn&rsquo;t distinguish bot-blocking from a genuinely dead link. The original HBS citation was correct all along.</div>
+        </div>
+        [<a href="https://online.hbs.edu/blog/post/understanding-zopa">Harvard Business School (works in browser)</a>]
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="callout">
+  <p><span class="key-finding">Key finding</span> The biggest mistake negotiators make is <strong>failing to thoroughly prepare</strong>. Without analysis and research, negotiators leave value on the table and are more easily exploited. <span class="source-cite">[<a href="https://www.pon.harvard.edu/daily/negotiation-skills-daily/negotiation-preparation-checklist/">Harvard PON</a>]</span></p>
+</div>
+
+<!-- Section 2: Anchoring -->
+<h2>2. Anchoring and First Offers</h2>
+
+<p>The anchoring effect is one of the most robust findings in negotiation research. Whoever makes the first offer sets a psychological reference point that pulls the final agreement in their direction.</p>
+
+<h3>The Galinsky &amp; Mussweiler Experiments (2001)</h3>
+
+<p>Across three experiments published in the <em>Journal of Personality and Social Psychology</em>, Galinsky and Mussweiler found:</p>
+
+<ul>
+  <li><strong>Whichever party made the first offer obtained a better outcome</strong>, regardless of whether they were buyer or seller. <span class="source-cite">[<a href="https://pubmed.ncbi.nlm.nih.gov/11642352/">Galinsky &amp; Mussweiler, 2001</a>]</span></li>
+
+  <!-- ERROR 1: Cherry-picked r = .85 -->
+  <li>
+    <div class="error-zone" id="error1">
+
+      <span class="wrong-text" id="wrong1">First offers correlated at <strong>r = .85</strong> with final settlement prices in one experiment&mdash;an extraordinarily strong effect.</span>
+      <span class="shot-label" id="label1">CHERRY-PICKED STATISTIC</span>
+      <div class="correct-text" id="correct1">The r = .85 was from one small lab experiment.
+        <!-- ERROR 9: Misleading stats pairing (nested inside correction 1) -->
+        <div class="error-zone" id="error9" style="margin-top:0.4rem;">
+
+          <span class="wrong-text" id="wrong9">Meta-analytic evidence (Petrowsky et al., 2025; <strong>374 effects, N=16,334</strong>) shows <strong>r = .62</strong>.</span>
+          <span class="shot-label" id="label9">MISLEADING STATISTICS</span>
+          <div class="correct-text" id="correct9">The r = .62 comes from <strong>53 effects</strong> testing one specific hypothesis. The 374 effects and N=16,334 describe the entire meta-analysis across all five hypotheses. The AI conflated a subset finding with the overall scope.</div>
+        </div>
+        Lab figures (.73&ndash;.93) are inflated by constrained negotiation spaces.</div>
+    </div>
+  </li>
+
+  <li>Focusing on information <strong>inconsistent</strong> with the anchor (e.g., one's own target or the opponent's alternatives) eliminated the first-offer advantage. <span class="source-cite">[<a href="https://pubmed.ncbi.nlm.nih.gov/11642352/">Galinsky &amp; Mussweiler, 2001</a>]</span></li>
+</ul>
+
+<h3>When NOT to Make the First Offer</h3>
+
+<ul>
+  <!-- ERROR 15: Wrong author attribution -->
+  <li>
+    <div class="error-zone" id="error15">
+
+      <span class="wrong-text" id="wrong15">When you have <strong>significantly less information</strong> than your counterpart about the value of what's being negotiated. <span class="source-cite">[<a href="https://www.sas.upenn.edu/~baron/journal/17/17327a/jdm17327a.html">Loschelder et al., Judgment &amp; Decision Making</a>]</span></span>
+      <span class="shot-label" id="label15">WRONG AUTHORS</span>
+      <div class="correct-text" id="correct15">The link goes to &ldquo;When your anchor sinks your boat&rdquo; &mdash; the actual authors are <strong>Maaravi &amp; Levy</strong>, not &ldquo;Loschelder et al.&rdquo; The URL is correct, but the displayed author name is wrong. [<a href="https://www.sas.upenn.edu/~baron/journal/17/17327a/jdm17327a.html">Maaravi &amp; Levy, JDM</a>]</div>
+    </div>
+  </li>
+</ul>
+
+<h3>Phantom Anchors</h3>
+
+<p>Bhatia &amp; Gunia found that negotiators who framed their offer relative to a higher reference point achieved better outcomes than those who made the same offer without referencing the phantom. <span class="source-cite">[<a href="https://www.pon.harvard.edu/daily/negotiation-skills-daily/anchoring-for-maximum-effect-nb/">Harvard PON</a>]</span></p>
+
+<!-- Section 3: Integrative vs. Distributive -->
+<h2>3. Integrative vs. Distributive Strategies</h2>
+
+<p>The two fundamental strategic orientations in negotiation produce very different outcomes.</p>
+
+<table class="vs-table">
+  <thead>
+    <tr><th>Dimension</th><th>Distributive ("Claiming Value")</th><th>Integrative ("Creating Value")</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Mindset</td><td>Fixed pie; your gain is my loss</td><td>Expand the pie; find mutual gains</td></tr>
+    <tr><td>Core tactic</td><td>Anchoring, pressure, concealment</td><td>Information sharing, logrolling, problem-solving</td></tr>
+    <tr><td>Outcome type</td><td>One side wins more</td><td>Both sides gain more total value</td></tr>
+    <tr><td>Relationship effect</td><td>Erodes trust</td><td>Builds trust and future cooperation</td></tr>
+  </tbody>
+</table>
+
+<h3>The Fisher &amp; Ury Framework (1981)</h3>
+
+<p><em>Getting to Yes</em> introduced principled negotiation with four pillars: separate the people from the problem; focus on interests, not positions; invent options for mutual gain; and insist on objective criteria. <span class="source-cite">[<a href="https://en.wikipedia.org/wiki/Getting_to_Yes">Fisher &amp; Ury, 1981</a>]</span></p>
+
+<h3>Meta-Analytic Evidence on Social Motives</h3>
+
+<div class="text-block">De Dreu, Weingart &amp; Kwon's meta-analysis of 28 studies (<em>JPSP</em>, 2000) found prosocial negotiators were less contentious, used more problem-solving, and achieved <strong>higher joint outcomes</strong>&mdash;
+<!-- ERROR 16: Drops "(or unknown)" qualifier -->
+<div class="error-zone" id="error16">
+
+  <span class="wrong-text" id="wrong16">but only when resistance to yielding was high.</span>
+  <span class="shot-label" id="label16">DROPPED QUALIFIER</span>
+  <div class="correct-text" id="correct16">The abstract says &ldquo;high <strong>(or unknown)</strong>&rdquo; &mdash; the effect held when resistance was high <em>or</em> unknown, not only when high. Dropping &ldquo;or unknown&rdquo; narrows the finding.</div>
+</div>
+<!-- ERROR 17: Procedural fairness attributed to wrong paper -->
+<div class="error-zone" id="error17">
+
+  <span class="wrong-text" id="wrong17">Prosocial negotiators also experienced greater procedural fairness, which partly mediated the higher joint outcomes.</span>
+  <span class="shot-label" id="label17">WRONG SOURCE</span>
+  <div class="correct-text" id="correct17">This finding is NOT from the De Dreu et al. (2000) meta-analysis. It comes from a <strong>separate experimental study</strong> by Beersma &amp; De Dreu (<em>Social Justice Research</em>). The document presents it as part of the same 28-study meta-analysis, which is a misattribution.</div>
+</div>
+<span class="source-cite">[<a href="https://pubmed.ncbi.nlm.nih.gov/10821196/">De Dreu et al., 2000</a>]</span></div>
+
+<div class="callout-warn callout">
+  <div class="text-block"><strong>Caveat:</strong> Many principled negotiation techniques were conceptualized from a predominantly Western perspective.
+  <!-- ERROR 11: Weak/wrong citation for Western perspective claim -->
+  <div class="error-zone" id="error11">
+
+    <span class="wrong-text" id="wrong11">Cross-cultural application requires adaptation. <span class="source-cite">[<a href="https://www.cambridge.org/core/journals/journal-of-management-and-organization/article/distributiveintegrative-negotiation-strategies-in-crosscultural-contexts-a-comparative-study-of-the-usa-and-italy/A68B54F9B1710461A642DC719C34F917">Cambridge Core, 2020</a>]</span></span>
+    <span class="shot-label" id="label11">WRONG CITATION</span>
+    <div class="correct-text" id="correct11">The cited paper (Benetti et al., 2021) compares USA and Italy&mdash;both Western cultures. It does not support the claim about Western-centric theories needing cross-cultural adaptation. Brett, Ramirez-Marin &amp; Galoni (2021) found negotiation theories predict joint gains <strong>only in Western culture samples</strong>. [<a href="https://ncmr.lps.library.cmu.edu/article/id/525/">Brett et al., 2021, NCMR</a>]</div>
+  </div>
+  </div>
+</div>
+
+<!-- Section 4: Concessions -->
+<h2>4. Concession Patterns and Logrolling</h2>
+
+<h3>Concession Strategy</h3>
+
+<ul>
+  <!-- ERROR 2: Ambiguous framing of decreasing concessions -->
+  <li>
+    <div class="error-zone" id="error2">
+
+      <span class="wrong-text" id="wrong2"><strong>Decreasing concessions</strong> (each concession smaller than the last) signal that you are approaching your limit. Research shows this pattern is commonly used and effectively communicates resolve.</span>
+      <span class="shot-label" id="label2">OMITTED WHO BENEFITS</span>
+      <div class="correct-text" id="correct2">Decreasing concessions cause recipients to make less ambitious counteroffers and reach worse deals&mdash;the strategy benefits the <em>user</em> at the expense of the <em>recipient</em>. The original framing omitted this asymmetric effect. [OBHDP, 2021]</div>
+    </div>
+  </li>
+  <!-- ERROR 10: Wrong citation for concession reciprocity -->
+  <li>
+    <div class="error-zone" id="error10">
+
+      <span class="wrong-text" id="wrong10">Concessions are <strong>reciprocated</strong>&mdash;negotiators who receive large concessions tend to offer large concessions in return. <span class="source-cite">[<a href="https://www.cambridge.org/core/journals/judgment-and-decision-making/article/accounting-for-reciprocity-in-negotiation-and-social-exchange/6319D2C6DD212A50D5E7A3E4BA1E58EF">Judgment &amp; Decision Making, Cambridge</a>]</span></span>
+      <span class="shot-label" id="label10">WRONG CITATION</span>
+      <div class="correct-text" id="correct10">The claim is correct, but Mislin et al. (2015) is about inter-exchange relational accounting&mdash;how prior exchanges with the same counterpart shape subsequent behavior. It does not study within-negotiation concession matching. [<a href="https://www.pon.harvard.edu/daily/negotiation-skills-daily/four-strategies-for-making-concessions/">Harvard PON</a>; <a href="https://direct.mit.edu/ngtn/article/33/1/71/121622/Why-Do-We-Respond-to-a-Concession-with-Another">Thuderoz, 2017</a>]</div>
+    </div>
+  </li>
+</ul>
+
+<h3>Logrolling</h3>
+
+<div class="text-block">
+<!-- ERROR 18: Omits that logrolling offers weren't perceived as more attractive -->
+<div class="error-zone" id="error18">
+
+  <span class="wrong-text" id="wrong18">Logrolling&mdash;conceding on low-priority issues in exchange for gains on high-priority issues&mdash;is one of the most effective integrative tactics.</span>
+  <span class="shot-label" id="label18">OMITTED CAVEAT</span>
+  <div class="correct-text" id="correct18">The document presents logrolling as straightforwardly effective. Moran &amp; Ritov (2002) found that logrolling offers yielded higher combined profits, but they were <strong>not judged as more attractive</strong> than distributive offers and <strong>did not reduce the fixed-pie assumption</strong>. The efficiency gain operated through within-issue anchoring, not through changing attitudes. Negotiators remain reluctant to logroll because of zero-sum bias.</div>
+</div>
+Negotiators with a temporally distant perspective made more multi-issue offers and achieved better outcomes. <span class="source-cite">[<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3153434/">Henderson, Trope &amp; Carnevale, 2006</a>]</span></div>
+
+<!-- Section 5: Emotion -->
+<h2>5. The Role of Emotion</h2>
+
+<p>Emotions are not noise in negotiations&mdash;they are strategic signals that influence counterpart behavior.</p>
+
+<!-- ERROR 3: EASI Model anachronism -->
+<div class="error-zone" id="error3">
+
+  <h3 style="display:inline;"><span class="wrong-text" id="wrong3">Van Kleef's EASI Model (2004)</span></h3>
+  <span class="shot-label" id="label3">ANACHRONISTIC THEORY NAME</span>
+  <div class="correct-text" id="correct3">The 2004 paper demonstrated the tracking mechanism (anger &rarr; inferred high limits &rarr; concessions). The <strong>EASI model</strong> (Emotions as Social Information) was formalized later in Van Kleef (2008&ndash;2009), not in the 2004 experiments.</div>
+</div>
+
+<div class="text-block">Van Kleef, De Dreu &amp; Manstead (2004, <em>JPSP</em>) found that <strong>anger</strong> extracts concessions (counterparts infer the angry party is near their limit), while <strong>happiness</strong> signals satisfaction (counterparts concede less).
+<!-- ERROR 19: Three moderators conflated from three different papers -->
+<div class="error-zone" id="error19">
+
+  <span class="wrong-text" id="wrong19">This only works when the counterpart has low power, low time pressure, and perceives the anger as authentic.</span>
+  <span class="shot-label" id="label19">SOURCE CONFLATION</span>
+  <div class="correct-text" id="correct19">These three conditions come from <strong>three different papers</strong>, not the single cited 2004 study: (1) The cited paper (PubMed 14717628) tests none of these moderators. (2) Power and time pressure come from a <em>separate</em> Van Kleef et al. 2004 paper (PubMed 15491275). (3) Perceived authenticity comes from Tng &amp; Au (2014, <em>Negotiation Journal</em>), published a decade later. The document conflates a decade of research into one attribution.</div>
+</div>
+<span class="source-cite">[<a href="https://pubmed.ncbi.nlm.nih.gov/14717628/">Van Kleef et al., 2004</a>; <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/ejsp.320">Van Kleef et al., 2006</a>]</span></div>
+
+<!-- Section 6: Gender -->
+<h2>6. Gender and Negotiation</h2>
+
+<p>Babcock &amp; Laschever's <em>Women Don't Ask</em> (2003) found women were significantly less likely to initiate salary negotiations. <span class="source-cite">[<a href="https://ucd-advance.ucdavis.edu/post/women-dont-ask-negotiation-and-gender-divide">UC Davis ADVANCE</a>]</span></p>
+
+<h3>The Updated Evidence</h3>
+
+<ul>
+  <!-- ERROR 4: Wrong authors - "Artz et al." -->
+  <li>
+    <div class="error-zone" id="error4">
+
+      <span class="wrong-text" id="wrong4">A 2023 <em>Academy of Management Discoveries</em> study by <strong>Artz et al.</strong> found that women today negotiate pay as often&mdash;or more often&mdash;than men.</span>
+      <span class="shot-label" id="label4">FABRICATED AUTHORS</span>
+      <div class="correct-text" id="correct4">The actual authors are <strong>Kray, Kennedy &amp; Lee (2023)</strong>. "Artz et al." was fabricated by the AI. The finding itself is real.</div>
+    </div>
+  </li>
+
+  <!-- ERROR 20: Oversimplified Bowles et al. finding -->
+  <li>
+    <div class="error-zone" id="error20">
+
+      <span class="wrong-text" id="wrong20">The gap persists because of <strong>social backlash</strong>: Bowles, Babcock &amp; Lai (2007) found male evaluators penalized women more than men for negotiating.</span>
+      <span class="shot-label" id="label20">OVERSIMPLIFIED</span>
+      <div class="correct-text" id="correct20">The document says &ldquo;male evaluators penalized women&rdquo; as if the backlash comes only from men. The actual paper found: in video assessments, male evaluators penalized only women while female evaluators penalized everyone equally. In written transcripts, <strong>both male and female evaluators</strong> penalized women for negotiating. The backlash is not exclusively from male evaluators.</div>
+    </div>
+    <span class="source-cite">[<a href="https://www.sciencedirect.com/science/article/abs/pii/S0749597806000884">Bowles et al., 2007</a>]</span>
+  </li>
+
+  <li><strong>Relational framing</strong> reduces backlash: women who framed negotiation in terms of organizational benefit were penalized less. <span class="source-cite">[<a href="https://gap.hks.harvard.edu/how-can-women-escape-compensation-negotiation-dilemma-relational-accounts-are-one-answer">Bowles &amp; Babcock, 2013</a>]</span></li>
+
+  <!-- ERROR 5: Wrong authors - "Exley & Kessler" -->
+  <li>
+    <div class="error-zone" id="error5">
+
+      <span class="wrong-text" id="wrong5">A 2023 <em>Annual Review of Economics</em> review by <strong>Exley &amp; Kessler</strong> concluded the gap stems more from institutional structures than individual negotiation behavior.</span>
+      <span class="shot-label" id="label5">FABRICATED AUTHORS</span>
+      <div class="correct-text" id="correct5">The actual authors are <strong>Recalde &amp; Vesterlund (2023)</strong>. "Exley &amp; Kessler" was fabricated by the AI. The finding itself is real.</div>
+    </div>
+  </li>
+</ul>
+
+<!-- Section 7: Sources -->
+<h2>Key Sources</h2>
+
+<p>The AI originally generated a source table with additional errors:</p>
+
+<ul>
+  <!-- ERROR 6: Wrong authors - "Elfenbein et al." -->
+  <li>
+    <div class="error-zone" id="error6">
+
+      <span class="wrong-text" id="wrong6"><strong>Elfenbein et al.</strong> was cited as the author of a cross-cultural meta-analysis in <em>Negotiation &amp; Conflict Management Research</em>.</span>
+      <span class="shot-label" id="label6">WRONG AUTHORS</span>
+      <div class="correct-text" id="correct6">The actual authors are <strong>Brett, Ramirez-Marin &amp; Galoni (2021)</strong>. Elfenbein has published in negotiation research (Sharma, Bottom &amp; Elfenbein, 2013) but did not author this particular study.</div>
+    </div>
+  </li>
+
+  <!-- ERROR 7: Wrong paper at link - "Sharma et al. (2018)" -->
+  <li>
+    <div class="error-zone" id="error7">
+
+      <span class="wrong-text" id="wrong7"><strong>Sharma et al. (2018), <em>Group Decision &amp; Negotiation</em></strong> was cited with a PMC link for "Variables associated with negotiation effectiveness."</span>
+      <span class="shot-label" id="label7">WRONG PAPER, LINK, YEAR &amp; JOURNAL</span>
+      <div class="correct-text" id="correct7">The PMC link actually goes to <strong>P&eacute;rez-Yus et al. (2020)</strong> in <em>Frontiers in Psychology</em>&mdash;a completely different paper. The correct Sharma reference is <strong>Sharma, Bottom &amp; Elfenbein (2013)</strong> in <em>Organizational Psychology Review</em>. Wrong authors, wrong year, wrong journal, wrong link.</div>
+    </div>
+  </li>
+</ul>
+
+<footer>
+  <!-- ERROR 21: False claim about source quality -->
+  <div class="error-zone" id="error21">
+
+    <span class="wrong-text" id="wrong21"><strong>Sources:</strong> No blog posts or opinion pieces in the foundation sources. All findings are anchored in peer-reviewed journal articles, published meta-analyses, or institutional research reports.</span>
+    <span class="shot-label" id="label21">FALSE CLAIM</span>
+    <div class="correct-text" id="correct21">Several &ldquo;foundation sources&rdquo; are Harvard PON &ldquo;daily&rdquo; articles (editorial/educational content, not peer-reviewed), Wikipedia, and institutional web pages (UC Davis ADVANCE, Harvard Kennedy School). The underlying research is peer-reviewed, but the document&rsquo;s direct citations include non-peer-reviewed editorial content. This footer claim is false.</div>
+  </div>
+
+  <p style="margin-top:1.5rem; font-size:0.8rem; color:var(--color-text-muted);">Made as a personal project by Scott DuHadway using a bunch of Chickens named Opus and Haiku in Claude Code</p>
+</footer>
+
+</div>
+</main>
+
+<script>
+(function() {
+'use strict';
+
+const SCALE = 3;
+const SPRITE_W = 16 * SCALE;
+const CHICKEN_SPEED = 1.8;
+const FLAP_MS = 150;
+
+const PAL = {
+  black:'#181818', white:'#f8f8f8', cream:'#f0e0b0',
+  gray:'#c8c8c8', orange:'#e86820', red:'#d82020', yellow:'#f8d830'
+};
+
+const BODY = [
+  {color:PAL.white,rects:[[4,5,5,1],[3,6,7,1],[3,7,7,1],[4,8,5,1],[5,9,3,1]]},
+  {color:PAL.cream,rects:[[5,7,3,1],[4,8,4,1],[5,9,3,1]]},
+  {color:PAL.white,rects:[[10,3,2,1],[9,4,4,1],[9,5,4,1],[9,6,3,1]]},
+  {color:PAL.red,rects:[[10,2,2,1],[11,1,1,1]]},
+  {color:PAL.orange,rects:[[13,4,2,1],[13,5,1,1]]},
+  {color:PAL.red,rects:[[12,6,1,1],[13,6,1,1]]},
+  {color:PAL.black,rects:[[12,4,1,1]]},
+  {color:PAL.white,rects:[[2,4,2,1],[1,3,2,1],[1,2,1,1]]}
+];
+const WINGS = [
+  [{color:PAL.gray,rects:[[6,0,2,1],[5,1,4,1],[5,2,4,1],[6,3,3,1],[6,4,3,1]]}],
+  [{color:PAL.gray,rects:[[0,5,4,1],[0,6,3,1],[0,7,3,1]]}],
+  [{color:PAL.gray,rects:[[4,10,4,1],[3,11,4,1],[4,12,3,1]]}]
+];
+const HIT_SPRITE = [
+  {color:PAL.white,rects:[[4,5,5,1],[3,6,7,1],[3,7,7,1],[4,8,5,1],[5,9,3,1]]},
+  {color:PAL.cream,rects:[[5,7,3,1],[4,8,4,1],[5,9,3,1]]},
+  {color:PAL.white,rects:[[10,3,2,1],[9,4,4,1],[9,5,4,1],[9,6,3,1]]},
+  {color:PAL.red,rects:[[10,2,2,1],[11,1,1,1]]},
+  {color:PAL.orange,rects:[[13,4,2,1],[13,5,1,1]]},
+  {color:PAL.red,rects:[[10,4,1,1],[12,4,1,1],[11,5,1,1],[10,6,1,1],[12,6,1,1]]},
+  {color:PAL.gray,rects:[[0,6,3,1],[0,7,2,1],[13,6,3,1],[14,7,2,1]]}
+];
+const FALL_SPRITE = [
+  {color:PAL.white,rects:[[5,3,3,1],[4,4,5,1],[3,5,7,1],[3,6,7,1],[4,7,5,1]]},
+  {color:PAL.cream,rects:[[5,3,3,1],[4,4,4,1],[5,5,3,1]]},
+  {color:PAL.white,rects:[[10,7,2,1],[9,8,4,1],[9,9,4,1],[10,10,2,1]]},
+  {color:PAL.orange,rects:[[8,11,1,1],[12,11,1,1]]},
+  {color:PAL.gray,rects:[[1,5,2,1],[1,6,3,1],[12,5,2,1],[12,6,3,1]]}
+];
+
+function drawParts(ctx, x, y, parts, mirror) {
+  ctx.save();
+  if (mirror) {
+    ctx.translate(Math.round(x) + SPRITE_W, Math.round(y));
+    ctx.scale(-1, 1);
+    x = 0; y = 0;
+  } else { x = Math.round(x); y = Math.round(y); }
+  for (const p of parts) { ctx.fillStyle = PAL.black; for (const r of p.rects) ctx.fillRect(x+(r[0]-1)*SCALE, y+(r[1]-1)*SCALE, (r[2]+2)*SCALE, (r[3]+2)*SCALE); }
+  for (const p of parts) { ctx.fillStyle = p.color; for (const r of p.rects) ctx.fillRect(x+r[0]*SCALE, y+r[1]*SCALE, r[2]*SCALE, r[3]*SCALE); }
+  ctx.restore();
+}
+
+function drawCrosshair(ctx, x, y) {
+  x = Math.round(x); y = Math.round(y);
+  ctx.strokeStyle = PAL.white; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(x, y, 14, 0, Math.PI*2); ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(x-20,y); ctx.lineTo(x-7,y);
+  ctx.moveTo(x+7,y); ctx.lineTo(x+20,y);
+  ctx.moveTo(x,y-20); ctx.lineTo(x,y-7);
+  ctx.moveTo(x,y+7); ctx.lineTo(x,y+20);
+  ctx.stroke();
+  ctx.fillStyle = '#f83800'; ctx.fillRect(x-1,y-1,3,3);
+}
+
+let audioCtx = null;
+function initAudio() {
+  if (audioCtx) return;
+  try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) {}
+}
+function playSound(type) {
+  if (!audioCtx) return;
+  const now = audioCtx.currentTime;
+  if (type === 'shoot') {
+    const buf = audioCtx.createBuffer(1, audioCtx.sampleRate*0.08, audioCtx.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*(1-i/d.length);
+    const src = audioCtx.createBufferSource(); src.buffer = buf;
+    const g = audioCtx.createGain();
+    g.gain.setValueAtTime(0.25,now); g.gain.exponentialRampToValueAtTime(0.001,now+0.08);
+    src.connect(g); g.connect(audioCtx.destination); src.start(now);
+  } else if (type === 'hit') {
+    const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
+    o.type='square';
+    o.frequency.setValueAtTime(880,now); o.frequency.exponentialRampToValueAtTime(220,now+0.12);
+    g.gain.setValueAtTime(0.18,now); g.gain.exponentialRampToValueAtTime(0.001,now+0.15);
+    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+0.15);
+  }
+}
+
+const canvas = document.getElementById('chicken-canvas');
+const ctx = canvas.getContext('2d');
+let mouseX = -100, mouseY = -100;
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  ctx.imageSmoothingEnabled = false;
+}
+resize();
+window.addEventListener('resize', resize);
+
+document.addEventListener('mousemove', function(e) { mouseX = e.clientX; mouseY = e.clientY; });
+
+const chickens = [];
+
+class Chicken {
+  constructor(errorId, zone) {
+    this.errorId = errorId;
+    this.zone = zone;
+    this.x = Math.random() * (window.innerWidth - SPRITE_W - 40) + 20;
+    this.vx = (Math.random() < 0.5 ? 1 : -1) * CHICKEN_SPEED;
+    this.state = 'flying';
+    this.wingFrame = 0;
+    this.flapTimer = 0;
+    this.fallSpeed = 0;
+    this.hitTimer = 0;
+    this.wobblePhase = Math.random() * Math.PI * 2;
+  }
+
+  getY() {
+    const rect = this.zone.getBoundingClientRect();
+    return rect.top + rect.height / 2 - SPRITE_W / 2;
+  }
+
+  update(dt) {
+    if (this.state === 'flying') {
+      this.flapTimer += dt;
+      if (this.flapTimer >= FLAP_MS) { this.flapTimer -= FLAP_MS; this.wingFrame = (this.wingFrame+1)%3; }
+      const wobble = Math.sin(performance.now()/500 + this.wobblePhase) * 0.3;
+      this.x += this.vx + wobble;
+      if (this.x < 10) { this.x = 10; this.vx = Math.abs(this.vx); }
+      if (this.x > window.innerWidth - SPRITE_W - 10) { this.x = window.innerWidth - SPRITE_W - 10; this.vx = -Math.abs(this.vx); }
+    } else if (this.state === 'hit') {
+      this.hitTimer += dt;
+      if (this.hitTimer >= 400) { this.state = 'falling'; this.fallY = this.getY(); }
+    } else if (this.state === 'falling') {
+      this.fallSpeed += 0.3;
+      this.fallY += this.fallSpeed;
+      if (this.fallY > window.innerHeight + 20) {
+        this.state = 'dead';
+        this.revealCorrection();
+      }
+    }
+  }
+
+  draw(ctx) {
+    const mirror = this.vx < 0;
+    let y;
+    if (this.state === 'flying') {
+      y = this.getY();
+      if (y < -SPRITE_W || y > window.innerHeight) return;
+      drawParts(ctx, this.x, y, [...BODY, ...WINGS[this.wingFrame]], mirror);
+    } else if (this.state === 'hit') {
+      y = this.getY();
+      drawParts(ctx, this.x, y, HIT_SPRITE, false);
+    } else if (this.state === 'falling') {
+      drawParts(ctx, this.x, this.fallY, FALL_SPRITE, false);
+    }
+  }
+
+  hitTest(mx, my) {
+    if (this.state !== 'flying') return false;
+    const y = this.getY();
+    const pad = 8;
+    return mx >= this.x - pad && mx <= this.x + SPRITE_W + pad &&
+           my >= y - pad && my <= y + SPRITE_W + pad;
+  }
+
+  revealCorrection() {
+    const n = this.errorId;
+    const zone = document.getElementById('error' + n);
+    if (!zone || zone.classList.contains('shot')) return;
+
+    const wrongText = document.getElementById('wrong' + n);
+    const correctText = document.getElementById('correct' + n);
+    const label = document.getElementById('label' + n);
+
+    wrongText.classList.add('struck');
+    zone.classList.add('shot');
+
+    setTimeout(function() {
+      label.classList.add('visible');
+      var dead = document.createElement('span');
+      dead.className = 'dead-chicken';
+      dead.textContent = '\u{1F414}';
+      correctText.insertBefore(dead, correctText.firstChild);
+      correctText.classList.add('visible');
+    }, 200);
+  }
+}
+
+const spawnedIds = new Set();
+
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (!entry.isIntersecting) return;
+    const zone = entry.target;
+    const id = zone.id.replace('error', '');
+    if (spawnedIds.has(id)) return;
+    if (zone.classList.contains('shot')) return;
+    spawnedIds.add(id);
+    chickens.push(new Chicken(id, zone));
+  });
+}, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+
+document.querySelectorAll('.error-zone').forEach(function(zone) {
+  observer.observe(zone);
+});
+
+document.addEventListener('click', function(e) {
+  initAudio();
+  playSound('shoot');
+
+  let hitAny = false;
+  for (const c of chickens) {
+    if (c.hitTest(mouseX, mouseY)) {
+      c.state = 'hit';
+      c.hitTimer = 0;
+      playSound('hit');
+      hitAny = true;
+      break;
+    }
+  }
+});
+
+let lastTime = performance.now();
+function loop(timestamp) {
+  const dt = Math.min(timestamp - lastTime, 50);
+  lastTime = timestamp;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (const c of chickens) {
+    c.update(dt);
+    c.draw(ctx);
+  }
+
+  drawCrosshair(ctx, mouseX, mouseY);
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+})();
+</script>
+
+<div id="site-footer"></div>
+<script src="../js/site-nav.js" data-base=".."></script>
+</body>
+</html>

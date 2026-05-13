@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fact Verification Report — Negotiation Strategies</title>
+<meta name="description" content="Claim-by-claim fact verification of an AI-generated negotiation strategies document. 35 claims graded S through F with source quotes and detailed explanations.">
+<meta property="og:title" content="Fact Verification Report — Negotiation Strategies">
+<meta property="og:description" content="Claim-by-claim fact verification of an AI-generated negotiation strategies document. 35 claims graded with source quotes.">
+<meta property="og:url" content="https://frauddyscotty.com/projects/negotiation-verification-report.html">
+<link rel="canonical" href="https://frauddyscotty.com/projects/negotiation-verification-report.html">
+<style>
+  :root {
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-mono: "Cascadia Code", "Fira Code", "Consolas", monospace;
+    --bg: #fafafa;
+    --card-bg: #ffffff;
+    --border: #e0e0e0;
+    --text: #1a1a1a;
+    --muted: #888;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-main);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 1.6rem; margin-bottom: 0.25rem; }
+  h2 { font-size: 1.2rem; margin: 1.5rem 0 0.75rem; border-bottom: 2px solid var(--border); padding-bottom: 0.3rem; }
+  .header-meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem; }
+  .header-meta span { margin-right: 1.5rem; }
+  .summary-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .dist-bar {
+    display: flex;
+    height: 36px;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin: 0.5rem 0;
+  }
+  .dist-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.8rem;
+    min-width: 40px;
+  }
+  .dist-counts {
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+  }
+  .dist-label {
+    font-weight: 600;
+    margin-right: 0.5rem;
+  }
+  .grade-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  thead th {
+    background: #f5f5f5;
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+  thead th:hover { background: #eee; }
+  .claim-row td {
+    padding: 0.6rem 0.75rem;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .col-id { width: 3rem; text-align: center; font-weight: 600; color: var(--muted); }
+  .col-grade { width: 10rem; white-space: nowrap; }
+  .col-claim { min-width: 250px; }
+  .col-source { width: 180px; font-size: 0.85rem; }
+  .col-details { width: 120px; }
+  .claim-text { margin-bottom: 0.35rem; }
+  .claim-meta span {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--muted);
+    background: #f0f0f0;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-right: 0.4rem;
+  }
+  details summary {
+    cursor: pointer;
+    color: #3366cc;
+    font-size: 0.85rem;
+  }
+  .details-body {
+    padding: 0.75rem 0;
+    font-size: 0.85rem;
+  }
+  .explanation { margin-bottom: 0.5rem; }
+  .source-quote {
+    margin: 0.4rem 0;
+    padding: 0.5rem 0.75rem;
+    border-left: 3px solid #ccc;
+    background: #f9f9f9;
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+  .detail-section { margin-bottom: 0.5rem; }
+  .contra { color: #cc3300; }
+  .context { color: #996600; }
+  .queries code {
+    background: #f0f0f0;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+  .pattern-card {
+    background: #fff3e0;
+    border: 1px solid #ffcc80;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .tier-list {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    background: var(--card-bg);
+  }
+  .tier-row {
+    display: flex;
+    min-height: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tier-row:last-child { border-bottom: none; }
+  .tier-label {
+    width: 54px;
+    min-width: 54px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 0.02em;
+    user-select: none;
+  }
+  .tier-count {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    opacity: 0.85;
+  }
+  .tier-items {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    background: var(--bg);
+  }
+  .tier-chip {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    line-height: 1.3;
+    max-width: 280px;
+    cursor: default;
+    transition: transform 0.1s;
+  }
+  .tier-chip:hover {
+    transform: scale(1.03);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  }
+  .chip-id {
+    font-weight: 700;
+    font-size: 0.8rem;
+  }
+  .chip-text {
+    font-size: 0.72rem;
+    opacity: 0.85;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 250px;
+  }
+  .chip-loc {
+    font-size: 0.65rem;
+    opacity: 0.6;
+  }
+  .tier-empty {
+    padding: 4px 10px;
+    font-size: 0.8rem;
+  }
+  .muted { color: var(--muted); font-style: italic; }
+  a { color: #3366cc; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .critical-list { margin-top: 0.5rem; }
+  .critical-list li {
+    margin-bottom: 0.35rem;
+    font-size: 0.9rem;
+  }
+  .footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-align: center;
+  }
+  @media print {
+    body { padding: 0.5rem; }
+    details[open] summary { display: none; }
+    details { display: block; }
+    .details-body { display: block !important; }
+    thead th { background: #f5f5f5 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .dist-segment, .grade-badge, .pattern-card, .tier-label, .tier-chip, .tier-items {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .tier-chip { max-width: 200px; }
+  }
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div id="site-nav"></div>
+
+<main id="main-content">
+<h1>Fact Verification Report</h1>
+<div class="header-meta">
+  <span>Document: <strong>NegotiationsV1.html</strong></span>
+  <span>Verified: 2026-05-12T00:00:00</span>
+  <span>Run: 2026-05-12_negotiations-v1</span>
+  <span>Claims: 35</span>
+</div>
+
+<div class="summary-card">
+  <h2 style="margin-top:0;border:none;padding:0">Grade Distribution</h2>
+  <div class="dist-bar"><div class="dist-segment" style="width:17.1%;background:#d4edda;color:#0d6e0d;border-right:2px solid white" title="S: 6">S:6</div><div class="dist-segment" style="width:48.6%;background:#e8f5e9;color:#28a745;border-right:2px solid white" title="A: 17">A:17</div><div class="dist-segment" style="width:8.6%;background:#fff9c4;color:#a68b00;border-right:2px solid white" title="B: 3">B:3</div><div class="dist-segment" style="width:22.9%;background:#ffe0b2;color:#cc6600;border-right:2px solid white" title="C: 8">C:8</div><div class="dist-segment" style="width:2.9%;background:#e0e0e0;color:#666666;border-right:2px solid white" title="D: 1">D:1</div></div>
+  <div class="dist-counts"><span class="dist-label" style="color:#0d6e0d">S: 6</span> | <span class="dist-label" style="color:#28a745">A: 17</span> | <span class="dist-label" style="color:#a68b00">B: 3</span> | <span class="dist-label" style="color:#cc6600">C: 8</span> | <span class="dist-label" style="color:#666666">D: 1</span> | <span class="dist-label" style="color:#cc0000">F: 0</span></div>
+</div>
+
+<h2>Claim Tier List</h2>
+<div class="tier-list"><div class="tier-row"><div class="tier-label" style="background:#0d6e0d">S<span class="tier-count">6</span></div><div class="tier-items"><div class="tier-chip" style="background:#d4edda;border:1px solid #0d6e0d;color:#0d6e0d" title="#2: The stronger your BATNA, the more power you hold. Research shows BATNA powerfully anchors your targets, first offers, and final outcomes."><span class="chip-id">#2</span><span class="chip-text">The stronger your BATNA, the more power you hold. Research shows BATNA powerfull...</span><span class="chip-loc">Section 1, BATNA concept card</span></div>
+<div class="tier-chip" style="background:#d4edda;border:1px solid #0d6e0d;color:#0d6e0d" title="#5: Whichever party made the first offer obtained a better outcome, regardless of whether they were buyer or seller."><span class="chip-id">#5</span><span class="chip-text">Whichever party made the first offer obtained a better outcome, regardless of wh...</span><span class="chip-loc">Section 2, Galinsky &amp; Mussweiler experiments list item 1</span></div>
+<div class="tier-chip" style="background:#d4edda;border:1px solid #0d6e0d;color:#0d6e0d" title="#13: De Dreu, Weingart &amp; colleagues&#x27; meta-analysis of 28 studies (Journal of Personality and Social Psychology, 2000)"><span class="chip-id">#13</span><span class="chip-text">De Dreu, Weingart &amp; colleagues&#x27; meta-analysis of 28 studies (Journal of Personal...</span><span class="chip-loc">Section 3, Meta-Analytic Evidence paragraph</span></div>
+<div class="tier-chip" style="background:#d4edda;border:1px solid #0d6e0d;color:#0d6e0d" title="#14: Negotiators with a prosocial motive (cooperative orientation) were less contentious, engaged in more problem-solving, and achieved higher joint outcomes than those with egoistic motives."><span class="chip-id">#14</span><span class="chip-text">Negotiators with a prosocial motive (cooperative orientation) were less contenti...</span><span class="chip-loc">Section 3, Meta-Analytic Evidence list item 1</span></div>
+<div class="tier-chip" style="background:#d4edda;border:1px solid #0d6e0d;color:#0d6e0d" title="#21: Negotiators with a temporally distant perspective (thinking long-term) made more multi-issue offers, used more logrolling, and achieved better individual and joint outcomes."><span class="chip-id">#21</span><span class="chip-text">Negotiators with a temporally distant perspective (thinking long-term) made more...</span><span class="chip-loc">Section 4, Logrolling list item 2</span></div>
+<div class="tier-chip" style="background:#d4edda;border:1px solid #0d6e0d;color:#0d6e0d" title="#24: Anger: Counterparts concede more — they infer the angry party has a high limit and is close to walking away."><span class="chip-id">#24</span><span class="chip-text">Anger: Counterparts concede more — they infer the angry party has a high limit a...</span><span class="chip-loc">Section 5, Emotion table row 1</span></div></div></div>
+<div class="tier-row"><div class="tier-label" style="background:#28a745">A<span class="tier-count">17</span></div><div class="tier-items"><div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#4: Whoever makes the first offer sets a psychological reference point that pulls the final agreement in their direction."><span class="chip-id">#4</span><span class="chip-text">Whoever makes the first offer sets a psychological reference point that pulls th...</span><span class="chip-loc">Section 2, opening paragraph</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#6: First offers correlated at r = .85 with final settlement prices in one experiment"><span class="chip-id">#6</span><span class="chip-text">First offers correlated at r = .85 with final settlement prices in one experimen...</span><span class="chip-loc">Section 2, Galinsky &amp; Mussweiler experiments list item 2</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#7: after receiving an anchor, people selectively generate information consistent with the anchor value (selective accessibility model), which biases their subsequent judgments"><span class="chip-id">#7</span><span class="chip-text">after receiving an anchor, people selectively generate information consistent wi...</span><span class="chip-loc">Section 2, Galinsky &amp; Mussweiler experiments list item 3</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#10: The counterpart can neutralize your anchor by focusing on their own goals rather than adjusting from your number."><span class="chip-id">#10</span><span class="chip-text">The counterpart can neutralize your anchor by focusing on their own goals rather...</span><span class="chip-loc">Section 2, When NOT to Make the First Offer, item 2</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#11: Bhatia &amp; Gunia found that negotiators who framed their offer relative to a higher reference point (a &#x27;phantom anchor&#x27;) achieved better outcomes than those who made the same offer without referencing the phantom."><span class="chip-id">#11</span><span class="chip-text">Bhatia &amp; Gunia found that negotiators who framed their offer relative to a highe...</span><span class="chip-loc">Section 2, Phantom Anchors paragraph</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#12: Getting to Yes (Fisher, Ury &amp; Patton) introduced principled negotiation, the most widely adopted integrative framework in business, diplomacy, and law."><span class="chip-id">#12</span><span class="chip-text">Getting to Yes (Fisher, Ury &amp; Patton) introduced principled negotiation, the mos...</span><span class="chip-loc">Section 3, Fisher &amp; Ury Framework paragraph</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#15: This effect held only when resistance to yielding was high — cooperators still needed to be firm on their interests. Being cooperative without being assertive led to conceding too much."><span class="chip-id">#15</span><span class="chip-text">This effect held only when resistance to yielding was high — cooperators still n...</span><span class="chip-loc">Section 3, Meta-Analytic Evidence list item 2</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#18: Decreasing concessions signal that you are approaching your limit. Recipients of decreasing concessions perceive inflated reservation prices and make less ambitious counteroffers — benefiting the party using this pattern."><span class="chip-id">#18</span><span class="chip-text">Decreasing concessions signal that you are approaching your limit. Recipients of...</span><span class="chip-loc">Section 4, Concession Strategy list item 1</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#22: negotiators are reluctant to make logrolling offers due to a deep-seated zero-sum bias — they assume any concession benefits the other side, even when trading low-priority for high-priority items is objectively better for both."><span class="chip-id">#22</span><span class="chip-text">negotiators are reluctant to make logrolling offers due to a deep-seated zero-su...</span><span class="chip-loc">Section 4, Logrolling list item 3</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#23: Van Kleef, De Dreu &amp; Manstead&#x27;s experiments (2004, Journal of Personality and Social Psychology) found that emotional displays function as strategic signals."><span class="chip-id">#23</span><span class="chip-text">Van Kleef, De Dreu &amp; Manstead&#x27;s experiments (2004, Journal of Personality and So...</span><span class="chip-loc">Section 5, Van Kleef paragraph</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#26: Happiness: Counterparts concede less — they infer the happy party is satisfied and will accept lower offers."><span class="chip-id">#26</span><span class="chip-text">Happiness: Counterparts concede less — they infer the happy party is satisfied a...</span><span class="chip-loc">Section 5, Emotion table row 2</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#27: When counterparts believed the emotion was strategic (faked), the effect reversed — inauthentic anger backfired."><span class="chip-id">#27</span><span class="chip-text">When counterparts believed the emotion was strategic (faked), the effect reverse...</span><span class="chip-loc">Section 5, Critical Moderators item 1</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#29: These findings later informed Van Kleef&#x27;s EASI model, formalized in 2008-2009."><span class="chip-id">#29</span><span class="chip-text">These findings later informed Van Kleef&#x27;s EASI model, formalized in 2008-2009.</span><span class="chip-loc">Section 5, Van Kleef paragraph parenthetical</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#30: Babcock &amp; Laschever&#x27;s Women Don&#x27;t Ask (2003) found that women were significantly less likely to initiate salary negotiations."><span class="chip-id">#30</span><span class="chip-text">Babcock &amp; Laschever&#x27;s Women Don&#x27;t Ask (2003) found that women were significantly...</span><span class="chip-loc">Section 6, Original Finding paragraph</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#31: A 2023 Academy of Management Discoveries study found that women today negotiate pay as often — or more often — than men. The &#x27;women don&#x27;t ask&#x27; narrative no longer holds."><span class="chip-id">#31</span><span class="chip-text">A 2023 Academy of Management Discoveries study found that women today negotiate ...</span><span class="chip-loc">Section 6, Updated Evidence item 1</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#33: Relational framing reduces backlash: women who framed their negotiation in terms of organizational benefit were penalized less."><span class="chip-id">#33</span><span class="chip-text">Relational framing reduces backlash: women who framed their negotiation in terms...</span><span class="chip-loc">Section 6, Updated Evidence item 3</span></div>
+<div class="tier-chip" style="background:#e8f5e9;border:1px solid #28a745;color:#28a745" title="#34: A 2023 Annual Review of Economics review concluded the gap stems more from institutional structures (promotion paths, information asymmetry) than from individual negotiation behavior."><span class="chip-id">#34</span><span class="chip-text">A 2023 Annual Review of Economics review concluded the gap stems more from insti...</span><span class="chip-loc">Section 6, Updated Evidence item 4</span></div></div></div>
+<div class="tier-row"><div class="tier-label" style="background:#a68b00">B<span class="tier-count">3</span></div><div class="tier-items"><div class="tier-chip" style="background:#fff9c4;border:1px solid #a68b00;color:#a68b00" title="#20: Negotiators who opened with logrolling offers reached more efficient agreements."><span class="chip-id">#20</span><span class="chip-text">Negotiators who opened with logrolling offers reached more efficient agreements.</span><span class="chip-loc">Section 4, Logrolling list item 1</span></div>
+<div class="tier-chip" style="background:#fff9c4;border:1px solid #a68b00;color:#a68b00" title="#28: Anger extracts concessions from low-power opponents but not from high-power opponents, who may retaliate."><span class="chip-id">#28</span><span class="chip-text">Anger extracts concessions from low-power opponents but not from high-power oppo...</span><span class="chip-loc">Section 5, Critical Moderators item 2</span></div>
+<div class="tier-chip" style="background:#fff9c4;border:1px solid #a68b00;color:#a68b00" title="#32: Bowles, Babcock &amp; Lai (2007) found that male evaluators penalized women more than men for attempting to negotiate higher compensation."><span class="chip-id">#32</span><span class="chip-text">Bowles, Babcock &amp; Lai (2007) found that male evaluators penalized women more tha...</span><span class="chip-loc">Section 6, Updated Evidence item 2</span></div></div></div>
+<div class="tier-row"><div class="tier-label" style="background:#cc6600">C<span class="tier-count">8</span></div><div class="tier-items"><div class="tier-chip" style="background:#ffe0b2;border:1px solid #cc6600;color:#cc6600" title="#1: parties&#x27; initial aspirations and expectations before bargaining have nearly the same impact on the final outcome as everything they do and say during the negotiation itself"><span class="chip-id">#1</span><span class="chip-text">parties&#x27; initial aspirations and expectations before bargaining have nearly the ...</span><span class="chip-loc">Section 1, paragraph 1</span></div>
+<div class="tier-chip" style="background:#ffe0b2;border:1px solid #cc6600;color:#cc6600" title="#8: A meta-study reported a correlation of .497 between initial offers and final negotiation outcomes"><span class="chip-id">#8</span><span class="chip-text">A meta-study reported a correlation of .497 between initial offers and final neg...</span><span class="chip-loc">Section 2, Meta-Analytic Confirmation paragraph</span></div>
+<div class="tier-chip" style="background:#ffe0b2;border:1px solid #cc6600;color:#cc6600" title="#9: When you have significantly less information than your counterpart about the value of what&#x27;s being negotiated, making the first offer can anchor you at a disadvantage."><span class="chip-id">#9</span><span class="chip-text">When you have significantly less information than your counterpart about the val...</span><span class="chip-loc">Section 2, When NOT to Make the First Offer, item 1</span></div>
+<div class="tier-chip" style="background:#ffe0b2;border:1px solid #cc6600;color:#cc6600" title="#16: Prosocial negotiators also experienced greater procedural fairness, which partly mediated the higher joint outcomes."><span class="chip-id">#16</span><span class="chip-text">Prosocial negotiators also experienced greater procedural fairness, which partly...</span><span class="chip-loc">Section 3, Meta-Analytic Evidence list item 3</span></div>
+<div class="tier-chip" style="background:#ffe0b2;border:1px solid #cc6600;color:#cc6600" title="#17: A 2022 literature review found that many principled negotiation techniques were conceptualized from a predominantly Western perspective."><span class="chip-id">#17</span><span class="chip-text">A 2022 literature review found that many principled negotiation techniques were ...</span><span class="chip-loc">Section 3, Caveat callout</span></div>
+<div class="tier-chip" style="background:#ffe0b2;border:1px solid #cc6600;color:#cc6600" title="#19: Concessions are reciprocated — negotiators who receive large concessions tend to offer large concessions in return."><span class="chip-id">#19</span><span class="chip-text">Concessions are reciprocated — negotiators who receive large concessions tend to...</span><span class="chip-loc">Section 4, Concession Strategy list item 2</span></div>
+<div class="tier-chip" style="background:#ffe0b2;border:1px solid #cc6600;color:#cc6600" title="#25: Anger only works when counterpart has low power, low time pressure, and perceives the anger as authentic."><span class="chip-id">#25</span><span class="chip-text">Anger only works when counterpart has low power, low time pressure, and perceive...</span><span class="chip-loc">Section 5, Emotion table row 1 conditions</span></div>
+<div class="tier-chip" style="background:#ffe0b2;border:1px solid #cc6600;color:#cc6600" title="#35: The document claims: &#x27;No blog posts or opinion pieces in the foundation sources.&#x27;"><span class="chip-id">#35</span><span class="chip-text">The document claims: &#x27;No blog posts or opinion pieces in the foundation sources....</span><span class="chip-loc">Footer</span></div></div></div>
+<div class="tier-row"><div class="tier-label" style="background:#666666">D<span class="tier-count">1</span></div><div class="tier-items"><div class="tier-chip" style="background:#e0e0e0;border:1px solid #666666;color:#666666" title="#3: Research consistently shows that higher aspirations produce better outcomes, provided they remain justifiable."><span class="chip-id">#3</span><span class="chip-text">Research consistently shows that higher aspirations produce better outcomes, pro...</span><span class="chip-loc">Section 1, Aspiration Point concept card</span></div></div></div>
+<div class="tier-row"><div class="tier-label" style="background:#cc0000">F<span class="tier-count">0</span></div><div class="tier-items"><span class="muted tier-empty">None</span></div></div></div>
+
+<div class="summary-card">
+  <h2 style="margin-top:0;border:none;padding:0">Critical Issues (F, C &amp; D Grades)</h2>
+  <div class="critical-list"><ul><li><strong>#3</strong> (UNVERIFIED): Research consistently shows that higher aspirations produce better outcomes, provided they remain justifiable.</li>
+<li><strong>#1</strong> (DUBIOUS): parties&#x27; initial aspirations and expectations before bargaining have nearly the same impact on the final outcome as ever...</li>
+<li><strong>#8</strong> (DUBIOUS): A meta-study reported a correlation of .497 between initial offers and final negotiation outcomes</li>
+<li><strong>#9</strong> (DUBIOUS): When you have significantly less information than your counterpart about the value of what&#x27;s being negotiated, making th...</li>
+<li><strong>#16</strong> (DUBIOUS): Prosocial negotiators also experienced greater procedural fairness, which partly mediated the higher joint outcomes.</li>
+<li><strong>#17</strong> (DUBIOUS): A 2022 literature review found that many principled negotiation techniques were conceptualized from a predominantly West...</li>
+<li><strong>#19</strong> (DUBIOUS): Concessions are reciprocated — negotiators who receive large concessions tend to offer large concessions in return.</li>
+<li><strong>#25</strong> (DUBIOUS): Anger only works when counterpart has low power, low time pressure, and perceives the anger as authentic.</li>
+<li><strong>#35</strong> (DUBIOUS): The document claims: &#x27;No blog posts or opinion pieces in the foundation sources.&#x27;</li></ul></div>
+</div>
+
+<h2>Systemic Patterns</h2>
+<div class="pattern-card"><strong>attribution_drift</strong>: Multiple claims cite findings to sources that do not contain them or attribute them to the wrong authors. Claim 8 attributes the .497 correlation to Loschelder &amp; Trotschel when it is from Guthrie &amp; Orr (2006). Claim 9 attributes a paper to &#x27;Loschelder et al.&#x27; when the actual authors are Maaravi &amp; Levy. Claim 16 attributes a procedural fairness finding to the De Dreu 2000 meta-analysis when it comes from a later experimental study. Claim 25 conflates findings from three different papers into one cited study.</div>
+<div class="pattern-card"><strong>source_conflation</strong>: Two distinct Van Kleef et al. 2004 JPSP papers are conflated into one. The cited paper (PubMed 14717628) is about the interpersonal effects of anger and happiness via tracking. A separate 2004 paper (PubMed 15491275) is about motivated information processing and tests power, time pressure, and cognitive closure as moderators. The document presents both papers&#x27; findings under one citation.</div>
+<div class="pattern-card"><strong>date_errors</strong>: Claim 17 states &#x27;2022 literature review&#x27; but the paper was published in 2021. The citation link text says &#x27;Cambridge Core, 2020&#x27; which is also incorrect.</div>
+<div class="pattern-card"><strong>one_sided_evidence</strong>: The document consistently omits boundary conditions and caveats present in the source material. Phantom anchors increase perceptions of manipulativeness (omitted from claim 11). Bowles et al. found female evaluators also penalized women negotiators (oversimplified in claim 32). Recalde &amp; Vesterlund note unintended consequences of interventions (omitted from claim 34). Logrolling offers were not perceived as more attractive despite being more efficient (omitted from claim 20).</div>
+
+<h2>All Claims (sorted worst-first)</h2>
+<table id="claims-table">
+  <thead>
+    <tr>
+      <th data-sort="id">#</th>
+      <th data-sort="grade">Grade</th>
+      <th>Claim</th>
+      <th>Verification Source</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr class="claim-row" data-grade="D"
+        style="border-left:4px solid #666666">
+      <td class="col-id">3</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e0e0e0;color:#666666;border:1px solid #666666">D &mdash; Unverified</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Research consistently shows that higher aspirations produce better outcomes, provided they remain justifiable.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 1, Aspiration Point concept card</span>
+          <span class="claim-cited">Cited: Harvard PON preparation checklist</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://www.pon.harvard.edu/daily/negotiation-skills-daily/negotiation-preparation-checklist/" target="_blank" rel="noopener noreferrer">Negotiation Preparation Checklist - Harvard PON</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The Harvard PON preparation checklist defines aspiration point as &#x27;the ambitious, but not outrageous, goal that I&#x27;d like to reach&#x27; but does NOT state that higher aspirations produce better outcomes. This is a well-established finding in negotiation research (e.g., Galinsky, Mussweiler, &amp; Medvec, 2002), but the CITED SOURCE does not support it. The claim may be true but cannot be verified against the given citation.</p>
+<div class="detail-section context"><strong>Missing context:</strong> The finding exists in the literature (Galinsky et al.) but is not stated in the cited Harvard PON page.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Harvard PON higher aspirations better outcomes negotiation</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="C"
+        style="border-left:4px solid #cc6600">
+      <td class="col-id">1</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#ffe0b2;color:#cc6600;border:1px solid #cc6600">C &mdash; Dubious</span></td>
+      <td class="col-claim">
+        <div class="claim-text">parties&#x27; initial aspirations and expectations before bargaining have nearly the same impact on the final outcome as everything they do and say during the negotiation itself</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 1, paragraph 1</span>
+          <span class="claim-cited">Cited: Harvard PON preparation checklist</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://www.pon.harvard.edu/daily/negotiation-skills-daily/negotiation-preparation-checklist/" target="_blank" rel="noopener noreferrer">Negotiation Preparation Checklist - Harvard PON</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The Harvard PON page emphasizes that failing to prepare is the biggest mistake, and defines aspiration point as a checklist item. However, it does NOT make the specific quantitative comparison that aspirations have &#x27;nearly the same impact as everything they do and say during the negotiation.&#x27; This is a significant inflation of what the source actually says. The source says preparation matters; the document claims a near-equal weighting that the source does not support.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">Without a doubt, the biggest mistake negotiators make — and one that happens far more often than we&#x27;d like to admit — is failing to prepare thoroughly.</blockquote></div>
+<div class="detail-section context"><strong>Missing context:</strong> The source discusses preparation importance generally. The specific quantitative comparison (&#x27;nearly the same impact&#x27;) is not found in the cited source and may be fabricated or drawn from a different, uncited source.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Harvard PON preparation aspirations expectations impact negotiation outcomes nearly the same before bargaining</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="C"
+        style="border-left:4px solid #cc6600">
+      <td class="col-id">8</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#ffe0b2;color:#cc6600;border:1px solid #cc6600">C &mdash; Dubious</span></td>
+      <td class="col-claim">
+        <div class="claim-text">A meta-study reported a correlation of .497 between initial offers and final negotiation outcomes</div>
+        <div class="claim-meta">
+          <span class="claim-type">statistic</span>
+          <span class="claim-location">Section 2, Meta-Analytic Confirmation paragraph</span>
+          <span class="claim-cited">Cited: Loschelder &amp; Trotschel, Negotiation &amp; Conflict Management Research</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=900152" target="_blank" rel="noopener noreferrer">Anchoring, Information, Expertise, and Negotiation: New Insights from Meta-Analysis (Guthrie &amp; Orr, 2006)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The .497 correlation is real, but it comes from Guthrie &amp; Orr (2006), NOT from Loschelder &amp; Trotschel. The document cites the NCMR paper &#x27;Toward a Process Model of First Offers and Anchoring in Negotiations&#x27; by Loschelder &amp; Trotschel, which likely CITES the .497 figure from Guthrie &amp; Orr. The document says &#x27;A meta-study reported&#x27; implying the cited paper IS the meta-study — but it is not. The actual meta-study author and the cited paper author are different.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">Orr and Guthrie (2006) reported a correlation of .497 between initial offers and final negotiation outcomes in a meta-study of 16 research papers.</blockquote></div>
+<div class="detail-section contra"><strong>Contradicting evidence:</strong> A more recent meta-analysis (2025, ScienceDirect) of 374 effects from 90 studies (N=16,334) provides updated estimates of the first-offer effect.</div>
+<div class="detail-section context"><strong>Missing context:</strong> The .497 correlation is from Guthrie &amp; Orr (2006), not the cited Loschelder &amp; Trotschel paper. This also represents a meta-analysis of only 16 papers.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Loschelder Trotschel meta-analysis first offers .497</code>, <code>Orr Guthrie 2006 anchoring meta-analysis correlation .497</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="C"
+        style="border-left:4px solid #cc6600">
+      <td class="col-id">9</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#ffe0b2;color:#cc6600;border:1px solid #cc6600">C &mdash; Dubious</span></td>
+      <td class="col-claim">
+        <div class="claim-text">When you have significantly less information than your counterpart about the value of what&#x27;s being negotiated, making the first offer can anchor you at a disadvantage.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 2, When NOT to Make the First Offer, item 1</span>
+          <span class="claim-cited">Cited: Loschelder et al., Judgment &amp; Decision Making</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://www.sas.upenn.edu/~baron/journal/17/17327a/jdm17327a.html" target="_blank" rel="noopener noreferrer">When your anchor sinks your boat: Information asymmetry in distributive negotiations (Maaravi &amp; Levy)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The finding about information asymmetry disadvantaging first movers is accurately described and supported by the linked source. However, the document attributes this to &#x27;Loschelder et al.&#x27; while the actual paper at the linked URL is by Yossi Maaravi and Aharon Levy. This is a clear author misattribution — the link is correct but the displayed author name is wrong.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">in information-asymmetry scenarios — when one party has perfect background information and the other has none — it is actually preferable for both counterparts not to give the first offer.</blockquote></div>
+<div class="detail-section context"><strong>Missing context:</strong> The paper is by Maaravi &amp; Levy, not Loschelder et al. as stated.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Loschelder JDM information asymmetry first offer disadvantage</code>, <code>Maaravi Levy anchor sinks boat information asymmetry</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="C"
+        style="border-left:4px solid #cc6600">
+      <td class="col-id">16</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#ffe0b2;color:#cc6600;border:1px solid #cc6600">C &mdash; Dubious</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Prosocial negotiators also experienced greater procedural fairness, which partly mediated the higher joint outcomes.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 3, Meta-Analytic Evidence list item 3</span>
+          <span class="claim-cited">Cited: De Dreu et al., 2000 (implied same source)</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://link.springer.com/article/10.1023/A:1026032628634" target="_blank" rel="noopener noreferrer">Social Motives in Integrative Negotiation: The Mediating Influence of Procedural Fairness (Beersma &amp; De Dreu, Social Justice Research)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The De Dreu et al. 2000 JPSP meta-analysis abstract does NOT mention procedural fairness. This finding comes from a SEPARATE study — likely Beersma &amp; De Dreu (published in Social Justice Research), which is an experimental test that built on the meta-analysis. The document presents this as a finding of the same meta-analysis, which is a misattribution. The finding is real but attributed to the wrong paper.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">those with a pro-social motive experienced more procedural fairness, which was partly responsible for the higher joint outcomes they obtained</blockquote></div>
+<div class="detail-section context"><strong>Missing context:</strong> This finding is from a separate experimental study (Beersma &amp; De Dreu), not the 28-study meta-analysis cited in the document.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>De Dreu Weingart 2000 procedural fairness negotiation prosocial</code>, <code>Beersma De Dreu procedural fairness social motives</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="C"
+        style="border-left:4px solid #cc6600">
+      <td class="col-id">17</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#ffe0b2;color:#cc6600;border:1px solid #cc6600">C &mdash; Dubious</span></td>
+      <td class="col-claim">
+        <div class="claim-text">A 2022 literature review found that many principled negotiation techniques were conceptualized from a predominantly Western perspective.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 3, Caveat callout</span>
+          <span class="claim-cited">Cited: Cambridge Core, 2020</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://www.cambridge.org/core/journals/journal-of-management-and-organization/article/distributiveintegrative-negotiation-strategies-in-crosscultural-contexts-a-comparative-study-of-the-usa-and-italy/A68B54F9B1710461A642DC719C34F917" target="_blank" rel="noopener noreferrer">Distributive/integrative negotiation strategies in cross-cultural contexts: a comparative study of the USA and Italy (Benetti, Ogliastri &amp; Caputo, 2021)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">Multiple problems: (1) The document says &#x27;2022 literature review&#x27; but the paper was published in 2021 (online Feb 2021). (2) The link text says &#x27;Cambridge Core, 2020&#x27; — also wrong. (3) The paper is described as a &#x27;literature review&#x27; but it&#x27;s actually a &#x27;comparative study of the USA and Italy&#x27; — a narrower empirical study, not a broad literature review. (4) The Western-perspective point is supported, but the characterization of the source type and date are both incorrect.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">examines whether the prototypes of integrative and distributive negotiators developed in the United States remain valid across Western cultures</blockquote></div>
+<div class="detail-section context"><strong>Missing context:</strong> The paper is by Benetti, Ogliastri &amp; Caputo (2021), is a comparative study of two countries (not a broad literature review), and was published in 2021 (not 2022 or 2020).</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Cambridge Core 2020 2021 2022 cross-cultural negotiation Western perspective</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="C"
+        style="border-left:4px solid #cc6600">
+      <td class="col-id">19</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#ffe0b2;color:#cc6600;border:1px solid #cc6600">C &mdash; Dubious</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Concessions are reciprocated — negotiators who receive large concessions tend to offer large concessions in return.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 4, Concession Strategy list item 2</span>
+          <span class="claim-cited">Cited: Judgment &amp; Decision Making, Cambridge</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://www.cambridge.org/core/journals/judgment-and-decision-making/article/accounting-for-reciprocity-in-negotiation-and-social-exchange/6319D2C6DD212A50D5E7A3E4BA1E58EF" target="_blank" rel="noopener noreferrer">Accounting for Reciprocity in Negotiation and Social Exchange (Mislin, Boumgarden, Jang &amp; Bottom, JDM)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The cited paper by Mislin et al. is about relational accounting — how prior exchange history shapes negotiation behavior through emotional responses. It is NOT about simple within-negotiation concession reciprocity (&#x27;you concede, I concede back&#x27;). The paper studies cross-negotiation reciprocity based on prior profitable/unprofitable exchanges. The concept of concession reciprocity IS well-established in negotiation research (Putnam &amp; Jones, 1982; Pruitt, 1981), but this specific citation does not support the stated claim.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">Prior profitable exchanges generated affection toward counterparts, leading to lower initial demands and more generous negotiating positions. Prior unprofitable exchanges triggered disaffection, resulting in higher initial demands.</blockquote></div>
+<div class="detail-section context"><strong>Missing context:</strong> The cited paper is about relational accounting across exchanges, not simple concession-for-concession reciprocity within a single negotiation.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Mislin Boumgarden reciprocity negotiation concessions JDM Cambridge</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="C"
+        style="border-left:4px solid #cc6600">
+      <td class="col-id">25</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#ffe0b2;color:#cc6600;border:1px solid #cc6600">C &mdash; Dubious</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Anger only works when counterpart has low power, low time pressure, and perceives the anger as authentic.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 5, Emotion table row 1 conditions</span>
+          <span class="claim-cited">Cited: Van Kleef et al., 2004 (PubMed 14717628, implied same source)</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://pubmed.ncbi.nlm.nih.gov/15491275/" target="_blank" rel="noopener noreferrer">The interpersonal effects of emotions in negotiations: a motivated information processing approach (Van Kleef, De Dreu &amp; Manstead, 2004b, JPSP Vol 87 No 4)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The document presents three moderating conditions (low power, low time pressure, authenticity) as part of the same 2004 study cited at PubMed 14717628. However: (1) Power and time pressure are from a DIFFERENT 2004 paper (JPSP Vol 87, PubMed 15491275) by the same authors. (2) Perceived authenticity is from Tng &amp; Au (2014, Negotiation Journal), published a decade later. The document conflates findings from at least three different papers into a single table row attributed to one study.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">participants were only affected by the other&#x27;s emotion under low rather than high time pressure... Negotiators were only influenced by their opponent&#x27;s emotion if they had low (rather than high) power.</blockquote></div>
+<div class="detail-section context"><strong>Missing context:</strong> These three conditions come from at least three different papers: (1) PubMed 14717628 (the cited 2004a paper) does not test power, time pressure, or authenticity; (2) PubMed 15491275 (Van Kleef 2004b) tests power and time pressure; (3) Tng &amp; Au 2014 tests authenticity.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Van Kleef 2004 anger power time pressure authenticity moderators</code>, <code>Van Kleef De Dreu Manstead 2004 motivated information processing</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="C"
+        style="border-left:4px solid #cc6600">
+      <td class="col-id">35</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#ffe0b2;color:#cc6600;border:1px solid #cc6600">C &mdash; Dubious</span></td>
+      <td class="col-claim">
+        <div class="claim-text">The document claims: &#x27;No blog posts or opinion pieces in the foundation sources.&#x27;</div>
+        <div class="claim-meta">
+          <span class="claim-type">comparative</span>
+          <span class="claim-location">Footer</span>
+          
+        </div>
+      </td>
+      <td class="col-source"><span class="muted">None found</span></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The document directly cites several Harvard PON &#x27;daily&#x27; articles (claims 1, 2, 3, 11), which are editorial/educational content written by PON staff — not peer-reviewed papers. It also cites Wikipedia (claim 12) and institutional pages (UC Davis ADVANCE, Harvard Kennedy School). While the underlying research IS peer-reviewed, several of the document&#x27;s DIRECT citations link to non-peer-reviewed editorial content. The footer&#x27;s claim is dubious — the foundation sources include reputable editorial content that functions similarly to expert blog posts.</p>
+<div class="detail-section contra"><strong>Contradicting evidence:</strong> The document cites Harvard PON daily articles, Wikipedia, UC Davis ADVANCE, and Harvard Kennedy School institutional pages — none of which are peer-reviewed journals.</div>
+<div class="detail-section context"><strong>Missing context:</strong> The distinction between &#x27;foundation sources&#x27; (the underlying research) and &#x27;directly cited sources&#x27; (the links in the document) is important. The direct citations include non-peer-reviewed editorial content.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Harvard PON daily articles peer-reviewed editorial blog</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="B"
+        style="border-left:4px solid #a68b00">
+      <td class="col-id">20</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#fff9c4;color:#a68b00;border:1px solid #a68b00">B &mdash; Broadly Correct</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Negotiators who opened with logrolling offers reached more efficient agreements.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 4, Logrolling list item 1</span>
+          <span class="claim-cited">Cited: Moran &amp; Ritov, ResearchGate</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/bdm.405" target="_blank" rel="noopener noreferrer">Initial Perceptions in Negotiations: Evaluation and Response to &#x27;Logrolling&#x27; Offers (Moran &amp; Ritov, 2002, J. Behavioral Decision Making)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The finding that logrolling offers led to more efficient (higher combined profit) agreements is confirmed. However, the document omits important context: logrolling offers were NOT judged as more attractive than distributive offers, and they did NOT reduce the fixed-pie assumption. The efficiency gain operated through within-issue anchoring, not through changing attitudes or perceptions.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">initial offers did establish within-issue anchors: counter-offers were affected by the specific composition of the initial offers beyond the effect of their overall value. This anchoring process resulted in logrolling offers yielding a higher profit for their initiator, as well as higher combined profits for both parties.</blockquote></div>
+<div class="detail-section contra"><strong>Contradicting evidence:</strong> Logrolling offers were not perceived as more attractive and did not reduce fixed-pie bias.</div>
+<div class="detail-section context"><strong>Missing context:</strong> The mechanism was within-issue anchoring, not attitude change. Logrolling offers were not perceived more favorably.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Moran Ritov logrolling initial offers negotiation efficient agreements</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="B"
+        style="border-left:4px solid #a68b00">
+      <td class="col-id">28</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#fff9c4;color:#a68b00;border:1px solid #a68b00">B &mdash; Broadly Correct</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Anger extracts concessions from low-power opponents but not from high-power opponents, who may retaliate.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 5, Critical Moderators item 2</span>
+          <span class="claim-cited">Cited: Van Kleef et al., 2006 (Wiley EJSP)</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/ejsp.320" target="_blank" rel="noopener noreferrer">Power and emotion in negotiation (Van Kleef, De Dreu, Pietroni &amp; Manstead, 2006, EJSP)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The core finding about power moderating anger&#x27;s effect is confirmed: low-power opponents concede more, high-power opponents are unaffected. However, the document says high-power opponents &#x27;may retaliate&#x27; — the paper says anger &#x27;triggered anger&#x27; in high-power opponents and &#x27;reduced the likelihood of settlement,&#x27; which is not exactly &#x27;retaliation.&#x27; The document overstates by implying active retaliatory behavior.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">only negotiators who had few alternatives (low power) conceded more to an angry opponent... participants who had ample alternatives (high power) were unaffected. When observers had a strong position, the other&#x27;s anger expressions triggered anger in the observing party, and thereby reduced the likelihood of settlement.</blockquote></div>
+<div class="detail-section context"><strong>Missing context:</strong> The paper says high-power opponents&#x27; anger was triggered and settlement likelihood decreased — not that they actively &#x27;retaliated.&#x27;</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Van Kleef 2006 power anger concessions high power retaliate EJSP</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="B"
+        style="border-left:4px solid #a68b00">
+      <td class="col-id">32</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#fff9c4;color:#a68b00;border:1px solid #a68b00">B &mdash; Broadly Correct</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Bowles, Babcock &amp; Lai (2007) found that male evaluators penalized women more than men for attempting to negotiate higher compensation.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 6, Updated Evidence item 2</span>
+          <span class="claim-cited">Cited: Bowles et al., 2007 (OBHDP, ScienceDirect)</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://www.sciencedirect.com/science/article/abs/pii/S0749597806000884" target="_blank" rel="noopener noreferrer">Social incentives for gender differences in the propensity to initiate negotiations (Bowles, Babcock &amp; Lai, 2007, OBHDP)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The paper confirms social backlash against women who negotiate. However, the document says &#x27;male evaluators penalized women more than men&#x27; which oversimplifies: in written transcripts, BOTH male AND female evaluators penalized women. In video assessment, male evaluators specifically penalized women while female evaluators penalized everyone equally. The document&#x27;s focus on &#x27;male evaluators&#x27; omits that female evaluators also contributed to the backlash in some conditions.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">When assessing candidates through videotapes, female evaluators penalized both male and female candidates equally for negotiating whereas male evaluators only penalized women candidates. When assessing willingness to work with a candidate from written transcripts, both female and male evaluators penalized female applicants for negotiating.</blockquote></div>
+<div class="detail-section context"><strong>Missing context:</strong> Female evaluators ALSO penalized women for negotiating in written-transcript conditions. The backlash is not exclusively from male evaluators.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Bowles Babcock Lai 2007 social backlash women salary negotiation penalty OBHDP</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">4</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Whoever makes the first offer sets a psychological reference point that pulls the final agreement in their direction.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 2, opening paragraph</span>
+          
+        </div>
+      </td>
+      <td class="col-source"><a href="https://pubmed.ncbi.nlm.nih.gov/11642352/" target="_blank" rel="noopener noreferrer">First offers as anchors: the role of perspective-taking and negotiator focus (Galinsky &amp; Mussweiler, 2001)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">Though uncited in the document, this general claim is well-established by Galinsky &amp; Mussweiler 2001 and subsequent research. The anchoring effect of first offers is one of the most replicated findings in negotiation research.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">whichever party, the buyer or seller, made the 1st offer obtained a better outcome. 1st offers were a strong predictor of final settlement prices.</blockquote></div>
+<div class="detail-section contra"><strong>Contradicting evidence:</strong> Effect can be neutralized by counterpart focusing on own goals (Galinsky &amp; Mussweiler, 2001) and reverses under information asymmetry (Maaravi &amp; Levy, JDM).</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Galinsky Mussweiler 2001 first offers anchors</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">6</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">First offers correlated at r = .85 with final settlement prices in one experiment</div>
+        <div class="claim-meta">
+          <span class="claim-type">statistic</span>
+          <span class="claim-location">Section 2, Galinsky &amp; Mussweiler experiments list item 2</span>
+          <span class="claim-cited">Cited: Galinsky et al., Columbia Business School PDF</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://business.columbia.edu/sites/default/files-efs/pubfiles/11691/first_offers.pdf" target="_blank" rel="noopener noreferrer">First offers in negotiations: Determinants and effects (Columbia Business School)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The r=.85 figure is confirmed from Galinsky &amp; Mussweiler 2001 Study 3 (chemical plant negotiation). The document cites the Columbia review paper rather than the original 2001 JPSP paper, making it a secondary citation. The statistic itself is accurate.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">correlation of .85 between the first offer and final agreement price in Study 3</blockquote></div>
+<div class="detail-section contra"><strong>Contradicting evidence:</strong> A broader meta-analysis (Guthrie &amp; Orr, 2006) found the average correlation across studies is .497, suggesting .85 is an outlier high from one specific experiment.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Galinsky Mussweiler 2001 Study 3 r=.85 first offer settlement price chemical plant</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">7</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">after receiving an anchor, people selectively generate information consistent with the anchor value (selective accessibility model), which biases their subsequent judgments</div>
+        <div class="claim-meta">
+          <span class="claim-type">causal</span>
+          <span class="claim-location">Section 2, Galinsky &amp; Mussweiler experiments list item 3</span>
+          
+        </div>
+      </td>
+      <td class="col-source"><a href="https://www.sciencedirect.com/science/article/abs/pii/S0022103198913646" target="_blank" rel="noopener noreferrer">Hypothesis-Consistent Testing and Semantic Priming in the Anchoring Paradigm: A Selective Accessibility Model (Mussweiler &amp; Strack, 1999)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The selective accessibility model was developed by Mussweiler &amp; Strack (1999, 2000). Galinsky &amp; Mussweiler 2001 applied this model to explain anchoring in negotiation. The mechanism description in the document accurately reflects the model.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">The selective accessibility model assumes that anchoring effects are mediated by the selectively increased accessibility of anchor-consistent knowledge.</blockquote></div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>selective accessibility model anchoring Mussweiler Strack negotiation mechanism</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">10</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">The counterpart can neutralize your anchor by focusing on their own goals rather than adjusting from your number.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 2, When NOT to Make the First Offer, item 2</span>
+          <span class="claim-cited">Cited: Galinsky &amp; Mussweiler, 2001 (PubMed 11642352)</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://pubmed.ncbi.nlm.nih.gov/11642352/" target="_blank" rel="noopener noreferrer">First offers as anchors (Galinsky &amp; Mussweiler, 2001)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The paper confirms that focusing on one&#x27;s own targets or the counterpart&#x27;s alternatives neutralizes the anchoring effect. The document&#x27;s characterization of &#x27;focusing on their own goals&#x27; is a reasonable paraphrase of &#x27;considering one&#x27;s own target.&#x27;</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">focusing on information that was inconsistent with the implications of the first offer negated the effect of first offers on outcomes... considering the opponent&#x27;s alternatives, their reservation price, or one&#x27;s own target all negated the effect.</blockquote></div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Galinsky Mussweiler 2001 perspective-taking neutralize anchor</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">11</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Bhatia &amp; Gunia found that negotiators who framed their offer relative to a higher reference point (a &#x27;phantom anchor&#x27;) achieved better outcomes than those who made the same offer without referencing the phantom.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 2, Phantom Anchors paragraph</span>
+          <span class="claim-cited">Cited: Harvard PON daily article</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://www.pon.harvard.edu/daily/negotiation-skills-daily/anchoring-for-maximum-effect-nb/" target="_blank" rel="noopener noreferrer">Anchoring for Maximum Effect - Harvard PON</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The Harvard PON article confirms the phantom anchor finding by Bhatia &amp; Gunia. The effect is accurately described in the document.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">negotiators who framed their offer relative to a phantom anchor (for example, $10,000 rather than $11,000 for a car) achieved better outcomes than negotiators who made the same offer ($10,000) without referencing a phantom anchor.</blockquote></div>
+<div class="detail-section contra"><strong>Contradicting evidence:</strong> The same research found that &#x27;Negotiators perceived those who dropped phantom anchors to be more manipulative,&#x27; a downside the document omits.</div>
+<div class="detail-section context"><strong>Missing context:</strong> Phantom anchors increase perceptions of manipulativeness, which could damage the relationship — this is omitted from the document.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Bhatia Gunia phantom anchor negotiation Harvard PON</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">12</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Getting to Yes (Fisher, Ury &amp; Patton) introduced principled negotiation, the most widely adopted integrative framework in business, diplomacy, and law.</div>
+        <div class="claim-meta">
+          <span class="claim-type">historical</span>
+          <span class="claim-location">Section 3, Fisher &amp; Ury Framework paragraph</span>
+          <span class="claim-cited">Cited: Wikipedia: Getting to Yes</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://en.wikipedia.org/wiki/Getting_to_Yes" target="_blank" rel="noopener noreferrer">Getting to Yes - Wikipedia</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">Getting to Yes (1981) is confirmed to be enormously influential: 15M+ copies, 35+ languages, widely taught in law, business, and diplomacy programs. &#x27;Most widely adopted&#x27; is inherently hard to prove definitively, but the evidence strongly supports this book as the dominant integrative negotiation framework.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">translations into over 35 languages and sales exceeding 15 million copies worldwide</blockquote></div>
+<div class="detail-section context"><strong>Missing context:</strong> The book was originally published in 1981, with a revised edition in 1991 adding Patton as co-author.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Getting to Yes most widely adopted negotiation framework business diplomacy law</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">15</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">This effect held only when resistance to yielding was high — cooperators still needed to be firm on their interests. Being cooperative without being assertive led to conceding too much.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 3, Meta-Analytic Evidence list item 2</span>
+          <span class="claim-cited">Cited: De Dreu et al., 2000 (implied same source)</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://pubmed.ncbi.nlm.nih.gov/10821196/" target="_blank" rel="noopener noreferrer">De Dreu, Weingart &amp; Kwon, 2000, JPSP</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The core finding about resistance to yielding is confirmed by the abstract. The document omits the &#x27;(or unknown)&#x27; qualifier — the meta-analysis found the effect held when resistance was high OR unknown, not only when high. The document&#x27;s inference that &#x27;being cooperative without being assertive led to conceding too much&#x27; is a reasonable interpretation but goes slightly beyond the abstract&#x27;s language.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">but only when resistance to yielding was high (or unknown) rather than low</blockquote></div>
+<div class="detail-section context"><strong>Missing context:</strong> The abstract says &#x27;high (or unknown)&#x27; not just &#x27;high.&#x27; The document drops the &#x27;unknown&#x27; condition.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>De Dreu 2000 resistance to yielding high prosocial</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">18</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Decreasing concessions signal that you are approaching your limit. Recipients of decreasing concessions perceive inflated reservation prices and make less ambitious counteroffers — benefiting the party using this pattern.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 4, Concession Strategy list item 1</span>
+          <span class="claim-cited">Cited: OBHDP, 2021</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://www.sciencedirect.com/science/article/abs/pii/S0749597821000613" target="_blank" rel="noopener noreferrer">The Impact of Concession Patterns on Negotiations (Tey, Schaerer, Madan &amp; Swaab, 2021, OBHDP)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The finding is confirmed by Tey et al. (2021): decreasing concessions create inflated reservation price perceptions in recipients, who then make less ambitious counteroffers. The &#x27;disadvantage for offer recipients&#x27; means the pattern-user benefits. The document&#x27;s characterization is accurate.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">decreasing concessions causes recipients to make less ambitious counteroffers and reach worse deals... recipients perceive inflated reservation prices... results in a negotiation disadvantage for offer recipients</blockquote></div>
+<div class="detail-section contra"><strong>Contradicting evidence:</strong> The effect is moderated by concession rate (strongest at moderate decrease rates) and number of rounds.</div>
+<div class="detail-section context"><strong>Missing context:</strong> Recipients can protect themselves by setting a target before negotiation.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>decreasing concessions negotiation reservation price OBHDP 2021</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">22</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">negotiators are reluctant to make logrolling offers due to a deep-seated zero-sum bias — they assume any concession benefits the other side, even when trading low-priority for high-priority items is objectively better for both.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 4, Logrolling list item 3</span>
+          <span class="claim-cited">Cited: Moran &amp; Ritov</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/bdm.405" target="_blank" rel="noopener noreferrer">Moran &amp; Ritov, 2002, J. Behavioral Decision Making</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The paper confirms the &#x27;deeply rooted fixed-pie assumption&#x27; that persists even when logrolling offers are made. The document&#x27;s characterization of reluctance due to zero-sum bias aligns with the finding that negotiators maintain fixed-pie beliefs even in logrolling contexts.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">logrolling offers did not seem to affect the deeply rooted fixed-pie assumption</blockquote></div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Moran Ritov logrolling zero-sum bias fixed-pie assumption</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">23</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Van Kleef, De Dreu &amp; Manstead&#x27;s experiments (2004, Journal of Personality and Social Psychology) found that emotional displays function as strategic signals.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 5, Van Kleef paragraph</span>
+          <span class="claim-cited">Cited: Van Kleef et al., 2004 (PubMed 14717628)</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://pubmed.ncbi.nlm.nih.gov/14717628/" target="_blank" rel="noopener noreferrer">The interpersonal effects of anger and happiness in negotiations (Van Kleef, De Dreu &amp; Manstead, 2004, JPSP)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The paper exists in JPSP 2004 with three experiments as stated. The abstract&#x27;s &#x27;strategic-choice perspective&#x27; supports the &#x27;strategic signals&#x27; characterization. However, the paper&#x27;s focus is on the INTERPERSONAL effects via an inference/tracking mechanism, not on deliberate strategic signaling per se. The document&#x27;s framing is reasonable but slightly shifts emphasis.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">Consistent with a strategic-choice perspective, Experiment 1 showed that participants conceded more to an angry opponent than to a happy one.</blockquote></div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Van Kleef De Dreu Manstead 2004 anger happiness negotiations JPSP</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">26</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Happiness: Counterparts concede less — they infer the happy party is satisfied and will accept lower offers.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 5, Emotion table row 2</span>
+          <span class="claim-cited">Cited: Van Kleef et al., 2004 (PubMed 14717628)</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://pubmed.ncbi.nlm.nih.gov/14717628/" target="_blank" rel="noopener noreferrer">Van Kleef, De Dreu &amp; Manstead, 2004, JPSP</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The abstract confirms that happiness led to fewer concessions relative to anger. The document&#x27;s inference that counterparts &#x27;infer the happy party is satisfied&#x27; is a reasonable interpretation of the tracking mechanism described in the paper, though the abstract focuses the mechanism description on anger rather than happiness.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">participants conceded more to an angry opponent than to a happy one</blockquote></div>
+<div class="detail-section contra"><strong>Contradicting evidence:</strong> Happiness can signal flexibility and build rapport in integrative contexts — the document notes this in the conditions column.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Van Kleef 2004 happiness concede less satisfied</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">27</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">When counterparts believed the emotion was strategic (faked), the effect reversed — inauthentic anger backfired.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 5, Critical Moderators item 1</span>
+          <span class="claim-cited">Cited: Negotiation Journal, MIT Press</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://direct.mit.edu/ngtn/article/30/3/301/121713/Strategic-Display-of-Anger-and-Happiness-in" target="_blank" rel="noopener noreferrer">Strategic Display of Anger and Happiness in Negotiation: The Moderating Role of Perceived Authenticity (Tng &amp; Au, 2014, Negotiation Journal)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The finding is confirmed: perceived inauthentic anger backfired, with the effect reversing — negotiators conceded LESS to inauthentic anger. The document&#x27;s characterization is accurate.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">negotiators who perceived their counterpart&#x27;s anger as inauthentic conceded less than did negotiators who perceived it as authentic... the reverse pattern was found among negotiators who perceived their counterparts&#x27; emotions as inauthentic.</blockquote></div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>strategic display anger happiness negotiation authenticity backfire Tng Au 2014</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">29</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">These findings later informed Van Kleef&#x27;s EASI model, formalized in 2008-2009.</div>
+        <div class="claim-meta">
+          <span class="claim-type">historical</span>
+          <span class="claim-location">Section 5, Van Kleef paragraph parenthetical</span>
+          
+        </div>
+      </td>
+      <td class="col-source"><a href="https://journals.sagepub.com/doi/10.1111/j.1467-8721.2009.01633.x" target="_blank" rel="noopener noreferrer">How Emotions Regulate Social Life: The Emotions as Social Information (EASI) Model (Van Kleef, 2009, Current Directions in Psychological Science)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The EASI model was formally published in 2009. Research building toward it was conducted in 2008 and earlier. The document&#x27;s &#x27;2008-2009&#x27; date range is accurate, encompassing both the research development and formal publication.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">The EASI model was formally introduced in Van Kleef&#x27;s 2009 article in Current Directions in Psychological Science.</blockquote></div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Van Kleef EASI model 2008 2009 formalized emotions social information</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">30</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Babcock &amp; Laschever&#x27;s Women Don&#x27;t Ask (2003) found that women were significantly less likely to initiate salary negotiations.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 6, Original Finding paragraph</span>
+          <span class="claim-cited">Cited: UC Davis ADVANCE</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://press.princeton.edu/books/hardcover/9780691089409/women-dont-ask" target="_blank" rel="noopener noreferrer">Women Don&#x27;t Ask: Negotiation and the Gender Divide (Babcock &amp; Laschever, 2003, Princeton UP)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The book exists (Princeton University Press, 2003) and the core finding — women less likely to initiate salary negotiation — is well-documented. Men initiated negotiation 4x more often. The document&#x27;s characterization is accurate.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">Men ask for what they want twice as often as women do and initiate negotiation four times more... men are four times more likely to ask for higher pay.</blockquote></div>
+<div class="detail-section contra"><strong>Contradicting evidence:</strong> Kray, Kennedy &amp; Lee (2023) found this gap has since reversed, which the document appropriately covers in the next section.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Babcock Laschever Women Don&#x27;t Ask 2003 salary negotiation initiation</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">31</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">A 2023 Academy of Management Discoveries study found that women today negotiate pay as often — or more often — than men. The &#x27;women don&#x27;t ask&#x27; narrative no longer holds.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 6, Updated Evidence item 1</span>
+          <span class="claim-cited">Cited: Kray, Kennedy &amp; Lee, 2023 (AMD)</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://journals.aom.org/doi/abs/10.5465/amd.2022.0021?journalCode=amd" target="_blank" rel="noopener noreferrer">Now, Women Do Ask: A Call to Update Beliefs about the Gender Pay Gap (Kray, Kennedy &amp; Lee, 2023, AMD)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The paper exists in AMD 2023 as cited. The finding that women now negotiate as often or more often than men is confirmed (54% vs 44% in MBA sample). The document&#x27;s claim is well-supported.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">significantly more women than men reported negotiating their job offers — 54% versus 44%... the gender difference appeared to disappear around 1994 and reversed beginning around 2007</blockquote></div>
+<div class="detail-section context"><strong>Missing context:</strong> The finding is based on MBA graduates from a top program (2015-2019). Generalizability to other populations is uncertain.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Kray Kennedy Lee 2023 Academy of Management Discoveries women negotiate salary</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">33</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Relational framing reduces backlash: women who framed their negotiation in terms of organizational benefit were penalized less.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 6, Updated Evidence item 3</span>
+          <span class="claim-cited">Cited: Harvard Kennedy School</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://gap.hks.harvard.edu/how-can-women-escape-compensation-negotiation-dilemma-relational-accounts-are-one-answer" target="_blank" rel="noopener noreferrer">How Can Women Escape the Compensation Negotiation Dilemma? (Harvard Kennedy School Gender Action Portal)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The finding is confirmed: relational accounts (organizational framing) reduced backlash and improved outcomes for women negotiators. The document&#x27;s characterization is accurate.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">Two relational account strategies worked effectively for women: (1) Citing supervisor advice to negotiate, (2) Framing negotiation skills as organizational assets. These approaches improved both social and negotiation outcomes for women.</blockquote></div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Harvard Kennedy School relational framing women salary negotiation backlash</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="A"
+        style="border-left:4px solid #28a745">
+      <td class="col-id">34</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#e8f5e9;color:#28a745;border:1px solid #28a745">A &mdash; Accurate</span></td>
+      <td class="col-claim">
+        <div class="claim-text">A 2023 Annual Review of Economics review concluded the gap stems more from institutional structures (promotion paths, information asymmetry) than from individual negotiation behavior.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 6, Updated Evidence item 4</span>
+          <span class="claim-cited">Cited: Recalde &amp; Vesterlund, 2023 (Annual Review of Economics)</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://www.annualreviews.org/content/journals/10.1146/annurev-economics-092022-115353" target="_blank" rel="noopener noreferrer">Gender Differences in Negotiation: Can Interventions Reduce the Gap? (Recalde &amp; Vesterlund, 2023, Annual Review of Economics)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The paper exists in Annual Review of Economics (2023) as cited. Its argument that institutional changes are more effective than individual behavior change (&#x27;fix institutions, not women&#x27;) aligns with the document&#x27;s characterization. The document&#x27;s claim is a reasonable summary.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">initial efforts to push women to negotiate more like men have shifted to alter instead the conditions of the negotiation, resulting not only from wanting to consider policies that &#x27;fix the institutions&#x27; rather than &#x27;fixing the women&#x27;</blockquote></div>
+<div class="detail-section contra"><strong>Contradicting evidence:</strong> The review also notes unintended consequences of institutional interventions, which the document omits.</div>
+<div class="detail-section context"><strong>Missing context:</strong> The review cautions about unintended consequences of interventions like salary history bans.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Recalde Vesterlund 2023 Annual Review of Economics gender negotiation institutional structures</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="S"
+        style="border-left:4px solid #0d6e0d">
+      <td class="col-id">2</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#d4edda;color:#0d6e0d;border:1px solid #0d6e0d">S &mdash; Source Match</span></td>
+      <td class="col-claim">
+        <div class="claim-text">The stronger your BATNA, the more power you hold. Research shows BATNA powerfully anchors your targets, first offers, and final outcomes.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 1, BATNA concept card</span>
+          <span class="claim-cited">Cited: Harvard PON BATNA article</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://www.pon.harvard.edu/daily/batna/negotiation-research-you-can-use-the-irrational-impact-of-disappearing-batnas-nb/" target="_blank" rel="noopener noreferrer">The Irrational Impact of Disappearing BATNAs - Harvard PON</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The document&#x27;s claim is nearly a verbatim quote from the Harvard PON article. The source confirms both that stronger BATNA = more power and that BATNA anchors targets, first offers, and outcomes.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">a strong best alternative to a negotiated agreement, or BATNA, is generally regarded as our best source of power. Our BATNA powerfully anchors our targets, first offers, and the deal we ultimately reach, research shows.</blockquote></div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Harvard PON BATNA anchors targets first offers outcomes</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="S"
+        style="border-left:4px solid #0d6e0d">
+      <td class="col-id">5</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#d4edda;color:#0d6e0d;border:1px solid #0d6e0d">S &mdash; Source Match</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Whichever party made the first offer obtained a better outcome, regardless of whether they were buyer or seller.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 2, Galinsky &amp; Mussweiler experiments list item 1</span>
+          <span class="claim-cited">Cited: Galinsky &amp; Mussweiler, 2001 (PubMed 11642352)</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://pubmed.ncbi.nlm.nih.gov/11642352/" target="_blank" rel="noopener noreferrer">First offers as anchors (Galinsky &amp; Mussweiler, 2001, JPSP)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The document&#x27;s claim is a near-verbatim match to the PubMed abstract. The paper confirms across three experiments that first-movers obtained better outcomes regardless of buyer/seller role.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">whichever party, the buyer or seller, made the 1st offer obtained a better outcome</blockquote></div>
+<div class="detail-section contra"><strong>Contradicting evidence:</strong> This general advantage does not hold under information asymmetry (Maaravi &amp; Levy, JDM).</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Galinsky Mussweiler 2001 first offers buyer seller</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="S"
+        style="border-left:4px solid #0d6e0d">
+      <td class="col-id">13</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#d4edda;color:#0d6e0d;border:1px solid #0d6e0d">S &mdash; Source Match</span></td>
+      <td class="col-claim">
+        <div class="claim-text">De Dreu, Weingart &amp; colleagues&#x27; meta-analysis of 28 studies (Journal of Personality and Social Psychology, 2000)</div>
+        <div class="claim-meta">
+          <span class="claim-type">statistic</span>
+          <span class="claim-location">Section 3, Meta-Analytic Evidence paragraph</span>
+          <span class="claim-cited">Cited: De Dreu et al., 2000 (PubMed 10821196)</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://pubmed.ncbi.nlm.nih.gov/10821196/" target="_blank" rel="noopener noreferrer">Influence of social motives on integrative negotiation: a meta-analytic review (De Dreu, Weingart &amp; Kwon, 2000, JPSP)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The PubMed abstract confirms exactly 28 studies, in JPSP, published in 2000. The third author is Kwon (not named in the document but not required). Perfect match.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">A meta-analysis of 28 studies examined support for the Theory of Cooperation and Competition (M. Deutsch, 1973) and Dual Concern Theory (D. G. Pruitt &amp; J. Z. Rubin, 1986).</blockquote></div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>De Dreu Weingart 2000 meta-analysis 28 studies JPSP</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="S"
+        style="border-left:4px solid #0d6e0d">
+      <td class="col-id">14</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#d4edda;color:#0d6e0d;border:1px solid #0d6e0d">S &mdash; Source Match</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Negotiators with a prosocial motive (cooperative orientation) were less contentious, engaged in more problem-solving, and achieved higher joint outcomes than those with egoistic motives.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 3, Meta-Analytic Evidence list item 1</span>
+          <span class="claim-cited">Cited: De Dreu et al., 2000 (PubMed 10821196)</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://pubmed.ncbi.nlm.nih.gov/10821196/" target="_blank" rel="noopener noreferrer">De Dreu, Weingart &amp; Kwon, 2000, JPSP</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The document&#x27;s claim is a near-verbatim match to the PubMed abstract. The three outcomes (less contentious, more problem-solving, higher joint outcomes) are stated exactly as in the source.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">negotiators were less contentious, engaged in more problem solving, and achieved higher joint outcomes when they had a prosocial rather than egoistic motive</blockquote></div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>De Dreu Weingart 2000 prosocial egoistic motive negotiation</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="S"
+        style="border-left:4px solid #0d6e0d">
+      <td class="col-id">21</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#d4edda;color:#0d6e0d;border:1px solid #0d6e0d">S &mdash; Source Match</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Negotiators with a temporally distant perspective (thinking long-term) made more multi-issue offers, used more logrolling, and achieved better individual and joint outcomes.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 4, Logrolling list item 2</span>
+          <span class="claim-cited">Cited: Henderson et al., PMC, 2006</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3153434/" target="_blank" rel="noopener noreferrer">Negotiation From a Near and Distant Time Perspective (Henderson, Trope &amp; Carnevale, 2006)</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">All three elements of the claim are confirmed with specific numbers: more multi-issue offers (greater proportion), more logrolling (90.9% vs 50%), and better outcomes (both individual and joint). The document accurately summarizes the findings.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">dyads with a temporally distant perspective made a greater proportion of multi-issue offers... 90.9% of distant-perspective dyads achieved fully logrolling agreements versus only 50% of near-perspective dyads... Distant-perspective negotiators earned 182.50 points versus 162.29... joint outcomes 365.00 vs 324.58.</blockquote></div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Henderson Trope Carnevale 2006 temporal perspective negotiation logrolling</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+
+    <tr class="claim-row" data-grade="S"
+        style="border-left:4px solid #0d6e0d">
+      <td class="col-id">24</td>
+      <td class="col-grade"><span class="grade-badge" style="background:#d4edda;color:#0d6e0d;border:1px solid #0d6e0d">S &mdash; Source Match</span></td>
+      <td class="col-claim">
+        <div class="claim-text">Anger: Counterparts concede more — they infer the angry party has a high limit and is close to walking away.</div>
+        <div class="claim-meta">
+          <span class="claim-type">finding</span>
+          <span class="claim-location">Section 5, Emotion table row 1</span>
+          <span class="claim-cited">Cited: Van Kleef et al., 2004 (PubMed 14717628)</span>
+        </div>
+      </td>
+      <td class="col-source"><a href="https://pubmed.ncbi.nlm.nih.gov/14717628/" target="_blank" rel="noopener noreferrer">Van Kleef, De Dreu &amp; Manstead, 2004, JPSP</a></td>
+      <td class="col-details">
+        <details>
+          <summary>Details</summary>
+          <div class="details-body">
+            <p class="explanation">The abstract confirms both the effect (more concessions to angry opponents) and the mechanism (inferring the opponent&#x27;s limit). The document&#x27;s description matches the source.</p>
+<div class="detail-section"><strong>Source quote:</strong><blockquote class="source-quote">participants conceded more to an angry opponent than to a happy one. Experiment 2 showed that this effect was caused by tracking — participants used the emotion information to infer the other&#x27;s limit, and they adjusted their demands accordingly.</blockquote></div>
+<div class="detail-section contra"><strong>Contradicting evidence:</strong> Effect depends on moderating conditions (power, time pressure, authenticity) tested in separate papers.</div>
+<div class="detail-section queries"><strong>Searches:</strong> <code>Van Kleef 2004 anger concessions tracking mechanism limit</code></div>
+          </div>
+        </details>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer">
+  <p>Made as a personal project by Scott DuHadway using a bunch of Chickens named Opus and Haiku in Claude Code</p>
+</div>
+</main>
+
+<script>
+// Simple column sort toggle
+const gradeOrder = {"S":0,"A":1,"B":2,"C":3,"D":4,"F":5};
+document.querySelectorAll('th[data-sort]').forEach(th => {
+  th.addEventListener('click', () => {
+    const table = document.getElementById('claims-table');
+    const tbody = table.querySelector('tbody');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+    const key = th.dataset.sort;
+    const asc = th.classList.toggle('sort-asc');
+    rows.sort((a, b) => {
+      let va, vb;
+      if (key === 'id') {
+        va = parseInt(a.querySelector('.col-id').textContent) || 0;
+        vb = parseInt(b.querySelector('.col-id').textContent) || 0;
+      } else if (key === 'grade') {
+        va = gradeOrder[a.dataset.grade] ?? 4;
+        vb = gradeOrder[b.dataset.grade] ?? 4;
+      }
+      return asc ? va - vb : vb - va;
+    });
+    rows.forEach(r => tbody.appendChild(r));
+  });
+});
+</script>
+
+<div id="site-footer"></div>
+<script src="../js/site-nav.js" data-base=".."></script>
+</body>
+</html>

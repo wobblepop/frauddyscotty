@@ -1,5 +1,13 @@
 [
   {
+    "title": "Chicken Hunt: Spot the AI Errors",
+    "description": "An AI generated a professional-looking negotiation strategies summary with 21 hidden errors — fabricated authors, cherry-picked statistics, wrong citations, and a false claim about its own source quality. Shoot the pixel-art chickens to reveal each mistake, then read the corrected version or the full claim-by-claim verification report.",
+    "tags": ["Teaching", "Research"],
+    "path": "projects/negotiation-duck-hunt.html",
+    "date": "2026-05-12",
+    "ai": true
+  },
+  {
     "title": "Scotty's Supply Solutions",
     "description": "An interactive company overview of a mid-sized firm expanding across six product lines — optical mice, coffee, AI t-shirts, California rolls, commuter bicycles, and PC bundles — each with its own supply chain structure and sourcing challenges.",
     "tags": ["Teaching", "Analysis"],
@@ -41,7 +49,7 @@
   },
   {
     "title": "The Break Room",
-    "description": "Eight academic brain games: Fermi estimation, cipher cracking, methodology roasting, supply chain disaster scenarios, fact-or-fabrication, connection puzzles, Set matching, and Wordl. A break room for nerds.",
+    "description": "Thirteen academic brain games — Fermi estimation, p-hacking simulation, Bayesian reasoning, fraud detection, graph deception, cipher cracking, methodology roasting, and more. A break room for nerds.",
     "tags": ["Teaching", "Research"],
     "path": "projects/break-room/index.html",
     "date": "2026-04-07",
