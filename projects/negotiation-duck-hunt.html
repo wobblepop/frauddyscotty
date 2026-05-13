@@ -338,7 +338,7 @@
 <div class="content">
 
 <h1>Negotiation Strategies</h1>
-<p class="subtitle" style="line-height:1.8;">This is a summary that I had my chickens (AI) put together, to make a single page reference sheet for negotiations for my students. It looked GREAT at first. Tons of citations, seemed valid, links worked for me. Did my chickens do a good job? Or did some of them escape? See if you can spot the errors. If you'd rather just see the corrected version, <a href="negotiation-strategies-corrected.html" style="color:var(--color-accent);">click here</a>. Here is a <a href="negotiation-verification-report.html" style="color:var(--color-accent);">more detailed review</a> by some chickens that I trained to be very suspicious and fact check every single statement from the original. &mdash; Scott, Chicken Whisperer</p>
+<p class="subtitle" style="line-height:1.8;">This is a summary that I had my chickens (AI) put together, to make a single page reference sheet for negotiations for my students. It looked GREAT at first. Tons of citations, seemed valid, links worked for me. Did my chickens do a good job? Or did some of them escape? See if you can spot the errors. If you'd rather just see the corrected version, <a href="negotiation-strategies-corrected.html" style="color:var(--color-accent);">click here</a>. Here is a <a href="negotiation-verification-report.html" style="color:var(--color-accent);">more detailed review</a> by some chickens that I trained to be very suspicious and fact check every single statement from the original. <br>-Scott, Chicken Whisperer</p>
 
 <!-- Section 1: Preparation -->
 <h2>1. Preparation Is the Foundation</h2>
@@ -755,20 +755,20 @@ function playSound(type) {
   if (!audioCtx) return;
   const now = audioCtx.currentTime;
   if (type === 'shoot') {
-    const buf = audioCtx.createBuffer(1, audioCtx.sampleRate*0.15, audioCtx.sampleRate);
+    const buf = audioCtx.createBuffer(1, audioCtx.sampleRate*0.12, audioCtx.sampleRate);
     const d = buf.getChannelData(0);
-    for (let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*0.4*(1-i/d.length);
+    for (let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*0.6*(1-i/d.length);
     const src = audioCtx.createBufferSource(); src.buffer = buf;
-    const lp = audioCtx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=800;
+    const lp = audioCtx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=2200;
     const g = audioCtx.createGain();
-    g.gain.setValueAtTime(0.18,now); g.gain.exponentialRampToValueAtTime(0.001,now+0.15);
+    g.gain.setValueAtTime(0.22,now); g.gain.exponentialRampToValueAtTime(0.001,now+0.12);
     src.connect(lp); lp.connect(g); g.connect(audioCtx.destination); src.start(now);
   } else if (type === 'hit') {
     const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
-    o.type='sine';
-    o.frequency.setValueAtTime(160,now); o.frequency.exponentialRampToValueAtTime(60,now+0.25);
-    g.gain.setValueAtTime(0.15,now); g.gain.exponentialRampToValueAtTime(0.001,now+0.25);
-    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+0.25);
+    o.type='square';
+    o.frequency.setValueAtTime(260,now); o.frequency.exponentialRampToValueAtTime(80,now+0.18);
+    g.gain.setValueAtTime(0.18,now); g.gain.exponentialRampToValueAtTime(0.001,now+0.18);
+    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+0.18);
   }
 }
 
