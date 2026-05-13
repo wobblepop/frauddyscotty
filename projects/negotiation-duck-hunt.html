@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Optimum Negotiation Strategies: Chicken Hunt Edition</title>
-<meta name="description" content="An interactive exercise in spotting AI-generated errors in negotiation research. Shoot the pixel-art chickens to reveal 21 hidden mistakes in citations, statistics, and attributions.">
-<meta property="og:title" content="Optimum Negotiation Strategies: Chicken Hunt Edition">
-<meta property="og:description" content="An interactive exercise in spotting AI-generated errors in negotiation research. Shoot the pixel-art chickens to reveal 21 hidden mistakes.">
+<title>Negotiation Strategies: Chicken Hunt Edition</title>
+<meta name="description" content="An interactive exercise in spotting AI-generated errors in negotiation research. Shoot the pixel-art chickens to reveal 24 hidden mistakes in citations, statistics, and attributions.">
+<meta property="og:title" content="Negotiation Strategies: Chicken Hunt Edition">
+<meta property="og:description" content="An interactive exercise in spotting AI-generated errors in negotiation research. Shoot the pixel-art chickens to reveal 24 hidden mistakes.">
 <meta property="og:url" content="https://frauddyscotty.com/projects/negotiation-duck-hunt.html">
 <link rel="canonical" href="https://frauddyscotty.com/projects/negotiation-duck-hunt.html">
 <style>
@@ -337,12 +337,8 @@
 <main id="main-content">
 <div class="content">
 
-<h1>Optimum Negotiation Strategies</h1>
-<p class="subtitle">An evidence-based summary drawn from experimental research, meta-analyses, and field studies in negotiation science (1981&ndash;2025)</p>
-
-<p style="margin-top:1.5em; font-style:italic; color:var(--color-text); line-height:1.8;">When this was first created, it looked great. Well sourced, well argued. The claims are connected to negotiations, and have all the right words. Did my chickens do a good job? Or did some of them escape? See if you can spot the errors. If you'd rather just see the corrected version, <a href="negotiation-strategies-corrected.html" style="color:var(--color-accent);">click here</a>.</p>
-
-<p style="margin-top:1em; font-style:italic; color:var(--color-text); line-height:1.8;">Here is a <a href="negotiation-verification-report.html" style="color:var(--color-accent);">more detailed review</a> by some chickens that I trained to be very suspicious and fact check every single statement from the original.</p>
+<h1>Negotiation Strategies</h1>
+<p class="subtitle" style="line-height:1.8;">This is a summary that I had my chickens (AI) put together, to make a single page reference sheet for negotiations for my students. It looked GREAT at first. Tons of citations, seemed valid, links worked for me. Did my chickens do a good job? Or did some of them escape? See if you can spot the errors. If you'd rather just see the corrected version, <a href="negotiation-strategies-corrected.html" style="color:var(--color-accent);">click here</a>. Here is a <a href="negotiation-verification-report.html" style="color:var(--color-accent);">more detailed review</a> by some chickens that I trained to be very suspicious and fact check every single statement from the original. &mdash; Scott, Chicken Whisperer</p>
 
 <!-- Section 1: Preparation -->
 <h2>1. Preparation Is the Foundation</h2>
@@ -465,7 +461,15 @@
 
 <h3>Phantom Anchors</h3>
 
-<p>Bhatia &amp; Gunia found that negotiators who framed their offer relative to a higher reference point achieved better outcomes than those who made the same offer without referencing the phantom. <span class="source-cite">[<a href="https://www.pon.harvard.edu/daily/negotiation-skills-daily/anchoring-for-maximum-effect-nb/">Harvard PON</a>]</span></p>
+<p>
+<!-- ERROR 23: Omits manipulativeness cost of phantom anchors -->
+<div class="error-zone" id="error23">
+
+  <span class="wrong-text" id="wrong23">Bhatia &amp; Gunia found that negotiators who framed their offer relative to a higher reference point achieved better outcomes than those who made the same offer without referencing the phantom.</span>
+  <span class="shot-label" id="label23">OMITTED DOWNSIDE</span>
+  <div class="correct-text" id="correct23">The same Harvard PON source states: &ldquo;Negotiators perceived those who dropped phantom anchors to be more manipulative.&rdquo; The document presents only the benefit while omitting the relational cost&mdash;phantom anchors can damage trust and the relationship.</div>
+</div>
+<span class="source-cite">[<a href="https://www.pon.harvard.edu/daily/negotiation-skills-daily/anchoring-for-maximum-effect-nb/">Harvard PON</a>]</span></p>
 
 <!-- Section 3: Integrative vs. Distributive -->
 <h2>3. Integrative vs. Distributive Strategies</h2>
@@ -577,6 +581,13 @@ Negotiators with a temporally distant perspective made more multi-issue offers a
   <span class="wrong-text" id="wrong19">This only works when the counterpart has low power, low time pressure, and perceives the anger as authentic.</span>
   <span class="shot-label" id="label19">SOURCE CONFLATION</span>
   <div class="correct-text" id="correct19">These three conditions come from <strong>three different papers</strong>, not the single cited 2004 study: (1) The cited paper (PubMed 14717628) tests none of these moderators. (2) Power and time pressure come from a <em>separate</em> Van Kleef et al. 2004 paper (PubMed 15491275). (3) Perceived authenticity comes from Tng &amp; Au (2014, <em>Negotiation Journal</em>), published a decade later. The document conflates a decade of research into one attribution.</div>
+</div>
+<!-- ERROR 24: "May retaliate" overstatement -->
+<div class="error-zone" id="error24">
+
+  <span class="wrong-text" id="wrong24">Anger extracts concessions from low-power opponents but not from high-power opponents, who may retaliate.</span>
+  <span class="shot-label" id="label24">OVERSTATEMENT</span>
+  <div class="correct-text" id="correct24">Van Kleef et al. (2006, <em>EJSP</em>) found that high-power opponents&rsquo; anger was <strong>triggered</strong> and <strong>settlement likelihood decreased</strong>&mdash;but this is not &ldquo;retaliation.&rdquo; The paper describes a reduced likelihood of reaching agreement, not active retaliatory behavior. &ldquo;May retaliate&rdquo; overstates beyond what the evidence shows.</div>
 </div>
 <span class="source-cite">[<a href="https://pubmed.ncbi.nlm.nih.gov/14717628/">Van Kleef et al., 2004</a>; <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/ejsp.320">Van Kleef et al., 2006</a>]</span></div>
 
@@ -744,19 +755,20 @@ function playSound(type) {
   if (!audioCtx) return;
   const now = audioCtx.currentTime;
   if (type === 'shoot') {
-    const buf = audioCtx.createBuffer(1, audioCtx.sampleRate*0.08, audioCtx.sampleRate);
+    const buf = audioCtx.createBuffer(1, audioCtx.sampleRate*0.12, audioCtx.sampleRate);
     const d = buf.getChannelData(0);
-    for (let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*(1-i/d.length);
+    for (let i=0;i<d.length;i++) d[i]=(Math.random()*2-1)*0.6*(1-i/d.length);
     const src = audioCtx.createBufferSource(); src.buffer = buf;
+    const lp = audioCtx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=2200;
     const g = audioCtx.createGain();
-    g.gain.setValueAtTime(0.25,now); g.gain.exponentialRampToValueAtTime(0.001,now+0.08);
-    src.connect(g); g.connect(audioCtx.destination); src.start(now);
+    g.gain.setValueAtTime(0.22,now); g.gain.exponentialRampToValueAtTime(0.001,now+0.12);
+    src.connect(lp); lp.connect(g); g.connect(audioCtx.destination); src.start(now);
   } else if (type === 'hit') {
     const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
     o.type='square';
-    o.frequency.setValueAtTime(880,now); o.frequency.exponentialRampToValueAtTime(220,now+0.12);
-    g.gain.setValueAtTime(0.18,now); g.gain.exponentialRampToValueAtTime(0.001,now+0.15);
-    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+0.15);
+    o.frequency.setValueAtTime(260,now); o.frequency.exponentialRampToValueAtTime(80,now+0.18);
+    g.gain.setValueAtTime(0.18,now); g.gain.exponentialRampToValueAtTime(0.001,now+0.18);
+    o.connect(g); g.connect(audioCtx.destination); o.start(now); o.stop(now+0.18);
   }
 }
 
