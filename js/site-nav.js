@@ -99,6 +99,7 @@
           return (
             '<div class="project-card">' +
             '  <h3>' + proj.title + '</h3>' +
+            '  <p>' + (proj.description || '') + '</p>' +
             '  <div>' + tags + '</div>' +
             '  <a class="project-link" href="' + p(proj.path) + '">View Project &rarr;</a>' +
             '</div>'
@@ -147,7 +148,7 @@
       '  flex-wrap: wrap;' +
       '}' +
       '.sn-nav a {' +
-      '  font-family: Consolas, monospace;' +
+      '  font-family: Georgia, serif;' +
       '  font-size: 0.8rem;' +
       '  text-transform: uppercase;' +
       '  letter-spacing: 0.06em;' +
@@ -168,7 +169,7 @@
 
       /* Footer */
       '.sn-footer {' +
-      '  font-family: Consolas, monospace;' +
+      '  font-family: Georgia, serif;' +
       '  max-width: 760px;' +
       '  margin: 0 auto;' +
       '  margin-top: 4rem;' +

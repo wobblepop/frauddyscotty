@@ -52,7 +52,7 @@ body {
 }
 
 .site-title {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -78,7 +78,7 @@ body {
 }
 
 .site-nav a {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -188,12 +188,12 @@ pre code {
 
 .project-card h3 {
   margin-top: 0;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
 }
 
 .project-card .tag {
   display: inline-block;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -210,7 +210,7 @@ pre code {
 }
 
 .project-card .project-link {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.8rem;
 }
 
@@ -228,14 +228,14 @@ pre code {
 }
 
 sup a {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   color: var(--color-accent);
   text-decoration: none;
 }
 
 /* --- Disclaimer / Classification Stamp --- */
 .classification {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -253,7 +253,7 @@ sup a {
   border-top: 1px solid var(--color-border);
   font-size: 0.8rem;
   color: var(--color-text-mid);
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -286,7 +286,7 @@ sup a {
 }
 
 .chicken-disclosure {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.8rem;
   color: var(--color-text-mid);
   border-top: 1px dashed var(--color-border);
@@ -315,7 +315,7 @@ sup a {
   background: var(--color-accent);
   color: #fff;
   padding: 0.5rem 1rem;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.8rem;
   text-decoration: none;
   border-radius: 3px;
