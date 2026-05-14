@@ -131,7 +131,7 @@
       '  gap: 0.5rem;' +
       '}' +
       '.sn-title {' +
-      '  font-family: Consolas, monospace;' +
+      '  font-family: Georgia, serif;' +
       '  font-size: 1.3rem;' +
       '  font-weight: 700;' +
       '  letter-spacing: -0.02em;' +
