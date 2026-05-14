@@ -58,8 +58,7 @@
 
     el.innerHTML =
       '<header class="sn-header">' +
-      '  <div class="sn-title"><a href="' + p('index.html') + '">scott.</a></div>' +
-      '  <div class="sn-subtitle">Academic. Researcher. Skeptical Technologist. Chicken Whisperer.</div>' +
+      '  <div class="sn-title"><a href="' + p('index.html') + '"><span class="sn-frauddy">frauddy</span><span class="sn-scotty">scotty</span></a></div>' +
       '  <nav class="sn-nav" aria-label="Main navigation">' +
       '    ' + links +
       '  </nav>' +
@@ -122,27 +121,27 @@
       '  font-family: Georgia, serif;' +
       '  max-width: 760px;' +
       '  margin: 0 auto;' +
-      '  padding: 2rem 1.5rem 1rem;' +
-      '  border-bottom: 2px solid #1a1a1a;' +
+      '  padding: 1rem 1.5rem 0.6rem;' +
+      '  border-bottom: 1px solid #1a1a1a;' +
       '  margin-bottom: 2.5rem;' +
+      '  display: flex;' +
+      '  align-items: baseline;' +
+      '  justify-content: space-between;' +
+      '  flex-wrap: wrap;' +
+      '  gap: 0.5rem;' +
       '}' +
       '.sn-title {' +
       '  font-family: Consolas, monospace;' +
-      '  font-size: 1.4rem;' +
+      '  font-size: 1.3rem;' +
       '  font-weight: 700;' +
       '  letter-spacing: -0.02em;' +
-      '  margin-bottom: 0.25rem;' +
       '}' +
       '.sn-title a {' +
-      '  color: #1a1a1a; text-decoration: none;' +
+      '  text-decoration: none;' +
       '}' +
-      '.sn-subtitle {' +
-      '  font-size: 0.85rem;' +
-      '  color: #555;' +
-      '  font-style: italic;' +
-      '}' +
+      '.sn-frauddy { color: #993c1d; }' +
+      '.sn-scotty { color: #1a6b5a; }' +
       '.sn-nav {' +
-      '  margin-top: 0.75rem;' +
       '  display: flex;' +
       '  gap: 1.5rem;' +
       '  flex-wrap: wrap;' +
@@ -192,7 +191,7 @@
       /* Inside .page-wrapper: defer to wrapper layout */
       '.page-wrapper .sn-header {' +
       '  max-width: none;' +
-      '  padding: 0 0 1rem;' +
+      '  padding: 0 0 0.6rem;' +
       '}' +
       '.page-wrapper .sn-footer {' +
       '  max-width: none;' +
@@ -201,11 +200,22 @@
 
       /* Responsive */
       '@media (max-width: 600px) {' +
+      '  .sn-header { flex-direction: column; gap: 0.4rem; }' +
       '  .sn-nav { gap: 1rem; }' +
       '  .sn-footer { flex-direction: column; }' +
       '}';
 
     document.head.appendChild(style);
+  }
+
+  /* ── Analytics (GoatCounter — free, no cookies, no consent banner) ── */
+  function loadAnalytics() {
+    if (document.querySelector('script[data-goatcounter]')) return;
+    var s = document.createElement('script');
+    s.async = true;
+    s.dataset.goatcounter = 'https://frauddyscotty.goatcounter.com/count';
+    s.src = '//gc.zgo.at/count.js';
+    document.body.appendChild(s);
   }
 
   /* ── Init ── */
@@ -214,6 +224,7 @@
     buildNav();
     buildFooter();
     buildProjectGrid();
+    loadAnalytics();
   }
 
   if (document.readyState === 'loading') {
