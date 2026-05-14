@@ -44,7 +44,7 @@
 
     .featured-label {
       display: inline-block;
-      font-family: var(--font-mono);
+      font-family: var(--font-body);
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -56,7 +56,7 @@
     }
 
     .featured-link {
-      font-family: var(--font-mono);
+      font-family: var(--font-body);
       font-size: 0.8rem;
       text-decoration: none;
       color: var(--color-accent);
@@ -68,6 +68,7 @@
   </style>
 </head>
 <body>
+  <script>window.scrollTo(0,0);</script>
   <a href="#main-content" class="skip-link">Skip to content</a>
   <div class="page-wrapper fade-in">
 
@@ -87,9 +88,8 @@
 
       <div class="featured">
         <span class="featured-label">Latest</span>
-        <h3>Negotiation Strategies: Chicken Hunt Edition</h3>
+        <h3><a href="projects/negotiation-duck-hunt.html" style="color:inherit;text-decoration:none;">Negotiation Strategies: Chicken Hunt Edition</a></h3>
         <p>An interactive exercise in spotting AI-generated errors in negotiation research. Shoot the pixel-art chickens to reveal 24 hidden mistakes in citations, statistics, and attributions.</p>
-        <a class="featured-link" href="projects/negotiation-duck-hunt.html">Negotiation Strategies: Chicken Hunt Edition &rarr;</a>
       </div>
 
     </main>
@@ -97,7 +97,7 @@
     <div id="site-footer"></div>
 
   </div>
-  <script src="js/site-nav.js" data-base="."></script>
+  <script src="js/site-nav.js?v=3" data-base="."></script>
 
   <script>
   (function() {
