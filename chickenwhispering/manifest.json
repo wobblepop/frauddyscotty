@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "title": "Chicken Whispering",
+  "subtitle": "A smart, dumb, and maybe insane guide to understanding and using artificial intelligence (the unhinged version)",
+  "author": "Scott DuHadway",
+  "generated": "2026-06-10",
+  "kdf": {
+    "name": "PBKDF2",
+    "hash": "SHA-256",
+    "iterations": 600000
+  },
+  "codes": [
+    {
+      "label": "friends",
+      "salt": "+/CMV4eeYRr+nI6etHWUEw==",
+      "iv": "6mpXNLR1Kp+JzwvN",
+      "wrapped": "SXIMQ5WekkWYOgQGah9OM34T83pC0OGrf/2P3NX2X3TvkOdEc7UAf/SF/0tt3IqF"
+    },
+    {
+      "label": "readers",
+      "salt": "W9fOMnZtfn6i3NUyrQaWUQ==",
+      "iv": "IKCafsMHUNFAmqjp",
+      "wrapped": "WyJId2ARtZuS9m30Ctzxxsd5ET2sjI0MaglF8EXDTumHgoOmam31mivgTTuhr7DH"
+    },
+    {
+      "label": "chickens",
+      "salt": "0mEXYDRLFGtkBO/7KnDE0w==",
+      "iv": "qzXda/0Jolu5VZQt",
+      "wrapped": "tffdL5GJmNFSXYNmwqFXV8iwp8dPbTNLmXMA4Fy76IynzizrR+xt++esjgvOj/lN"
+    }
+  ],
+  "files": {
+    "html": {
+      "path": "html.bin",
+      "size": 7763854,
+      "v": "cf112fbe2dc5afb0"
+    },
+    "pdf": {
+      "path": "pdf.bin",
+      "size": 5762000,
+      "v": "7a4f4eb30170e889"
+    },
+    "epub": {
+      "path": "epub.bin",
+      "size": 5539821,
+      "v": "2bfddd3a3332fa2d"
+    }
+  },
+  "logEndpoint": "",
+  "watermark": "Early reader copy \u00b7 {email} \u00b7 Please don't share or post."
+}
