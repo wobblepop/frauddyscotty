@@ -109,6 +109,7 @@ form{ margin:1.5rem 0; }
 .field input[aria-invalid="true"]{ border-color:var(--color-danger-edge); }
 .field-error{ display:none; color:var(--color-danger-text); font-size:13.5px; margin-top:.3rem; }
 .field-error.show{ display:block; }
+.field-note{ color:var(--color-text-tertiary); font-size:13.5px; margin:.3rem 0 0; }
 .check-field{ display:flex; gap:.6rem; align-items:flex-start; margin:1.25rem 0; }
 .check-field input{ width:1.15rem; height:1.15rem; margin-top:.3rem; flex:0 0 auto;
   accent-color:var(--color-accent-primary); }
@@ -194,8 +195,9 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
         <div class="field">
           <label for="email">Your email</label>
           <input type="email" id="email" name="email" autocomplete="email" required
-                 aria-describedby="email-error">
+                 aria-describedby="email-error email-note">
           <p class="field-error" id="email-error" role="alert"></p>
+          <p class="field-note" id="email-note">The email address entered here is recorded to track access to the book, like downloads. If you don't like that, you could probably just put in something like "youllnevercatchme@frauddyscotty.com" and it would just let you. Just saying.</p>
         </div>
 
         <div class="check-field">
