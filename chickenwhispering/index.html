@@ -7,10 +7,20 @@
 <meta name="description" content="Private early-reader access page. Enter your invitation code to read the book online or download it.">
 <title>Early Reader Copy</title>
 <!--
-  READER GATE · access page for private early-reader book distribution.
+  READER GATE (MULTI-EDITION) · access page for private early-reader book distribution.
+  One gate, one access code, two editions selected with a post-unlock toggle.
   Built from the QuarantineZone base template (Linear dark theme).
   Self-contained except for ./vendor/pdf-lib.min.js and ./vendor/jszip.min.js.
-  Runtime data: ./manifest.json + encrypted artifact blobs (html.bin/pdf.bin/epub.bin).
+
+  Runtime data: one subfolder per edition (see EDITIONS below), each holding its
+  own manifest.json + encrypted artifact blobs (html.bin/pdf.bin/epub.bin):
+      ./appropriate/manifest.json + ./appropriate/{html,pdf,epub}.bin
+      ./unhinged/manifest.json    + ./unhinged/{html,pdf,epub}.bin
+  Both editions are wrapped under the SAME access codes (a fresh content key per
+  edition, each wrapped per code), so a single valid code unlocks both. Each
+  edition's encrypted bundle is produced independently by build_reader_gate.py,
+  so the editions never share a content key and one can be rebuilt without the
+  other. Crypto/watermark logic is identical to the single-edition gate.
 -->
 <style>
 :root{
@@ -90,6 +100,7 @@ strong{ color:var(--color-text-primary); font-weight:600; }
 .callout--warning{ background:var(--color-warning-bg); border-color:var(--color-warning-edge); color:var(--color-warning-text); }
 .callout--danger{ background:var(--color-danger-bg); border-color:var(--color-danger-edge); color:var(--color-danger-text); }
 .callout--success{ background:var(--color-success-bg); border-color:var(--color-success-edge); color:var(--color-success-text); }
+.callout--info{ background:var(--color-info-bg); border-color:var(--color-info-edge); color:var(--color-info-text); }
 .callout strong{ color:inherit; }
 .callout-label{ display:block; font-weight:600; margin-bottom:.25rem; font-size:13px; }
 .callout button{ margin-top:.5rem; }
@@ -135,6 +146,28 @@ button.secondary{ background:var(--color-background-secondary);
 @keyframes spin{ to{ transform:rotate(360deg); } }
 @media (prefers-reduced-motion:reduce){ .spinner{ animation-duration:2.4s; } }
 
+/* ── Edition toggle (segmented control) ────────────────────────────── */
+.edition-toggle{ border:1px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg);
+  padding:.85rem 1rem 1rem; margin:1.25rem 0; }
+.edition-toggle legend{ font-size:13px; font-weight:600; color:var(--color-text-primary);
+  padding:0 .35rem; }
+.edition-toggle .edition-intro{ margin:.55rem 0 .15rem; font-size:14px; color:var(--color-text-secondary); }
+.segments{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.6rem; }
+.segment{ position:relative; flex:1 1 12rem; }
+.segment input{ position:absolute; opacity:0; width:1px; height:1px; }
+.segment label{ display:block; cursor:pointer; padding:.6rem .8rem;
+  border:1px solid var(--color-border-secondary); border-radius:var(--border-radius-md);
+  background:var(--color-background-secondary); color:var(--color-text-secondary);
+  font-size:14.5px; line-height:1.4; }
+.segment label .seg-title{ display:block; font-weight:600; color:var(--color-text-primary); }
+.segment label .seg-blurb{ display:block; font-size:13px; color:var(--color-text-tertiary); margin-top:.15rem; }
+.segment input:checked + label{ border-color:var(--color-accent-primary);
+  background:rgba(94,106,210,.16); color:var(--color-text-primary); }
+.segment input:focus-visible + label{ outline:2px solid var(--color-accent-secondary); outline-offset:2px; }
+.segment input:disabled + label{ opacity:.5; cursor:not-allowed; }
+.segment label .seg-unavailable{ display:none; font-size:12.5px; color:var(--color-warning-text); margin-top:.2rem; }
+.segment input:disabled + label .seg-unavailable{ display:block; }
+
 /* ── Action cards ──────────────────────────────────────────────────── */
 .cards{ display:grid; grid-template-columns:1fr; gap:1rem; margin:1.25rem 0; }
 .card{ background:var(--color-background-secondary); border:1px solid var(--color-border-tertiary);
@@ -159,7 +192,7 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<p class="visually-hidden">Summary: access gate for a private early-reader copy of a book. Enter your access code and email to read online or download the PDF or EPUB.</p>
+<p class="visually-hidden">Summary: access gate for a private early-reader copy of a book. Enter your access code and email, choose an edition, then read online or download the PDF or EPUB.</p>
 
 <div class="page">
   <header class="doc-header">
@@ -182,7 +215,7 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
     </div>
 
     <section id="unlock-section" hidden>
-      <p class="lead">You've been invited to read an early copy. Pop in the access code from your invitation and you're in.</p>
+      <p class="lead">You've been invited to read an early copy. Enter the access code below to unlock your copy.</p>
 
       <form id="unlock-form" novalidate>
         <div class="field">
@@ -214,8 +247,14 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
     <section id="actions-section" hidden>
       <div class="callout callout--success">
         <span class="callout-label">Unlocked</span>
-        <p id="unlock-message">Welcome! Choose how you'd like to read.</p>
+        <p id="unlock-message">Welcome!</p>
       </div>
+
+      <fieldset class="edition-toggle" id="edition-toggle">
+        <legend>Which edition?</legend>
+        <p class="edition-intro">When I wrote this book, I wrote it from a very human perspective with all of my flaws visible, including strong language that I think makes the experience of reading this book more visceral. But maybe you don't want visceral, so there is also a version that is more appropriate. Select the edition you'd prefer below.</p>
+        <div class="segments" id="edition-segments" role="radiogroup" aria-label="Choose which edition to read or download"></div>
+      </fieldset>
 
       <div class="cards">
         <div class="card" id="card-read">
@@ -257,15 +296,31 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
 (function () {
 
   /* ════════════════════════════════════════════════════════════════
+     Edition configuration
+     ----------------------------------------------------------------
+     Order = display order in the toggle. `dir` is the subfolder that
+     holds that edition's manifest.json + *.bin. `key` is used in the
+     access log payload and as the radio value. The first AVAILABLE
+     edition whose key === DEFAULT_EDITION_KEY is pre-selected; if that
+     one failed to load, the first available edition is selected.
+     ════════════════════════════════════════════════════════════════ */
+  var EDITIONS = [
+    { key: 'appropriate', dir: 'appropriate', label: 'Sorta Appropriate',
+      blurb: '(The version with less swearing)' },
+    { key: 'unhinged', dir: 'unhinged', label: 'Unhinged Version',
+      blurb: '(The version with more swearing)' }
+  ];
+  var DEFAULT_EDITION_KEY = 'appropriate';
+
+  /* ════════════════════════════════════════════════════════════════
      State
      ════════════════════════════════════════════════════════════════ */
   var state = {
-    manifest: null,        // validated manifest object
-    contentKey: null,      // CryptoKey (AES-GCM, decrypt) — the unwrapped K
-    group: null,           // label of the matching code entry
-    email: null,           // reader's email (validated)
-    watermarkText: null,   // manifest.watermark with placeholders filled
-    cache: {}              // kind -> Uint8Array of decrypted artifact bytes
+    // key -> { cfg, manifest, available, loadErr, contentKey, group, cache }
+    editions: {},
+    email: null,        // reader's email (validated)
+    current: null,      // key of the currently selected (unlocked) edition
+    unlocked: false
   };
 
   var $ = function (id) { return document.getElementById(id); };
@@ -280,7 +335,7 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
   });
 
   /* ════════════════════════════════════════════════════════════════
-     Small utilities
+     Small utilities (identical to the single-edition gate)
      ════════════════════════════════════════════════════════════════ */
 
   /** Normalize an access code per the crypto contract: NFC, trim, upper. */
@@ -370,8 +425,13 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
     }
   }
 
+  /** The currently selected edition record, or null. */
+  function currentEd() {
+    return state.current ? state.editions[state.current] : null;
+  }
+
   /* ════════════════════════════════════════════════════════════════
-     Manifest loading + validation
+     Manifest loading + validation (validation identical to single gate)
      ════════════════════════════════════════════════════════════════ */
 
   /** Validate the manifest shape. Returns an error string, or null if OK. */
@@ -423,38 +483,58 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
     $('unlock-section').hidden = true;
   }
 
-  function loadManifest() {
-    $('manifest-error').hidden = true;
-    fetch('./manifest.json', { cache: 'no-cache' })
+  /** Fetch + validate one edition's manifest. Resolves to a manifest or null. */
+  function loadOneManifest(cfg) {
+    return fetch('./' + cfg.dir + '/manifest.json', { cache: 'no-cache' })
       .then(function (resp) {
         if (!resp.ok) throw new Error('HTTP ' + resp.status);
         return resp.json();
       })
       .then(function (m) {
         var err = validateManifest(m);
-        if (err) {
-          console.debug('reader-gate: invalid manifest:', err);
-          showManifestError('the book listing is invalid: ' + err);
-          return;
-        }
-        state.manifest = m;
-        $('book-title').textContent = m.title;
-        document.title = m.title + ' — Early Reader Copy';
-        if (m.subtitle && m.subtitle.trim()) {
-          $('book-subtitle').textContent = m.subtitle;
-          $('book-subtitle').hidden = false;
-        }
-        $('book-author').textContent = m.author ? 'by ' + m.author : '';
-        $('unlock-section').hidden = false;
-      })
-      .catch(function (e) {
-        console.debug('reader-gate: manifest fetch failed', e);
-        showManifestError(e && e.message ? e.message : 'network error');
+        if (err) throw new Error('invalid manifest: ' + err);
+        return m;
       });
+  }
+
+  /** Load every edition manifest, then reveal the unlock form. */
+  function loadManifests() {
+    $('manifest-error').hidden = true;
+    state.editions = {};
+    var jobs = EDITIONS.map(function (cfg) {
+      return loadOneManifest(cfg).then(function (m) {
+        state.editions[cfg.key] = { cfg: cfg, manifest: m, available: true,
+          loadErr: null, contentKey: null, group: null, cache: {} };
+      }).catch(function (e) {
+        console.debug('reader-gate: edition "' + cfg.key + '" failed to load', e);
+        state.editions[cfg.key] = { cfg: cfg, manifest: null, available: false,
+          loadErr: (e && e.message ? e.message : 'load error'),
+          contentKey: null, group: null, cache: {} };
+      });
+    });
+
+    Promise.all(jobs).then(function () {
+      var loaded = EDITIONS.filter(function (c) { return state.editions[c.key].available; });
+      if (loaded.length === 0) {
+        showManifestError('none of the editions could be loaded');
+        return;
+      }
+      // Header text from the first available edition (both editions match).
+      var m = state.editions[loaded[0].key].manifest;
+      $('book-title').textContent = m.title;
+      document.title = m.title + ' — Early Reader Copy';
+      if (m.subtitle && m.subtitle.trim()) {
+        $('book-subtitle').textContent = m.subtitle;
+        $('book-subtitle').hidden = false;
+      }
+      $('book-author').textContent = m.author ? 'by ' + m.author : '';
+      $('unlock-section').hidden = false;
+    });
   }
 
   /* ════════════════════════════════════════════════════════════════
      Crypto: key derivation + unwrap + artifact decryption
+     (identical primitives to the single-edition gate)
      ════════════════════════════════════════════════════════════════ */
 
   /**
@@ -476,21 +556,19 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
   }
 
   /**
-   * Try the code against every manifest entry sequentially.
-   * Resolves {key: CryptoKey, label: string} on success, or null if no entry matches.
-   * GCM auth failures are expected (wrong code for that entry) and swallowed;
-   * unexpected errors also just move to the next entry (logged to console.debug).
+   * Try the code against every entry of ONE manifest sequentially.
+   * Resolves {key: CryptoKey, label: string} on success, or null if no entry
+   * matches. GCM auth failures are expected (wrong code for that entry).
    */
-  async function tryUnlock(normCode, onProgress) {
-    var m = state.manifest;
-    for (var i = 0; i < m.codes.length; i++) {
-      var entry = m.codes[i];
-      if (typeof onProgress === 'function') onProgress(i, m.codes.length);
+  async function tryUnlockManifest(normCode, manifest, onProgress) {
+    for (var i = 0; i < manifest.codes.length; i++) {
+      var entry = manifest.codes[i];
+      if (typeof onProgress === 'function') onProgress(i, manifest.codes.length);
       try {
         var salt = b64ToBytes(entry.salt);
         var iv = b64ToBytes(entry.iv);
         var wrapped = b64ToBytes(entry.wrapped);
-        var kek = await deriveKek(normCode, salt, m.kdf.iterations, m.kdf.hash);
+        var kek = await deriveKek(normCode, salt, manifest.kdf.iterations, manifest.kdf.hash);
         var kBytes = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, kek, wrapped);
         if (kBytes.byteLength !== 32) {
           console.debug('reader-gate: unwrapped key has wrong length for entry', entry.label);
@@ -507,21 +585,23 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
   }
 
   /**
-   * Fetch an encrypted artifact with progress, decrypt it with the content
-   * key, and cache the plaintext. kind is 'html' | 'pdf' | 'epub'.
-   * Resolves a Uint8Array of decrypted bytes. Throws (rejects) on failure.
+   * Fetch an encrypted artifact for the CURRENT edition with progress,
+   * decrypt it with that edition's content key, and cache the plaintext.
+   * kind is 'html' | 'pdf' | 'epub'. Resolves a Uint8Array. Throws on failure.
    */
   async function getDecrypted(kind, onProgress) {
     if (kind !== 'html' && kind !== 'pdf' && kind !== 'epub') {
       throw new Error('unknown artifact kind: ' + kind);
     }
-    if (state.cache[kind]) return state.cache[kind];
-    if (!state.contentKey) throw new Error('not unlocked');
-    var info = state.manifest.files[kind];
+    var ed = currentEd();
+    if (!ed || !ed.available) throw new Error('no edition selected');
+    if (ed.cache[kind]) return ed.cache[kind];
+    if (!ed.contentKey) throw new Error('not unlocked');
+    var info = ed.manifest.files[kind];
 
-    // Content-hash versioned URL: a rebuilt book gets a new ?v=, so a stale
+    // Content-hash versioned URL: a rebuilt edition gets a new ?v=, so a stale
     // cached blob can never be paired with a fresh key (CDN/proxy safe).
-    var blobUrl = './' + info.path + (info.v ? '?v=' + encodeURIComponent(info.v) : '');
+    var blobUrl = './' + ed.cfg.dir + '/' + info.path + (info.v ? '?v=' + encodeURIComponent(info.v) : '');
     var resp = await fetch(blobUrl, { cache: 'no-cache' });
     if (!resp.ok) throw new Error('download failed (HTTP ' + resp.status + ')');
 
@@ -553,13 +633,20 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
     var ciphertext = encrypted.slice(12);
     var plainBuf;
     try {
-      plainBuf = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, state.contentKey, ciphertext);
+      plainBuf = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, ed.contentKey, ciphertext);
     } catch (e) {
       throw new Error('the book was updated since you opened this page — refresh the page and enter your code again');
     }
     var plain = new Uint8Array(plainBuf);
-    state.cache[kind] = plain;
+    ed.cache[kind] = plain;
     return plain;
+  }
+
+  /** Personalised watermark for the current edition + reader. */
+  function currentWatermark() {
+    var ed = currentEd();
+    if (!ed || !ed.manifest) return '';
+    return buildWatermark(ed.manifest.watermark, state.email, ed.group);
   }
 
   /* ════════════════════════════════════════════════════════════════
@@ -567,17 +654,20 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
      ════════════════════════════════════════════════════════════════ */
   function logAccess(action) {
     try {
-      var ep = state.manifest && state.manifest.logEndpoint;
+      var ed = currentEd();
+      if (!ed || !ed.manifest) return;
+      var ep = ed.manifest.logEndpoint;
       if (typeof ep !== 'string' || !ep.trim()) return;
       fetch(ep, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
           email: state.email,
-          group: state.group,
+          group: ed.group,
           action: action,
+          edition: ed.cfg.key,
           timestamp: new Date().toISOString(),
-          book: state.manifest.title
+          book: ed.manifest.title + ' (' + ed.cfg.label + ')'
         })
       }).catch(function (e) { console.debug('reader-gate: log failed', e); });
     } catch (e) {
@@ -613,7 +703,10 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
     event.preventDefault();
     var statusEl = $('form-status');
     try {
-      if (!state.manifest) {
+      var loaded = EDITIONS.filter(function (c) {
+        return state.editions[c.key] && state.editions[c.key].available;
+      });
+      if (loaded.length === 0) {
         setStatus(statusEl, "The book information hasn't loaded yet — please try again in a moment.", { error: true });
         return;
       }
@@ -641,11 +734,25 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
       setFormDisabled(true);
       setStatus(statusEl, 'Checking code… (this takes a few seconds)', { busy: true });
 
-      var result = await tryUnlock(normCode, function (i, n) {
-        if (n > 1) setStatus(statusEl, 'Checking code… (' + (i + 1) + ' of ' + n + ')', { busy: true });
-      });
+      // Try the code against every loaded edition. Same codes wrap both, so a
+      // valid code unlocks all of them; we still handle partial success.
+      var anyUnlocked = false;
+      for (var i = 0; i < loaded.length; i++) {
+        var ed = state.editions[loaded[i].key];
+        var label = loaded[i].label;
+        setStatus(statusEl, 'Checking code… (' + label + ')', { busy: true });
+        var result = await tryUnlockManifest(normCode, ed.manifest);
+        if (result) {
+          ed.contentKey = result.key;
+          ed.group = result.label;
+          anyUnlocked = true;
+        } else {
+          ed.contentKey = null;
+          ed.group = null;
+        }
+      }
 
-      if (!result) {
+      if (!anyUnlocked) {
         setFormDisabled(false);
         setStatus(statusEl, "That code didn't work — check it and try again.", { error: true });
         setFieldError('code', 'code-error', "That code didn't work — check it and try again.");
@@ -653,13 +760,12 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
         return;
       }
 
-      state.contentKey = result.key;
-      state.group = result.label;
       state.email = email;
-      state.watermarkText = buildWatermark(state.manifest.watermark, email, result.label);
+      state.unlocked = true;
 
+      buildEditionToggle();
       $('unlock-message').textContent =
-        'Welcome! Your copy is tagged for ' + email + '. Choose how you’d like to read.';
+        'Welcome! Your copy is tagged for ' + email + '.';
       $('unlock-section').hidden = true;
       $('actions-section').hidden = false;
       setStatus(statusEl, '');
@@ -670,6 +776,93 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
       setStatus(statusEl, 'Something went wrong while checking your code — please try again. (' +
         (e && e.message ? e.message : 'unknown error') + ')', { error: true });
     }
+  }
+
+  /* ════════════════════════════════════════════════════════════════
+     Edition toggle (built after unlock so it reflects what unlocked)
+     ════════════════════════════════════════════════════════════════ */
+
+  function clearActionStatuses() {
+    setStatus($('status-read'), '');
+    setStatus($('status-pdf'), '');
+    setStatus($('status-epub'), '');
+    var fb = $('fallback-read');
+    fb.classList.remove('show');
+    fb.textContent = '';
+  }
+
+  function selectEdition(key) {
+    var ed = state.editions[key];
+    if (!ed || !ed.available || !ed.contentKey) return;
+    state.current = key;
+    clearActionStatuses();
+    // Reflect selection in the radio group (covers programmatic selection).
+    var input = document.querySelector('input[name="edition"][value="' + key + '"]');
+    if (input && !input.checked) input.checked = true;
+  }
+
+  function buildEditionToggle() {
+    var box = $('edition-segments');
+    box.innerHTML = '';
+
+    // Decide the initial selection: preferred default if it unlocked,
+    // otherwise the first edition that unlocked.
+    var unlockedKeys = EDITIONS.filter(function (c) {
+      var ed = state.editions[c.key];
+      return ed && ed.available && ed.contentKey;
+    }).map(function (c) { return c.key; });
+    var initial = unlockedKeys.indexOf(DEFAULT_EDITION_KEY) !== -1
+      ? DEFAULT_EDITION_KEY : unlockedKeys[0];
+    state.current = initial;
+
+    EDITIONS.forEach(function (cfg) {
+      var ed = state.editions[cfg.key];
+      var usable = ed && ed.available && ed.contentKey;
+
+      var seg = document.createElement('div');
+      seg.className = 'segment';
+
+      var input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'edition';
+      input.id = 'edition-' + cfg.key;
+      input.value = cfg.key;
+      input.disabled = !usable;
+      input.checked = usable && cfg.key === initial;
+      input.addEventListener('change', function () {
+        if (input.checked) selectEdition(cfg.key);
+      });
+
+      var label = document.createElement('label');
+      label.setAttribute('for', input.id);
+
+      var title = document.createElement('span');
+      title.className = 'seg-title';
+      title.textContent = cfg.label;
+      label.appendChild(title);
+
+      var blurb = document.createElement('span');
+      blurb.className = 'seg-blurb';
+      blurb.textContent = cfg.blurb;
+      label.appendChild(blurb);
+
+      if (!usable) {
+        var un = document.createElement('span');
+        un.className = 'seg-unavailable';
+        un.textContent = ed && ed.available
+          ? 'Your code does not unlock this edition.'
+          : 'This edition isn’t available right now.';
+        label.appendChild(un);
+      }
+
+      seg.appendChild(input);
+      seg.appendChild(label);
+      box.appendChild(seg);
+    });
+
+    // If only one edition exists/unlocked, the toggle is informational only;
+    // hide it to avoid a pointless single-option control.
+    $('edition-toggle').hidden = unlockedKeys.length < 2;
   }
 
   /* ════════════════════════════════════════════════════════════════
@@ -700,6 +893,8 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
     fb.classList.remove('show');
     fb.textContent = '';
     try {
+      var ed = currentEd();
+      if (!ed) throw new Error('no edition selected');
       setStatus(statusEl, 'Preparing your copy…', { busy: true });
       var bytes = await getDecrypted('html', function (got, total) {
         setStatus(statusEl, total
@@ -707,7 +902,7 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
           : 'Downloading… ' + fmtBytes(got), { busy: true });
       });
       var html = new TextDecoder('utf-8').decode(bytes);
-      var marked = injectHtmlWatermark(html, state.watermarkText);
+      var marked = injectHtmlWatermark(html, currentWatermark());
       var url = URL.createObjectURL(new Blob([marked], { type: 'text/html' }));
       logAccess('read-online');
       var win = window.open(url, '_blank');
@@ -748,10 +943,20 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
     setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
   }
 
+  /** Filename including the edition label so the two editions never collide. */
+  function downloadName(ext) {
+    var ed = currentEd();
+    var base = (ed && ed.manifest ? ed.manifest.title : 'book') +
+      ' (' + (ed ? ed.cfg.label : '') + ') — Early Reader Copy';
+    return sanitizeFilename(base) + '.' + ext;
+  }
+
   async function downloadPdf() {
     var btn = $('btn-pdf'), statusEl = $('status-pdf');
     btn.disabled = true;
     try {
+      var ed = currentEd();
+      if (!ed) throw new Error('no edition selected');
       if (typeof PDFLib === 'undefined' || !PDFLib.PDFDocument) {
         throw new Error('the PDF library failed to load — refresh the page');
       }
@@ -765,7 +970,7 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
       setStatus(statusEl, 'Stamping your copy…', { busy: true });
       var pdfDoc = await PDFLib.PDFDocument.load(bytes);
       var font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
-      var text = sanitizeWinAnsi(state.watermarkText);
+      var text = sanitizeWinAnsi(currentWatermark());
       var size = 8;
       var gray = PDFLib.rgb(0.45, 0.45, 0.45);
       var margin = 36;
@@ -783,8 +988,7 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
         }
       }
       var out = await pdfDoc.save();
-      var filename = sanitizeFilename(state.manifest.title + ' — Early Reader Copy') + '.pdf';
-      downloadBytes(out, filename, 'application/pdf');
+      downloadBytes(out, downloadName('pdf'), 'application/pdf');
       setStatus(statusEl, 'Done — check your downloads.');
       logAccess('download-pdf');
     } catch (e) {
@@ -804,6 +1008,8 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
     var btn = $('btn-epub'), statusEl = $('status-epub');
     btn.disabled = true;
     try {
+      var ed = currentEd();
+      if (!ed) throw new Error('no edition selected');
       if (typeof JSZip === 'undefined') {
         throw new Error('the EPUB library failed to load — refresh the page');
       }
@@ -819,7 +1025,7 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
       var names = Object.keys(zip.files).filter(function (n) { return !zip.files[n].dir; });
 
       var wmDiv = '<div style="margin-top:2em;padding-top:0.5em;border-top:1px solid #ccc;' +
-        'font-size:0.75em;color:#777;">' + escapeMarkup(state.watermarkText) + '</div>';
+        'font-size:0.75em;color:#777;">' + escapeMarkup(currentWatermark()) + '</div>';
 
       /* Rebuild in EPUB-valid order: mimetype first (stored), then META-INF, then the rest. */
       var fresh = new JSZip();
@@ -852,8 +1058,7 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
           setStatus(statusEl, 'Packaging… ' + Math.round(meta.percent) + '%', { busy: true });
         }
       );
-      var filename = sanitizeFilename(state.manifest.title + ' — Early Reader Copy') + '.epub';
-      downloadBytes(out, filename, 'application/epub+zip');
+      downloadBytes(out, downloadName('epub'), 'application/epub+zip');
       setStatus(statusEl, 'Done — check your downloads.');
       logAccess('download-epub');
     } catch (e) {
@@ -876,7 +1081,7 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
       $('unlock-form').addEventListener('submit', function (e) {
         handleUnlock(e).catch(function (err) { console.debug('reader-gate: unlock error', err); });
       });
-      $('manifest-retry').addEventListener('click', loadManifest);
+      $('manifest-retry').addEventListener('click', loadManifests);
       $('btn-read').addEventListener('click', function () {
         readOnline().catch(function (err) { console.debug('reader-gate: read error', err); });
       });
@@ -886,7 +1091,7 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
       $('btn-epub').addEventListener('click', function () {
         downloadEpub().catch(function (err) { console.debug('reader-gate: epub error', err); });
       });
-      loadManifest();
+      loadManifests();
     } catch (e) {
       console.debug('reader-gate: init failed', e);
       showManifestError('the page failed to start: ' + (e && e.message ? e.message : e));
