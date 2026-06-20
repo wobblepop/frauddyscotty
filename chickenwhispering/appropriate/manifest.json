@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "title": "Chicken Whispering",
+  "subtitle": "A smart, dumb, and maybe insane guide to understanding and using artificial intelligence.",
+  "author": "Scott DuHadway",
+  "generated": "2026-06-15",
+  "kdf": {
+    "name": "PBKDF2",
+    "hash": "SHA-256",
+    "iterations": 600000
+  },
+  "codes": [
+    {
+      "label": "group1",
+      "salt": "fzrFp0IZTQRvqmoYKwj4Nw==",
+      "iv": "uLaCJoo0LZqZpK1g",
+      "wrapped": "T6BmSRRqWCH9bmmjKm6U0esNtXUho37wDeIJIntF6Qi9uoJUiXmeQ47/QKUK4AXK"
+    },
+    {
+      "label": "group2",
+      "salt": "9oPmHZ2MxafF3zFahVF9xg==",
+      "iv": "uf+rUfOQYr1em3lK",
+      "wrapped": "AZDiP5KBOHcbNSU0RrXNRNnJIbItq8wvlI/k+5AQcV3fEUU/yBFZXJeIhO120Gci"
+    },
+    {
+      "label": "group3",
+      "salt": "9lYiNxTk6yJCbddL61FNZg==",
+      "iv": "Jey1A0Rs2b2pKEs4",
+      "wrapped": "yU7uqoEHfA7rhTpG/F7lRxXKX+CCv5cwTS10r2hR+s5LVbceJhxy+VkNmXsnQ4lK"
+    },
+    {
+      "label": "group4",
+      "salt": "kzF9mBXhGzabqw2xVx1EWg==",
+      "iv": "aszo/WDDVEmshExh",
+      "wrapped": "L2jSRFPSu9uWZ+18iL9t2Fe9USEbttB3CkXgFgEqFnzKb74Lru/m/3ZjexKB3bwj"
+    },
+    {
+      "label": "group5",
+      "salt": "6fOmiP3yPnBXqcKsZ19sWQ==",
+      "iv": "Bxj/Kk01gHicx0Yr",
+      "wrapped": "H1/TF4pwF9Wl1yeKIixriyP6uv6YYOzbZDSC6t7nTD6u+Q6MVGbTf4hOvSnfqbDp"
+    },
+    {
+      "label": "group6",
+      "salt": "kCh3AIOoyEjfLVQjG6OTnw==",
+      "iv": "kQVf7DiYXT7AcNEy",
+      "wrapped": "n0Lziot3Iusia4pw32lel1szjcepMLhm8YRxgb5yKknhg/4/cWClHmb13HKEBXrB"
+    },
+    {
+      "label": "group7",
+      "salt": "HKPnsSI9rKvO7l8ZEBmpjQ==",
+      "iv": "NIXGdRoFNnvr1b+u",
+      "wrapped": "P99ooMGG/rZRq6vaUCub63soGtY711pptqWFPwtBLunpXQ23eTDE7mNRTDzRgHA7"
+    }
+  ],
+  "files": {
+    "html": {
+      "path": "html.bin",
+      "size": 7763289,
+      "v": "bb3d9cbaf7d9730c"
+    },
+    "pdf": {
+      "path": "pdf.bin",
+      "size": 5746351,
+      "v": "27c70406574997a0"
+    },
+    "epub": {
+      "path": "epub.bin",
+      "size": 5538879,
+      "v": "c5870cc5436d2d63"
+    }
+  },
+  "logEndpoint": "https://formspree.io/f/xgobljap",
+  "watermark": "Early reader copy \u00b7 {email} \u00b7 Please don't share or post."
+}
