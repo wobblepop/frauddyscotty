@@ -3,7 +3,7 @@
   "title": "Chicken Whispering",
   "subtitle": "A smart, dumb, and maybe insane guide to understanding and using artificial intelligence.",
   "author": "Scott DuHadway",
-  "generated": "2026-06-10",
+  "generated": "2026-11-08",
   "kdf": {
     "name": "PBKDF2",
     "hash": "SHA-256",
@@ -12,62 +12,62 @@
   "codes": [
     {
       "label": "group1",
-      "salt": "2R9NuB0UfhfdLTxpClJZWA==",
-      "iv": "EadtgOrQrVDkmlrx",
-      "wrapped": "NjbNGmp9XAkZmmY+nbbLQuEVtyz3FkOWpzN3a7cmpXyPKilb9Pcq8GiaUfiGkVNN"
+      "salt": "PYnu+TP3e/HH1lR9YZCjJw==",
+      "iv": "+Cdo2pDnJ2B8DPFh",
+      "wrapped": "nYlWo9G+U5BEmQhn3AF9waT1XkxUZJ4mMmx77qW1xfzW+wOHxiiTl91MwpOVaH6J"
     },
     {
       "label": "group2",
-      "salt": "He2MhluWapo8FLWOdRfk0g==",
-      "iv": "nY6rxX698M9PkkB+",
-      "wrapped": "Siiz2zuMz22lkd16ij2UFpJPF/3aK1qMPvsu1bMk0R1++ua1WBzcGQfRLFKL8fh7"
+      "salt": "He2nArPSNs45DoUOl684ug==",
+      "iv": "aaptmFds3j0TdWIo",
+      "wrapped": "0ay2ycKJgW5K5YTWyaSY/tIH69X7Z+j9arQMmPTGzPhSQJB6JhzdD+kfOWwtaQ+F"
     },
     {
       "label": "group3",
-      "salt": "LaS+tgbak7R+1crN3pFXyA==",
-      "iv": "2R3rMGZXk4orZnfp",
-      "wrapped": "TM4k6Nrwk4hFLa8281kg00psDUZ+8xn2mWY4nRFFrH+h3HVjwwzbmbKieF6Sl2Dl"
+      "salt": "HgeVp8pJjswrzb20pzoWYQ==",
+      "iv": "eFT1iQxLeFXs8al4",
+      "wrapped": "lPCoY5Wu2wQQig2h6p0EGHWN8Yst+JM+93IwATAJwuo89GKIV+33CnUZIA6lOdep"
     },
     {
       "label": "group4",
-      "salt": "grvxxG8NW+2MGnZS+LVI4A==",
-      "iv": "Ny5nO3AsLG0a4YOf",
-      "wrapped": "xqSS9KG5AzubUUFkBlaRD5SerOfvwNLfT9le7hRH3TsGmjCOYjYi2+h6COA4W1Z6"
+      "salt": "5VZmkLK05j0AXCB4IBAgEg==",
+      "iv": "PHOOf5ca2YtDOCEO",
+      "wrapped": "YiA62ar/DUb5sR3omVzA4RPW7OWRw2ZgvVcT9QTbJhiPN9KpeaY0UsNkDtI3ycy6"
     },
     {
       "label": "group5",
-      "salt": "hnoLeGkeCtsmv7hIjJj+EQ==",
-      "iv": "6E6iS1UjeZmFXqnl",
-      "wrapped": "gGGT9OOt4Fq6iqC9r/6W6TQceNEJnmCvU7bBGI7Z4+Pufo324CayTlaViBq8xVPk"
+      "salt": "2E8G5ki0SIBCIEXhG/grAQ==",
+      "iv": "bKPzGPeVWnJ7MeBb",
+      "wrapped": "8uyuXBc0pifd/2zBFLJ/UrVtLYAEWhf+CSyVGHmgT6GkgZISN8JTK6iKCmGz46bW"
     },
     {
       "label": "group6",
-      "salt": "wOuMmK+KEOvJKXSxXCBfMg==",
-      "iv": "4ok5FFN7WoqwhWJN",
-      "wrapped": "km8siJlOSHBjBgqoV5h0XFa+veqIfNEpv/j+PVNrB1dnpBiTn73kY0WdtJjeYyIl"
+      "salt": "RPWAeNRDQFLGS9pKxpp+Nw==",
+      "iv": "vaeVfrVB/0yFkJSB",
+      "wrapped": "T79ObMULzggY0LKv4O90yfToeDX9bN6qnZyrwR/Ov+92H4k/Pk7/zdGkIxmKgdtH"
     },
     {
       "label": "group7",
-      "salt": "o5Rkz+fXieXI0FePmdyr2g==",
-      "iv": "EURxfkmS9IhQfZXl",
-      "wrapped": "GSxMQr/G50J+pYtsUbcRR8LhfBXBo8lULT1AEBMCuPiO5gWKlskIvrCdBeV1Wg6Z"
+      "salt": "f0iLQSYZ7NM0f/zpAw2+Yw==",
+      "iv": "kmngMGvFbdWHzt1p",
+      "wrapped": "N7EWa8RPGo03oAR2ArYVOaNa/HWKMx4yV3hMMbyXETxJaJ5Ubu7/xthaM9HcBTzA"
     }
   ],
   "files": {
     "html": {
       "path": "html.bin",
-      "size": 7765994,
-      "v": "d0d0c7f770c80f04"
+      "size": 9834345,
+      "v": "de9386d68fa2cbcf"
     },
     "pdf": {
       "path": "pdf.bin",
-      "size": 5769267,
-      "v": "7405d1c29984aa04"
+      "size": 6477871,
+      "v": "6ee5ad6c7d41c12f"
     },
     "epub": {
       "path": "epub.bin",
-      "size": 5540644,
-      "v": "8eab85c0d582baf3"
+      "size": 6560578,
+      "v": "50e41429e4f54b13"
     }
   },
   "logEndpoint": "https://formspree.io/f/xgobljap",
