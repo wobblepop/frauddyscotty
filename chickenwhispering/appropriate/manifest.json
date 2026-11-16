@@ -12,62 +12,80 @@
   "codes": [
     {
       "label": "group1",
-      "salt": "uVB/F0QtjZQezHgJYewNWg==",
-      "iv": "9Bdxq1ybwf/bXRCT",
-      "wrapped": "6FFawY+OAVy1IfE1mFQ0dhZ2GJGudZwHENwMI4m5ycqORKUu1ebZqqYg2NgOpz6e"
+      "salt": "z98zXn5aif5YCOIGj/4lVQ==",
+      "iv": "WnUqkM3pLY2NjDGj",
+      "wrapped": "7U0pwBe/0jaJIo3wEwdqAeuvKDZ8WFpaSK1ksdBR+P+BoSMKKg5PRk9W/BCx3FH4"
     },
     {
       "label": "group2",
-      "salt": "FIYeSLjZ+CU2TgQoijhyJQ==",
-      "iv": "5Ze/WqnzM5bNq4yj",
-      "wrapped": "topjcJj3kkMn8qgHLVUovqLenY0gzPVOSMJWS9fbjYMmO79ekNlYtfkbCXnMDCVe"
+      "salt": "tlrSIAOOdEY6NGTqX1Y16w==",
+      "iv": "yWBJp9SAUxxwKF5D",
+      "wrapped": "ex8dkJu7JPAgSwZyKNNmV7Zt4uzj81KdNyyGjtX/RywU4IrGB5g2keIPUdfd3NJl"
     },
     {
       "label": "group3",
-      "salt": "y7sBZiLB51sIigiWFlvYPA==",
-      "iv": "lyVJeqIQtLNNeUq/",
-      "wrapped": "hqsI/yYMjKeshZjlpvHc6iuSjFY+XbaLYPUVQK4y401LPMo+UuVawedpxcXIYvyc"
+      "salt": "9ePjgy+b0B13VoYTwn4Xog==",
+      "iv": "Lv4zejuyvU6iajSg",
+      "wrapped": "yFS3+Fl8KDplJMJNkgzfRqhXMbDyVT/KfAdyqLHc5fn3JY9JLLm55eObI+6iLpYB"
     },
     {
       "label": "group4",
-      "salt": "HN8RLtEQ6Jvv3QwjnLDIrA==",
-      "iv": "9QgyFVsFhAX400cR",
-      "wrapped": "Jk8jpwdUR99G7WWxjtftzPUNm1RbJig3nMXSxkdqBt/bODcFatR8m+PUJ3Q4yfnx"
+      "salt": "kk/pgBBgk7t3L4wbBVYaeg==",
+      "iv": "sktK/BB85n27+7rQ",
+      "wrapped": "Gf/fd51xpZPUJ6HZwFIRcmkZcS3ZZqNOjw4SWFdsT6KSYEEjwAPGzYiywZWqNVj2"
     },
     {
       "label": "group5",
-      "salt": "bQle3h5zXLUzT+RjQrMZ2A==",
-      "iv": "CQIjoNNWO0Cxvmf3",
-      "wrapped": "T/EdJkaDGMyYw9uS+2ShP5RMmJrHdDhP27gorQlYHgP8+Fk0AcRf/mjTC/Z9p63R"
+      "salt": "c+5dq/Yp2YcijsyCM+sq/w==",
+      "iv": "pzGL1iykPuphYVk9",
+      "wrapped": "Kspz8NiwX9N888sG5sjfEISlxMb5Wd/R1U9Wnfv2dMpyNwEognCgjwjieiWiXALk"
     },
     {
       "label": "group6",
-      "salt": "q2VSaJURlSb7WoGWHqgUhA==",
-      "iv": "R1k1cb8aATuRRCsK",
-      "wrapped": "FP+07xzURSlYDdS2cI88sK+hsdaZ1ojTYzboWLQC6lyzp9wDbOuixxLeKolroZSF"
+      "salt": "5H8YLKl1H8ALqpVg4vr5tQ==",
+      "iv": "Btcbmuw66heT2BkJ",
+      "wrapped": "NWwy2hfKAg6BpaNNTUc/DzHfLQiz4FWvxZXIvp29vPGpYCbfBDFiKs4EJQDo/9+b"
     },
     {
       "label": "group7",
-      "salt": "vqbUaAYIiCm2uYYHGrQvxQ==",
-      "iv": "CazxrSswxZOcn/lQ",
-      "wrapped": "UxTH/ohsE926Cn6eidM53BKRRNYIc61LpUEdHVoWzfFL8PxrJjy2KCg51w1G94iQ"
+      "salt": "edJFmEgdb33Vgq9tCCirsQ==",
+      "iv": "wAgWhsMXBJrBt8j/",
+      "wrapped": "ipMHEhFHd1leFrknS3GDwjhqlsYI3WN1QHm/W3ryD1ucmLoFQQKhItNlhMvWMT2y"
+    },
+    {
+      "label": "appropriate-only",
+      "salt": "kMQktHtboA0Ds+p4yrf3oQ==",
+      "iv": "aDptVbU9w5bA3OlO",
+      "wrapped": "76prs6ukWJO2HJh5qJGKqaOdKTeNJJ+88x8KingQ+brcy5lmAjwkDuhpgbG1ITRP"
+    },
+    {
+      "label": "appropriate-unhinged",
+      "salt": "6JODkByslgPhxuxGMAI/VA==",
+      "iv": "R18TP4/wMhu+ysOh",
+      "wrapped": "ICXCKbYDud1MinVEnDj0RvQqlUSwSpvV9BK/1AlvIsB/OLl8XWeHMsNSMflj0D5Y"
+    },
+    {
+      "label": "appropriate-textbook",
+      "salt": "FrKM1zaEat1UaixAK/wv7w==",
+      "iv": "iev2Ny4rnKStgXiK",
+      "wrapped": "awymYYDdAR6C9pKlp7OYtKhN/wd3sojZh/f81gSjU9ifNcYliWRPIdf/c+SSMTyU"
     }
   ],
   "files": {
     "html": {
       "path": "html.bin",
-      "size": 9830755,
-      "v": "b0e16ff00b9abcf0"
+      "size": 9831227,
+      "v": "431642d4bc75f16a"
     },
     "pdf": {
       "path": "pdf.bin",
       "size": 6457745,
-      "v": "061948931e5bd9f2"
+      "v": "39b34f450dd1ba91"
     },
     "epub": {
       "path": "epub.bin",
-      "size": 6558767,
-      "v": "03b2561311de92d9"
+      "size": 6558960,
+      "v": "797a432af4db74fd"
     }
   },
   "logEndpoint": "https://formspree.io/f/xgobljap",
