@@ -10,7 +10,8 @@
   READER GATE (MULTI-EDITION) · access page for private early-reader book distribution.
   One gate, one access code; the code decides which editions the reader gets.
   Built from the QuarantineZone base template (Linear dark theme).
-  Self-contained except for ./vendor/pdf-lib.min.js and ./vendor/jszip.min.js.
+  Self-contained except for ./vendor/pdf-lib.min.js and ./vendor/jszip.min.js,
+  plus the GoatCounter visit counter (gc.zgo.at/count.js) at the end of <body>.
 
   This file is a TEMPLATE: build_chickenwhispering_multi.py replaces the
   placeholder inside the #edition-config element (near the end) with the
@@ -1204,5 +1205,14 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
 
 })();
 </script>
+<!--
+  Visit counting: GoatCounter, same account as js/site-nav.js uses on the rest
+  of the site. The path is pinned so every visit (with or without a trailing
+  slash, index.html, or a query string) is recorded as /chickenwhispering/,
+  which is the path /countme/ reads its total from.
+-->
+<script data-goatcounter="https://frauddyscotty.goatcounter.com/count"
+        data-goatcounter-settings='{"path": "/chickenwhispering/"}'
+        async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
