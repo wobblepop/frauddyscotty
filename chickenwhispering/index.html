@@ -1139,7 +1139,8 @@ footer.doc-footer{ margin-top:3rem; padding-top:1rem;
         if (name === 'mimetype' || /^META-INF\//.test(name)) continue;
         if (/^OEBPS\/text\/[^/]+\.xhtml$/.test(name)) {
           var doc = await zip.files[name].async('string');
-          fresh.file(name, doc.replace('</body>', wmDiv + '</body>'));
+          /* a function replacement: '$&', '$`', "$'" or '$$' in the reader's email must stay literal */
+          fresh.file(name, doc.replace('</body>', function () { return wmDiv + '</body>'; }));
         } else {
           fresh.file(name, await zip.files[name].async('uint8array'));
         }
