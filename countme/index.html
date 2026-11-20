@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Visitor count for the private early-reader page.">
-<title>Early Reader Page Visitors</title>
+<meta name="description" content="Visitor count.">
+<title>Visitor Count</title>
 <!--
-  VISITOR COUNT for /chickenwhispering/ (the private early-reader gate).
+  VISITOR COUNT for the single path set in PATH (in the script below).
 
   Reads GoatCounter's public visitor-counter endpoint:
-      https://frauddyscotty.goatcounter.com/counter/%2Fchickenwhispering%2F.json
+      https://frauddyscotty.goatcounter.com/counter/<encoded PATH>.json
   which returns {"count": "<formatted number>"} [goatcounter.com/help/visitor-counter].
   Responses (per GoatCounter's handlers/vcounter.go):
       200  path found; count is the all-time total
@@ -20,9 +20,9 @@
   GoatCounter caches each count for up to four hours.
 
   This page deliberately does NOT load count.js, so checking the number does
-  not add a visit anywhere. It does not link to /chickenwhispering/ (that URL
-  is shared privately and is not linked from any page).
-  Styling copies the gate page's palette (Linear dark theme).
+  not add a visit anywhere. It deliberately does not name or link to the
+  counted page in its visible text.
+  Styling copies the /chickenwhispering/ gate page's palette (Linear dark theme).
 -->
 <style>
 :root{
@@ -56,8 +56,7 @@ body{
 h1{ font-size:26px; font-weight:600; line-height:1.3; margin:0 0 .35rem;
     border-bottom:3px solid var(--color-accent-primary); padding-bottom:.5rem; }
 p{ margin:0 0 1rem; color:var(--color-text-secondary); }
-.doc-meta{ color:var(--color-text-tertiary); font-size:14px; margin:0 0 1.5rem; }
-code{ font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace; font-size:.92em; }
+header{ margin-bottom:1.5rem; }
 
 .card{ background:var(--color-background-secondary); border:1px solid var(--color-border-tertiary);
   border-radius:var(--border-radius-lg); padding:1.4rem 1.2rem 1.2rem; text-align:center; }
@@ -93,8 +92,7 @@ button:disabled{ opacity:.55; cursor:not-allowed; }
 <body>
 <div class="page">
   <header>
-    <h1>Early reader page visitors</h1>
-    <p class="doc-meta">Visitor count for the private early-reader page, <code>/chickenwhispering/</code></p>
+    <h1>Visitor count</h1>
   </header>
 
   <main>
@@ -117,7 +115,7 @@ button:disabled{ opacity:.55; cursor:not-allowed; }
 
     <section class="notes" aria-label="About this count">
       <p>Counted by GoatCounter, which caches this total for up to four hours, so recent visits can take a while to appear.</p>
-      <p>Counting began when visit tracking was added to the early-reader page, so earlier visits are not included. Visitors whose browsers block analytics scripts are not counted, and opening this page does not add a visit.</p>
+      <p>Counting began when visit tracking was turned on, so earlier visits are not included. Visitors whose browsers block analytics scripts are not counted, and opening this page does not add a visit.</p>
     </section>
   </main>
 </div>
@@ -127,7 +125,7 @@ button:disabled{ opacity:.55; cursor:not-allowed; }
   'use strict';
 
   /* Configuration. PATH must match the path pinned in data-goatcounter-settings
-     on /chickenwhispering/index.html. */
+     on the counted page (currently /chickenwhispering/index.html). */
   var SITE = 'https://frauddyscotty.goatcounter.com';
   var PATH = '/chickenwhispering/';
   var TIMEOUT_MS = 15000;
