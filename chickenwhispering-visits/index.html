@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Visitor count for the private early-reader page.">
+<title>Early Reader Page Visitors</title>
+<!--
+  VISITOR COUNT for /chickenwhispering/ (the private early-reader gate).
+
+  Reads GoatCounter's public visitor-counter endpoint:
+      https://frauddyscotty.goatcounter.com/counter/%2Fchickenwhispering%2F.json
+  which returns {"count": "<formatted number>"} [goatcounter.com/help/visitor-counter].
+  Responses (per GoatCounter's handlers/vcounter.go):
+      200  path found; count is the all-time total
+      404  path has no recorded visits yet; body still carries count "0"
+      403  the site setting "Allow adding visitor counts on your website" is
+           off; that error page has no CORS header, so fetch() rejects
+  GoatCounter caches each count for up to four hours.
+
+  This page deliberately does NOT load count.js, so checking the number does
+  not add a visit anywhere. It does not link to /chickenwhispering/ (that URL
+  is shared privately and is not linked from any page).
+  Styling copies the gate page's palette (Linear dark theme).
+-->
+<style>
+:root{
+  --color-background-tertiary:#10101e;
+  --color-background-secondary:#22223a;
+  --color-text-primary:#e8e8ed;
+  --color-text-secondary:#d0d0da;
+  --color-text-tertiary:#8c8ca4;
+  --color-accent-primary:#5e6ad2;
+  --color-accent-secondary:#26b5ce;
+  --color-border-tertiary:#2a2a42;
+  --color-border-secondary:rgba(232,232,237,.22);
+  --color-danger-bg:#501313; --color-danger-text:#F7C1C1; --color-danger-edge:#E24B4A;
+
+  --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --border-radius-md:8px; --border-radius-lg:12px;
+  --measure:34rem;
+}
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+body{
+  margin:0;
+  background:var(--color-background-tertiary);
+  color:var(--color-text-primary);
+  font-family:var(--font-sans);
+  font-size:16px;
+  line-height:1.7;
+}
+:focus-visible{ outline:2px solid var(--color-accent-secondary); outline-offset:2px; border-radius:2px; }
+.page{ max-width:var(--measure); margin:0 auto; padding:2.5rem 1.25rem 4rem; }
+h1{ font-size:26px; font-weight:600; line-height:1.3; margin:0 0 .35rem;
+    border-bottom:3px solid var(--color-accent-primary); padding-bottom:.5rem; }
+p{ margin:0 0 1rem; color:var(--color-text-secondary); }
+.doc-meta{ color:var(--color-text-tertiary); font-size:14px; margin:0 0 1.5rem; }
+code{ font-family:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace; font-size:.92em; }
+
+.card{ background:var(--color-background-secondary); border:1px solid var(--color-border-tertiary);
+  border-radius:var(--border-radius-lg); padding:1.4rem 1.2rem 1.2rem; text-align:center; }
+.count{ font-size:56px; font-weight:600; line-height:1.1; color:var(--color-text-primary);
+  font-variant-numeric:tabular-nums; margin:0; min-height:1.1em; }
+.count-label{ font-size:15px; color:var(--color-text-secondary); margin:.35rem 0 0; }
+.status-line{ min-height:1.5em; font-size:14px; color:var(--color-text-tertiary); margin:.85rem 0 0; }
+
+.callout{ border-left:4px solid; padding:.85rem 1rem; margin:1.25rem 0 0; text-align:left; }
+.callout--danger{ background:var(--color-danger-bg); border-color:var(--color-danger-edge); color:var(--color-danger-text); }
+.callout p{ color:inherit; margin:0; }
+
+button{
+  font-family:var(--font-sans); font-size:15px; font-weight:600; cursor:pointer;
+  background:var(--color-accent-primary); color:#fff; border:none;
+  padding:.6rem 1.3rem; border-radius:var(--border-radius-md); margin-top:.85rem;
+}
+button:hover:not(:disabled){ filter:brightness(1.12); }
+button:disabled{ opacity:.55; cursor:not-allowed; }
+
+.notes{ margin-top:1.75rem; font-size:14px; }
+.notes p{ font-size:14px; color:var(--color-text-tertiary); }
+
+.spinner{ display:inline-block; width:.9em; height:.9em; vertical-align:-.1em;
+  border:2px solid var(--color-border-secondary); border-top-color:var(--color-accent-secondary);
+  border-radius:50%; animation:spin .8s linear infinite; margin-right:.4em; }
+@keyframes spin{ to{ transform:rotate(360deg); } }
+@media (prefers-reduced-motion:reduce){ .spinner{ animation-duration:2.4s; } }
+
+[hidden]{ display:none !important; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>Early reader page visitors</h1>
+    <p class="doc-meta">Visitor count for the private early-reader page, <code>/chickenwhispering/</code></p>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="count-label">
+      <p class="count" id="count" aria-describedby="count-label">&ndash;</p>
+      <p class="count-label" id="count-label">visitors</p>
+      <p class="status-line" id="status" role="status" aria-live="polite"></p>
+
+      <div class="callout callout--danger" id="error-box" hidden>
+        <p id="error-text"></p>
+      </div>
+      <button type="button" id="retry" hidden>Try again</button>
+
+      <noscript>
+        <div class="callout callout--danger">
+          <p>This page needs JavaScript to load the count.</p>
+        </div>
+      </noscript>
+    </section>
+
+    <section class="notes" aria-label="About this count">
+      <p>Counted by GoatCounter, which caches this total for up to four hours, so recent visits can take a while to appear.</p>
+      <p>Counting began when visit tracking was added to the early-reader page, so earlier visits are not included. Visitors whose browsers block analytics scripts are not counted, and opening this page does not add a visit.</p>
+    </section>
+  </main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* Configuration. PATH must match the path pinned in data-goatcounter-settings
+     on /chickenwhispering/index.html. */
+  var SITE = 'https://frauddyscotty.goatcounter.com';
+  var PATH = '/chickenwhispering/';
+  var TIMEOUT_MS = 15000;
+
+  /* GoatCounter formats the count with thousands separators that depend on the
+     account's number-format setting (comma, period, apostrophe, space, or a
+     no-break space), e.g. "1,234". Accept only digits plus those separators. */
+  var COUNT_RE = /^[0-9](?:[0-9,.'   ]{0,30}[0-9])?$/;
+
+  var MSG_BLOCKED =
+    'The count could not be loaded. If you run this site, check that ' +
+    '“Allow adding visitor counts on your website” is turned on in ' +
+    'GoatCounter’s site settings. Otherwise the request was blocked, for ' +
+    'example by the network or a tracker-blocking browser extension.';
+
+  function el(id) {
+    var node = document.getElementById(id);
+    if (!node) throw new Error('visitor-count: missing element #' + id);
+    return node;
+  }
+
+  var countEl, statusEl, errorBox, errorText, retryBtn;
+  try {
+    countEl = el('count');
+    statusEl = el('status');
+    errorBox = el('error-box');
+    errorText = el('error-text');
+    retryBtn = el('retry');
+  } catch (e) {
+    console.error(e);
+    return;
+  }
+
+  function setLoading() {
+    countEl.textContent = '–';
+    errorBox.hidden = true;
+    errorText.textContent = '';
+    retryBtn.hidden = true;
+    retryBtn.disabled = true;
+    statusEl.textContent = '';
+    var spin = document.createElement('span');
+    spin.className = 'spinner';
+    spin.setAttribute('aria-hidden', 'true');
+    statusEl.appendChild(spin);
+    statusEl.appendChild(document.createTextNode('Loading the count…'));
+  }
+
+  function checkedAt() {
+    try {
+      return new Date().toLocaleString(undefined, {
+        year: 'numeric', month: 'short', day: 'numeric',
+        hour: 'numeric', minute: '2-digit'
+      });
+    } catch (e) {
+      return new Date().toString();
+    }
+  }
+
+  function showCount(text, noVisitsYet) {
+    countEl.textContent = text;
+    statusEl.textContent = (noVisitsYet ? 'No visits recorded yet. ' : '') +
+      'Checked ' + checkedAt() + '.';
+  }
+
+  function showError(message) {
+    countEl.textContent = '–';
+    statusEl.textContent = '';
+    errorText.textContent = message;
+    errorBox.hidden = false;
+    retryBtn.hidden = false;
+    retryBtn.disabled = false;
+  }
+
+  /** Returns the validated count string, or null if the body isn't usable. */
+  function parseCount(bodyText) {
+    if (typeof bodyText !== 'string' || !bodyText.trim()) return null;
+    var data;
+    try {
+      data = JSON.parse(bodyText);
+    } catch (e) {
+      return null;
+    }
+    if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
+    if (typeof data.count !== 'string') return null;
+    var c = data.count.trim();
+    return COUNT_RE.test(c) ? c : null;
+  }
+
+  function load() {
+    setLoading();
+
+    if (typeof window.fetch !== 'function') {
+      showError('This browser is too old to load the count (it has no fetch support).');
+      return;
+    }
+
+    var url = SITE + '/counter/' + encodeURIComponent(PATH) + '.json';
+    var ctrl = (typeof AbortController === 'function') ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, TIMEOUT_MS) : null;
+    var opts = { cache: 'no-store', credentials: 'omit' };
+    if (ctrl) opts.signal = ctrl.signal;
+
+    fetch(url, opts)
+      .then(function (resp) {
+        return resp.text().then(function (text) {
+          return { status: resp.status, text: text };
+        });
+      })
+      .then(function (r) {
+        if (timer) clearTimeout(timer);
+        if (r.status === 200 || r.status === 404) {
+          var c = parseCount(r.text);
+          if (c === null) {
+            showError('GoatCounter sent a response this page could not read (HTTP ' +
+              r.status + '). Try again later.');
+            return;
+          }
+          showCount(c, r.status === 404);
+        } else if (r.status === 403) {
+          showError(MSG_BLOCKED);
+        } else {
+          showError('GoatCounter returned an error (HTTP ' + r.status + '). Try again later.');
+        }
+      })
+      .catch(function (err) {
+        if (timer) clearTimeout(timer);
+        if (err && err.name === 'AbortError') {
+          showError('GoatCounter did not respond within ' + (TIMEOUT_MS / 1000) +
+            ' seconds. Try again later.');
+        } else {
+          console.debug('visitor-count: fetch failed', err);
+          showError(MSG_BLOCKED);
+        }
+      });
+  }
+
+  retryBtn.addEventListener('click', load);
+  load();
+})();
+</script>
+</body>
+</html>
